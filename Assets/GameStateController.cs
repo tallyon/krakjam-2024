@@ -1,13 +1,17 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Linq;
-using UnityEngine.SceneManagement;
 
 public class GameStateController : Singleton<GameStateController>
 {
+    
     public Dictionary<string, CharacterTypeEnum> playersCharacter = new();
     public List<CharacterData> charactersPrefab;
+
+    [SerializeField] private List<LevelConfig> LevelConfigs;
+
+    private List<GameObject> currentLevelSpawnedObjects = new();
+    private CharacterTypeEnum? _player1Character;
+    private CharacterTypeEnum? _player2Character;
 
     protected override void Awake()
     {
@@ -15,20 +19,37 @@ public class GameStateController : Singleton<GameStateController>
         DontDestroyOnLoad(this);
     }
 
-    public void SetPlayersCharacter(Dictionary<string, CharacterTypeEnum> toSet)
+    private void Start()
     {
-        playersCharacter = toSet;
+        _player1Character = charactersPrefab[0].CharacterType;
+        _player2Character = charactersPrefab[1].CharacterType;
+        StartLevel(0);
     }
 
-    public bool IsEachCharacterSelected()
+    private bool IsEachCharacterSelected()
     {
-        if (playersCharacter.Count <= 0)
+        if (_player1Character.HasValue == false)
+        {
+            Debug.LogError("Player 1 did not choose a character!");
             return false;
-        return playersCharacter.Values.Contains(CharacterTypeEnum.Sigma) &&
-               playersCharacter.Values.Contains(CharacterTypeEnum.Beta);
+        }
+
+        if (_player2Character.HasValue == false)
+        {
+            Debug.LogError("Player 2 did not choose a character!");
+            return false;
+        }
+
+        if (_player1Character.Value == _player2Character.Value)
+        {
+            Debug.LogError("Player cannot choose the same character!");
+            return false;
+        }
+
+        return true;
     }
 
-    public void StartLevel()
+    public void StartLevel(int index)
     {
         if (!IsEachCharacterSelected())
         {
@@ -36,7 +57,24 @@ public class GameStateController : Singleton<GameStateController>
             return;
         }
         
-        SceneManager.LoadScene("TestMap");
+        // destroy all spawned objects from current level if any
+        foreach (var go in currentLevelSpawnedObjects)
+        {
+            Destroy(go);
+        }
+        currentLevelSpawnedObjects.Clear();
+
+        var currentLevelConfig = LevelConfigs[index];
+
+        // spawn level
+        var levelInstance = Instantiate(currentLevelConfig.LevelPrefab);
+        currentLevelSpawnedObjects.Add(levelInstance);
+        
+        // spawn players
+        var player1 = Instantiate(charactersPrefab[0].Prefab);
+        var player2 = Instantiate(charactersPrefab[1].Prefab);
+        currentLevelSpawnedObjects.Add(player1);
+        currentLevelSpawnedObjects.Add(player2);
     }
 }
 

@@ -1,6 +1,12 @@
 using UnityEngine;
 
-public class CharacterData : MonoBehaviour
+[CreateAssetMenu]
+public class CharacterData : ScriptableObject
 {
-    public CharacterTypeEnum characterType;
+    [SerializeField] private string name;
+    [SerializeField] private CharacterTypeEnum characterType;
+    [SerializeField] private GameObject prefab;
+
+    public GameObject Prefab => prefab;
+    public CharacterTypeEnum CharacterType => characterType;
 }
