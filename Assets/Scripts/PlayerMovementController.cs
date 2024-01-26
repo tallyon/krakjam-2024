@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class NewBehaviourScript : MonoBehaviour
+public class PlayerMovementController : MonoBehaviour
 {
     [SerializeField] private InputActionAsset controls;
     [SerializeField] private float moveSpeed;
