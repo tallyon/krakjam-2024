@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+[RequireComponent(typeof(Rigidbody2D))]
 public class NewBehaviourScript : MonoBehaviour
 {
     [SerializeField] private InputActionAsset controls;
@@ -8,22 +9,22 @@ public class NewBehaviourScript : MonoBehaviour
 
     private InputAction _movementAction;
     private Vector2 _movementValue;
+    private Rigidbody2D _rb2d;
 
     private void Awake()
     {
+        _rb2d = GetComponent<Rigidbody2D>();
         var actionMap = controls.FindActionMap("gameplay");
         _movementAction = actionMap.FindAction("movement");
-        _movementAction.performed += MovementActionOnperformed;
     }
 
-    private void MovementActionOnperformed(InputAction.CallbackContext obj)
+    private void Update()
     {
-        _movementValue = obj.ReadValue<Vector2>();
+        _movementValue = _movementAction.ReadValue<Vector2>();
     }
 
     private void FixedUpdate()
     {
-        // move according to input controls
-        transform.Translate(_movementValue * moveSpeed);
+        _rb2d.MovePosition(_rb2d.position + _movementValue * moveSpeed);
     }
 }
