@@ -4,7 +4,7 @@ using UnityEngine;
 using DG.Tweening;
 
 [RequireComponent(typeof(TextMeshPro))]
-public class SimpleTextPopAnimation : MonoBehaviour
+public class SimpleTextPopAnimation : MonoBehaviour, ISimpleAnimation
 {
     private TextMeshPro text;
     private Sequence showSequence;

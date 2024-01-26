@@ -6,12 +6,12 @@
 
     public class Interactable : MonoBehaviour
     {
-        private SimpleTextPopAnimation _simpleTextPopAnimation;
+        private ISimpleAnimation _simpleTextPopAnimation;
         private List<string> currentPlayerTags = new();
 
         private void Awake()
         {
-            _simpleTextPopAnimation = GetComponentInChildren<SimpleTextPopAnimation>();
+            _simpleTextPopAnimation = GetComponentInChildren<ISimpleAnimation>();
         }
 
         private void OnTriggerEnter2D(Collider2D other)
