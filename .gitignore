@@ -70,3 +70,6 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+.idea/.idea.krakjam-2024/.idea/.gitignore
+.idea/.idea.krakjam-2024/.idea/indexLayout.xml
+.idea/.idea.krakjam-2024/.idea/vcs.xml
