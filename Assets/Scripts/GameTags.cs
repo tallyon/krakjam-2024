@@ -1,0 +1,5 @@
+    public static class GameTags
+    {
+        public const string PLAYER_1_TAG = "Player1";
+        public const string PLAYER_2_TAG = "Player2";
+    }
