@@ -227,12 +227,12 @@
             "actions": [
                 {
                     "name": "choose character",
-                    "type": "Value",
+                    "type": "Button",
                     "id": "c12727e6-82b2-490f-96cd-9222f6ddf2c9",
-                    "expectedControlType": "Axis",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": true
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [

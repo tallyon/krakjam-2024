@@ -10,7 +10,7 @@ public class CharacterSelectUIAnim : MonoBehaviour
     [SerializeField] private InputActionAsset controls;
     private RectTransform _rectTransform;
     private Vector3 startingPos;
-    private int currentPosition;
+    private float currentPosition;
     private InputActionMap _actionMap;
     private InputAction _movementAction;
     private int _inputvalue;
@@ -29,16 +29,15 @@ public class CharacterSelectUIAnim : MonoBehaviour
     /// <param name="direction">use negative or positive value to determine left or right direction</param>
     public void MoveRect(InputAction.CallbackContext obj)
     {
-        Debug.Log($"read input");
-        int direction = obj.ReadValue<int>();
+        float direction = obj.ReadValue<float>();
         if (currentPosition == direction)
             return;
         currentPosition += direction;
-        if (direction < 0)
+        if (currentPosition < 0)
         {
             _rectTransform.DOMoveX(startingPos.x - 50f, 0.5f);
         }
-        else if (direction == 0)
+        else if (currentPosition == 0)
         {
             _rectTransform.DOMoveX(startingPos.x, 0.5f);
         }
@@ -47,5 +46,4 @@ public class CharacterSelectUIAnim : MonoBehaviour
             _rectTransform.DOMoveX(startingPos.x + 50f, 0.5f);
         }
     }
-
 }
