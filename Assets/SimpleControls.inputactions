@@ -15,9 +15,27 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Interaction",
+                    "name": "interaction",
                     "type": "Button",
                     "id": "96961bf9-80eb-45be-aed8-c31e6b4667b9",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Ability1",
+                    "type": "Button",
+                    "id": "17122413-2030-40a0-b90f-5f68900341e6",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Ability2",
+                    "type": "Button",
+                    "id": "8b4311f9-5751-4418-8821-a33ec6e02fe2",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -39,7 +57,7 @@
                 {
                     "name": "up",
                     "id": "3bd1943f-8733-4ab7-9146-de11ae452c1a",
-                    "path": "<Keyboard>/w",
+                    "path": "<Keyboard>/upArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
@@ -50,7 +68,7 @@
                 {
                     "name": "down",
                     "id": "1ffe9545-aa35-49c2-89b3-6c9646cbce24",
-                    "path": "<Keyboard>/s",
+                    "path": "<Keyboard>/downArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
@@ -61,7 +79,7 @@
                 {
                     "name": "left",
                     "id": "4d66943d-6299-4a88-a08b-deaea660d94e",
-                    "path": "<Keyboard>/a",
+                    "path": "<Keyboard>/leftArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
@@ -72,7 +90,7 @@
                 {
                     "name": "right",
                     "id": "86ae18d1-26a5-4d59-8c6f-ace4a9551c6a",
-                    "path": "<Keyboard>/d",
+                    "path": "<Keyboard>/rightArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
@@ -142,7 +160,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
-                    "action": "Interaction",
+                    "action": "interaction",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -153,7 +171,51 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "PlayStation",
-                    "action": "Interaction",
+                    "action": "interaction",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ced51095-59ff-4c12-bb02-a2025f306e0d",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Ability1",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "281f1fb3-02ed-4dc4-b8a3-56257088baa9",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "PlayStation",
+                    "action": "Ability1",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "61830efd-de79-4664-9146-dbe4b31eae6e",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "Ability2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7c98e796-21a9-43bb-bf4a-0ba70f86070b",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "PlayStation",
+                    "action": "Ability2",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
