@@ -24,7 +24,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Ability1",
+                    "name": "ability1",
                     "type": "Button",
                     "id": "17122413-2030-40a0-b90f-5f68900341e6",
                     "expectedControlType": "Button",
@@ -33,7 +33,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Ability2",
+                    "name": "ability2",
                     "type": "Button",
                     "id": "8b4311f9-5751-4418-8821-a33ec6e02fe2",
                     "expectedControlType": "Button",
@@ -182,7 +182,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
-                    "action": "Ability1",
+                    "action": "ability1",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -193,7 +193,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "PlayStation",
-                    "action": "Ability1",
+                    "action": "ability1",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -204,7 +204,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
-                    "action": "Ability2",
+                    "action": "ability2",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -215,9 +215,92 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "PlayStation",
-                    "action": "Ability2",
+                    "action": "ability2",
                     "isComposite": false,
                     "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "character selection",
+            "id": "528be5a9-5da0-4d57-aa54-243880597e94",
+            "actions": [
+                {
+                    "name": "choose character",
+                    "type": "Value",
+                    "id": "c12727e6-82b2-490f-96cd-9222f6ddf2c9",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "left analog",
+                    "id": "ce34c546-79fb-40d0-b352-35c173fd236f",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "choose character",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "0b6e4dde-12e3-46d0-92a5-44dd9b01badb",
+                    "path": "<Gamepad>/leftStick/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "PlayStation",
+                    "action": "choose character",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "46508d8b-4279-47f0-b91e-d086760244f0",
+                    "path": "<Gamepad>/leftStick/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "PlayStation",
+                    "action": "choose character",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "1D Axis",
+                    "id": "7bd170ee-dfac-4d15-a6db-f5d724fa92c8",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "choose character",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "09e832cd-ac5d-41ce-9e6d-46dbfa017ba3",
+                    "path": "<Keyboard>/leftArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "choose character",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "5e45a6ed-de8e-4a57-97f2-949332d5c044",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "choose character",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 }
             ]
         }
