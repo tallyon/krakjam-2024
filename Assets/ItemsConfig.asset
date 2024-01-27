@@ -13,25 +13,275 @@ MonoBehaviour:
   m_Name: ItemsConfig
   m_EditorClassIdentifier: 
   items:
-  - Name: pork
-    itemEnum: 1
+  - Name: raw Pork
+    itemEnum: 17
     collectedItem: {fileID: 8381654774350127443, guid: d4866ac5a4261464db9d2a0b564a7a79,
       type: 3}
     interactableItem: {fileID: 9196494427775756211, guid: 523985e0fd5e6424f81404ec8141f333,
+      type: 3}
+    minPointsValue: -2
+    maxPointsValue: -2
+    finalPointsValue: 0
+    canBeGivenToGirl: 1
+  - Name: Roasted pork
+    itemEnum: 21
+    collectedItem: {fileID: 8381654774350127443, guid: d0ac604c7d1ab44949dde40c6e1fb2ba,
+      type: 3}
+    interactableItem: {fileID: 9196494427775756211, guid: 756a410e32a754ca0aba685e3432243f,
+      type: 3}
+    minPointsValue: 4
+    maxPointsValue: 4
+    finalPointsValue: 0
+    canBeGivenToGirl: 1
+  - Name: BakedCake
+    itemEnum: 0
+    collectedItem: {fileID: 8381654774350127443, guid: 33948b8d4e39c46d29d4138be65e5898,
+      type: 3}
+    interactableItem: {fileID: 9196494427775756211, guid: 756a410e32a754ca0aba685e3432243f,
+      type: 3}
+    minPointsValue: 4
+    maxPointsValue: 6
+    finalPointsValue: 0
+    canBeGivenToGirl: 1
+  - Name: Cappuchino
+    itemEnum: 2
+    collectedItem: {fileID: 8381654774350127443, guid: 0983ea23b478a4eadaa18db65af98d26,
+      type: 3}
+    interactableItem: {fileID: 9196494427775756211, guid: 125c8585858ab4e29980726defca7ec8,
+      type: 3}
+    minPointsValue: 1
+    maxPointsValue: 3
+    finalPointsValue: 0
+    canBeGivenToGirl: 1
+  - Name: Cola
+    itemEnum: 3
+    collectedItem: {fileID: 8381654774350127443, guid: b73502db0398d4522bb9bd54c7d36824,
+      type: 3}
+    interactableItem: {fileID: 9196494427775756211, guid: 50492fbbec7e04962bc20df5512542d4,
+      type: 3}
+    minPointsValue: 5
+    maxPointsValue: 5
+    finalPointsValue: 0
+    canBeGivenToGirl: 1
+  - Name: Poem about Butts
+    itemEnum: 24
+    collectedItem: {fileID: 8381654774350127443, guid: 91d185438eba24a3094a60ff37464a5a,
+      type: 3}
+    interactableItem: {fileID: 9196494427775756211, guid: 99c46056bbfc74ea1be81383925d84c4,
       type: 3}
     minPointsValue: 2
     maxPointsValue: 4
     finalPointsValue: 0
     canBeGivenToGirl: 1
-  - Name: pork
-    itemEnum: 0
+  - Name: Poem about Horses
+    itemEnum: 22
+    collectedItem: {fileID: 8381654774350127443, guid: c410266c120184f679bb836378f4a599,
+      type: 3}
+    interactableItem: {fileID: 9196494427775756211, guid: 3c7600320e40f4e4b840fd3e0fa82b37,
+      type: 3}
+    minPointsValue: 2
+    maxPointsValue: 4
+    finalPointsValue: 0
+    canBeGivenToGirl: 1
+  - Name: Poem about Death
+    itemEnum: 23
+    collectedItem: {fileID: 8381654774350127443, guid: 75c9c16058a3d4e9c89a11c646228645,
+      type: 3}
+    interactableItem: {fileID: 9196494427775756211, guid: 3ff3e7ce55dd74230b3f9206bea8db5f,
+      type: 3}
+    minPointsValue: 2
+    maxPointsValue: 4
+    finalPointsValue: 0
+    canBeGivenToGirl: 1
+  - Name: Watering Can
+    itemEnum: 5
+    collectedItem: {fileID: 8381654774350127443, guid: 5e108ef138d79427c985f4acb820e954,
+      type: 3}
+    interactableItem: {fileID: 9196494427775756211, guid: 0675d994a7600479b957196a2bf3ea00,
+      type: 3}
+    minPointsValue: 0
+    maxPointsValue: 0
+    finalPointsValue: 0
+    canBeGivenToGirl: 0
+  - Name: Fire Extinguishe
+    itemEnum: 6
+    collectedItem: {fileID: 8381654774350127443, guid: 654ae6bffb3f54f48935af6b9e48304d,
+      type: 3}
+    interactableItem: {fileID: 9196494427775756211, guid: 33762a97238854e268e3b933c7b571f2,
+      type: 3}
+    minPointsValue: 0
+    maxPointsValue: 0
+    finalPointsValue: 0
+    canBeGivenToGirl: 0
+  - Name: Energy Drink
+    itemEnum: 7
+    collectedItem: {fileID: 8381654774350127443, guid: cd90aab5e0c0646a0ba16026e234d927,
+      type: 3}
+    interactableItem: {fileID: 9196494427775756211, guid: 571fdbd6556f54fcc8c33923bab16513,
+      type: 3}
+    minPointsValue: 0
+    maxPointsValue: 0
+    finalPointsValue: 0
+    canBeGivenToGirl: 0
+  - Name: Flower
+    itemEnum: 8
+    collectedItem: {fileID: 8381654774350127443, guid: 6880d3b7a8adb408e855a72208a16668,
+      type: 3}
+    interactableItem: {fileID: 9196494427775756211, guid: cd37ece0dcd7948bf970cd38c4698f2c,
+      type: 3}
+    minPointsValue: 5
+    maxPointsValue: 5
+    finalPointsValue: 0
+    canBeGivenToGirl: 1
+  - Name: Soap
+    itemEnum: 9
+    collectedItem: {fileID: 8381654774350127443, guid: feb348a00036e44ea844cf9e711dda57,
+      type: 3}
+    interactableItem: {fileID: 9196494427775756211, guid: 3663b0133dc904935b578e848babbe66,
+      type: 3}
+    minPointsValue: 0
+    maxPointsValue: 0
+    finalPointsValue: 0
+    canBeGivenToGirl: 0
+  - Name: Coin
+    itemEnum: 10
+    collectedItem: {fileID: 8381654774350127443, guid: 439c65b3538584dd287aba903f4eb836,
+      type: 3}
+    interactableItem: {fileID: 9196494427775756211, guid: 7c23b23190208428f80fe5526f6eed74,
+      type: 3}
+    minPointsValue: 0
+    maxPointsValue: 0
+    finalPointsValue: 0
+    canBeGivenToGirl: 0
+  - Name: Photo
+    itemEnum: 11
+    collectedItem: {fileID: 8381654774350127443, guid: 6ad2aa27e852349258e55b08ec517fe2,
+      type: 3}
+    interactableItem: {fileID: 9196494427775756211, guid: ea5adec1f2e4e4593a2acd8eb9779877,
+      type: 3}
+    minPointsValue: 3
+    maxPointsValue: 3
+    finalPointsValue: 0
+    canBeGivenToGirl: 1
+  - Name: Disk
+    itemEnum: 12
+    collectedItem: {fileID: 8381654774350127443, guid: 91b64a7ed1c6b4d659cc9ab01d2a1ca4,
+      type: 3}
+    interactableItem: {fileID: 9196494427775756211, guid: 9d91fa2a361d8491693347ee0a2ea341,
+      type: 3}
+    minPointsValue: 5
+    maxPointsValue: 5
+    finalPointsValue: 0
+    canBeGivenToGirl: 1
+  - Name: Confetti
+    itemEnum: 13
+    collectedItem: {fileID: 8381654774350127443, guid: 3b80ce884030d42cd9032db18a1d9a80,
+      type: 3}
+    interactableItem: {fileID: 9196494427775756211, guid: b51628db90e534a2bbef2b4f7178fb93,
+      type: 3}
+    minPointsValue: 3
+    maxPointsValue: 3
+    finalPointsValue: 0
+    canBeGivenToGirl: 1
+  - Name: Copy of the Butt
+    itemEnum: 14
+    collectedItem: {fileID: 8381654774350127443, guid: e4399f61fcaf14e5e9708e7cc6295552,
+      type: 3}
+    interactableItem: {fileID: 9196494427775756211, guid: 3b024beb96ad24581af42b75f540832b,
+      type: 3}
+    minPointsValue: 3
+    maxPointsValue: 3
+    finalPointsValue: 0
+    canBeGivenToGirl: 1
+  - Name: Sandwich
+    itemEnum: 15
+    collectedItem: {fileID: 8381654774350127443, guid: 1a255c62e1df04ada9963fc5f4ba2fba,
+      type: 3}
+    interactableItem: {fileID: 9196494427775756211, guid: 17f7c93353c8e4f97a758623cabe4dc7,
+      type: 3}
+    minPointsValue: 1
+    maxPointsValue: 1
+    finalPointsValue: 0
+    canBeGivenToGirl: 1
+  - Name: Not Made Cake
+    itemEnum: 16
     collectedItem: {fileID: 8381654774350127443, guid: 81874dfb83d1646d0ba029d5b7c2def3,
       type: 3}
-    interactableItem: {fileID: 9196494427775756211, guid: 756a410e32a754ca0aba685e3432243f,
+    interactableItem: {fileID: 9196494427775756211, guid: 61324af5f04124b34b459b7cbacc6234,
+      type: 3}
+    minPointsValue: -1
+    maxPointsValue: -1
+    finalPointsValue: 0
+    canBeGivenToGirl: 1
+  - Name: Latte
+    itemEnum: 18
+    collectedItem: {fileID: 8381654774350127443, guid: 097950acfcf354b6f99bc7b1977d89ae,
+      type: 3}
+    interactableItem: {fileID: 9196494427775756211, guid: 745ebbc055bec4e30987d78289017c1f,
       type: 3}
     minPointsValue: 1
     maxPointsValue: 3
-    finalPointsValue: 1
+    finalPointsValue: 0
+    canBeGivenToGirl: 1
+  - Name: Black Coffee
+    itemEnum: 19
+    collectedItem: {fileID: 8381654774350127443, guid: 157df1abf3a534cf5b4d557266a45eab,
+      type: 3}
+    interactableItem: {fileID: 9196494427775756211, guid: 38fa32a019e6040a39afa57df19802a8,
+      type: 3}
+    minPointsValue: 1
+    maxPointsValue: 3
+    finalPointsValue: 0
+    canBeGivenToGirl: 1
+  - Name: Weights
+    itemEnum: 26
+    collectedItem: {fileID: 8381654774350127443, guid: cd618cee38477404c88e91c67cc773e7,
+      type: 3}
+    interactableItem: {fileID: 9196494427775756211, guid: 2c0162eec543443b496823df583cc75d,
+      type: 3}
+    minPointsValue: 3
+    maxPointsValue: 3
+    finalPointsValue: 0
+    canBeGivenToGirl: 1
+  - Name: Juice
+    itemEnum: 27
+    collectedItem: {fileID: 8381654774350127443, guid: 2dc0d26b0504b4f8a8b3d19d83b4276b,
+      type: 3}
+    interactableItem: {fileID: 9196494427775756211, guid: c93776553c6b94c458a10f9437f89d36,
+      type: 3}
+    minPointsValue: 5
+    maxPointsValue: 5
+    finalPointsValue: 0
+    canBeGivenToGirl: 1
+  - Name: Trophy
+    itemEnum: 28
+    collectedItem: {fileID: 8381654774350127443, guid: b5091d8ab008b40fc9e88a52dbc8b4eb,
+      type: 3}
+    interactableItem: {fileID: 9196494427775756211, guid: 5faea88f05bae4282a49b6a95fadd4f7,
+      type: 3}
+    minPointsValue: 3
+    maxPointsValue: 3
+    finalPointsValue: 0
+    canBeGivenToGirl: 1
+  - Name: Origami
+    itemEnum: 29
+    collectedItem: {fileID: 8381654774350127443, guid: 8b381404c6d804acab143514bde3bc36,
+      type: 3}
+    interactableItem: {fileID: 9196494427775756211, guid: d7c305ef145434faca7c0aaea45502b9,
+      type: 3}
+    minPointsValue: 3
+    maxPointsValue: 3
+    finalPointsValue: 0
+    canBeGivenToGirl: 1
+  - Name: Toilet Paper
+    itemEnum: 31
+    collectedItem: {fileID: 8381654774350127443, guid: 8b381404c6d804acab143514bde3bc36,
+      type: 3}
+    interactableItem: {fileID: 9196494427775756211, guid: d7c305ef145434faca7c0aaea45502b9,
+      type: 3}
+    minPointsValue: 3
+    maxPointsValue: 3
+    finalPointsValue: 0
     canBeGivenToGirl: 1
   itemsGroup:
   - groupEnum: 2
