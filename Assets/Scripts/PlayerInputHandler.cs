@@ -73,6 +73,9 @@ namespace DefaultNamespace
                 case PlayerCharacterStatus.InVent:
                     DisableInput();
                     break;
+                case PlayerCharacterStatus.ChoosingItem:
+                    DisableInput();
+                    break;
             }
         }
 
@@ -88,10 +91,34 @@ namespace DefaultNamespace
             mover.OnAbility1Performed(obj);
         }
 
+        public void OnChooseItem1Performed(InputAction.CallbackContext obj)
+        {
+            if (obj.canceled == false) return;
+            mover.OnChooseItem1Performed(obj);
+        }
+        
+        public void OnChooseItem2Performed(InputAction.CallbackContext obj)
+        {
+            if (obj.canceled == false) return;
+            mover.OnChooseItem2Performed(obj);
+        }
+
+        public void OnChooseItem3Performed(InputAction.CallbackContext obj)
+        {
+            if (obj.canceled == false) return;
+            mover.OnChooseItem3Performed(obj);
+        }
+
         public void OnInteractionPerformed(InputAction.CallbackContext obj)
         {
             if (obj.started == false) return;
             mover.OnInteractionPerformed(obj);
+        }
+
+        public void OnInteractionHold(InputAction.CallbackContext obj)
+        {
+            if (obj.performed == false) return;
+            mover.OnInteractionHold(obj);
         }
 
         public void OnEndGameAbilityPressed(InputAction.CallbackContext obj)
