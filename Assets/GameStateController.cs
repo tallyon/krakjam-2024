@@ -8,7 +8,7 @@ public class GameStateController : Singleton<GameStateController>
 {
     public Dictionary<string, CharacterTypeEnum> playersCharacter = new();
     public List<CharacterData> charactersPrefab;
-
+    public Action<PlayerInput, PlayerCharacter> onPlayerJoined;
     [SerializeField] private List<LevelConfig> LevelConfigs;
     [SerializeField] private ItemsData ItemsConfig;
     [SerializeField] private PlayerInputManager playerInputManagerPrefab;
@@ -18,7 +18,7 @@ public class GameStateController : Singleton<GameStateController>
     private CharacterTypeEnum? _player2Character;
     private PlayerCharacter _player1;
     private PlayerCharacter _player2;
-
+    
     protected override void Awake()
     {
         base.Awake();
@@ -86,9 +86,18 @@ public class GameStateController : Singleton<GameStateController>
         _player2 = player2.GetComponent<PlayerCharacter>();
 
         var inputManager = Instantiate(playerInputManagerPrefab);
+        inputManager.onPlayerJoined += OnPlayerJoined;
         currentLevelSpawnedObjects.Add(inputManager.gameObject);
     }
 
+    private void OnPlayerJoined(PlayerInput playerInput)
+    {
+        if(playerInput.playerIndex == 0)
+            onPlayerJoined.Invoke(playerInput, _player1);
+        else if(playerInput.playerIndex == 1)
+            onPlayerJoined.Invoke(playerInput, _player2);
+    }
+    
     public void OnInteract(Interaction interaction, CharacterTypeEnum characterEnum)
     {
         //var interactingPlayer = characterEnum == CharacterTypeEnum.Beta ? _player1 : _player2;
@@ -133,4 +142,16 @@ public enum CharacterTypeEnum
     Sigma,
     Beta,
     Both
+}
+
+public struct PlayerData
+{
+    public PlayerInput playerInput;
+    public PlayerCharacter playerCharacter;
+
+    public PlayerData(PlayerInput playerInput, PlayerCharacter playerCharacter)
+    {
+        this.playerInput = playerInput;
+        this.playerCharacter = playerCharacter;
+    }
 }

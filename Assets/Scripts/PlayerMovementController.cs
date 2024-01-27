@@ -44,11 +44,13 @@ public class PlayerMovementController : MonoBehaviour
     public void OnAbility2Performed(InputAction.CallbackContext obj)
     {
         Debug.Log("Ability 2!");
+        _playerCharacter.UseAbility2();
     }
 
     public void OnAbility1Performed(InputAction.CallbackContext obj)
     {
         Debug.Log("Ability 1!");
+        _playerCharacter.UseAbility1();
     }
 
     public void OnInteractionPerformed(InputAction.CallbackContext obj)

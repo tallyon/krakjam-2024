@@ -23,4 +23,7 @@ public class CharacterData : ScriptableObject
 
     public Sprite Ability1Sprite => ability1Sprite;
     public Sprite Ability2Sprite => ability2Sprite;
+
+    public int Ability1CooldownSeconds => ability1CooldownSeconds;
+    public int Ability2CooldownSeconds => ability2CooldownSeconds;
 }

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1140143311478881074}
   - component: {fileID: 7161758623677604214}
   - component: {fileID: 6725508236382638439}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player2
   m_TagString: Player2
   m_Icon: {fileID: 0}
@@ -126,7 +126,7 @@ Rigidbody2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -180,3 +180,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterTypeEnum: 0
   collectedItem: {fileID: 0}
+  _characterData: {fileID: 11400000, guid: ac67ffd88a7ad4208b530424d410f768, type: 2}
