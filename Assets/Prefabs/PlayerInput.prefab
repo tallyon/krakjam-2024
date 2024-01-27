@@ -179,9 +179,13 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 1480a1aa-d7ee-4ebc-a6a5-c053c494bfbc
     m_ActionName: endgame/reset[/Keyboard/enter]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 42c0d016-9678-47c5-a603-7fba0a7802a8
+    m_ActionName: idle/New action
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: 
-  m_DefaultActionMap: gameplay
+  m_DefaultActionMap: idle
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!114 &3735910552527112263

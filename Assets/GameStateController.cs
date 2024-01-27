@@ -1,9 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UI;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 using static ItemsData;
 using Random = UnityEngine.Random;
 
@@ -14,9 +16,11 @@ public class GameStateController : Singleton<GameStateController>
     public Dictionary<string, CharacterTypeEnum> playersCharacter = new();
     public List<CharacterData> charactersPrefab;
     public Action<PlayerInput, PlayerCharacter> onPlayerJoined;
-    public Action OnLevelStart;
+    public Action OnGameBegin;
+    [FormerlySerializedAs("startTimer")] public Action<float> StartTimer;
+    [FormerlySerializedAs("OnLevelStart")] public Action OnGameInit;
     public float roundTime = 180;
-    public bool IsLevelStarted { get; private set; }
+    public bool IsGameInitialized { get; private set; }
     [SerializeField] private List<LevelConfig> LevelConfigs;
     [SerializeField] private ItemsData ItemsConfig;
     [SerializeField] private PlayerInputManager playerInputManagerPrefab;
@@ -45,13 +49,26 @@ public class GameStateController : Singleton<GameStateController>
         StartLevel(0);
 
         StartCoroutine(SimulateScore());
-        IsLevelStarted = true;
-        OnLevelStart?.Invoke();
+        IsGameInitialized = true;
+        OnGameInit?.Invoke();
     }
     
     public void ResetLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    private IEnumerator BeginStartCountdown()
+    {
+        int timer = 3;
+        while (timer > 0)
+        {
+            StartTimer?.Invoke(timer);
+            yield return new WaitForSeconds(1);
+            timer--;
+        }
+        StartTimer?.Invoke(0);
+        OnGameBegin?.Invoke();
     }
     
     private IEnumerator SimulateScore()
@@ -124,10 +141,17 @@ public class GameStateController : Singleton<GameStateController>
 
     private void OnPlayerJoined(PlayerInput playerInput)
     {
-        if(playerInput.playerIndex == 0)
+        if (playerInput.playerIndex == 0)
+        {
             onPlayerJoined.Invoke(playerInput, _player1);
-        else if(playerInput.playerIndex == 1)
+            //TODO: USE ON PLAYER 2 LAATER
+        }
+        else if (playerInput.playerIndex == 1)
+        {
+            StartCoroutine(BeginStartCountdown());
             onPlayerJoined.Invoke(playerInput, _player2);
+            //StartCoroutine(BeginStartCountdown());
+        }
     }
     
     public void OnInteract(Interaction interaction, CharacterTypeEnum characterEnum)
