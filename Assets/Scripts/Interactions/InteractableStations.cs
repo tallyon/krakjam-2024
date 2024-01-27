@@ -15,16 +15,21 @@ public class InteractableStations : Interactable
         switch (interaction)
         {
             case StationChangeSpriteInteraction changeSpriteInteraction:
+
+                Debug.Log($"Interactable item: {characterTypeEnum} has changed sprite of {stationEnum}");
                 spriteRenderer.sprite = changeSpriteInteraction.newSprite;
                 break;
             case StationGiveItemInteraction giveItemInteraction:
+                Debug.Log($"Interactable item: {characterTypeEnum} has taken {giveItemInteraction.giveItemEnum} to {stationEnum}");
                 player = GameStateController.Instance.GetPlayerObject(characterTypeEnum);
                 player.DeleteItem();
                 break;
             case StationTakeItemInteraction stationTakeItemInteraction:
+                Debug.Log($"Interactable item: {characterTypeEnum} has taken {stationTakeItemInteraction.takeItemEnum} from {stationEnum}");
                 player.AddItem(stationTakeItemInteraction.takeItemEnum);
                 break;
             case DoorInteraction doorInteraction:
+                Debug.Log($"Interactable item: {characterTypeEnum} has interacted with  door");
                 break;
         }
     }

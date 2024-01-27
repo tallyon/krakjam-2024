@@ -3,13 +3,13 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using UnityEngine.InputSystem;
 
 namespace UI
 {
     public class Timer : MonoBehaviour
     {
         [SerializeField] private TextMeshProUGUI timerText;
-        [SerializeField] private float timeInSeconds;
         private Sequence tweenSequence;
         private float currentTime;
         private RectTransform textrect;
@@ -18,11 +18,19 @@ namespace UI
         private void Awake()
         {
             textrect = timerText.GetComponent<RectTransform>();
-            Reset();
+        }
+
+        private void Start()
+        {
+            GameStateController.Instance.onPlayerJoined += PlayerJoined;
+            DrawTimer(GameStateController.Instance.roundTime);
         }
 
         private void Update()
         {
+            if (currentTime <= 0)
+                return;
+            
             currentTime -= Time.deltaTime;
             if (currentTime > 0)
             {
@@ -34,16 +42,18 @@ namespace UI
                 PlayAnimation();
             }
 
-            if (currentTime <= 0)
-            {
-                //tutaj callback na koniec czasu
-            }
             
+        }
+
+        private void PlayerJoined(PlayerInput input, PlayerCharacter character)
+        {
+            if (input.playerIndex >= 0)
+                Reset();
         }
         
         private void Reset()
         {
-            currentTime = timeInSeconds;
+            currentTime = GameStateController.Instance.roundTime;
             tweenSequence?.Kill();
             animStarted = false;
         }

@@ -1,9 +1,10 @@
 using UnityEngine;
 using static ItemsData;
 
-public class StationGiveItemInteraction : Interaction
+public class StationGiveAdnTakeItemInteraction : Interaction
 {
     public ItemsEnum giveItemEnum;
+    public ItemsEnum takeItemEnum;
 
     public override bool PlayInteraction(PlayerCharacter playerCharacter)
     {
@@ -11,27 +12,23 @@ public class StationGiveItemInteraction : Interaction
         {
             if (playerCharacter.collectedItem != null && playerCharacter.collectedItem.itemsEnum == giveItemEnum)
             {
-
                 Debug.Log($"Interactions: Player has given item");
-
-                OnInteraction?.Invoke(this, playerCharacter.characterTypeEnum);
+                OnInteraction?.Invoke(new StationGiveItemInteraction() { giveItemEnum = giveItemEnum}, playerCharacter.characterTypeEnum);
+                Debug.Log($"Interactions: Player has given item");
+                OnInteraction?.Invoke(new StationTakeItemInteraction() { takeItemEnum = takeItemEnum }, playerCharacter.characterTypeEnum);
                 return true;
             }
             else
             {
-
-                Debug.Log($"Interactions: Player does not have proper item to give");
-
                 OnInteraction?.Invoke(new DisplayMessageInteraction() { Message = "You do not have proper item" }, playerCharacter.characterTypeEnum);
+                Debug.Log($"Interactions: Player tries to interact, does not have proper item");
                 return false;
             }
         }
         else
         {
-
-            Debug.Log($"Interactions: Player cannot interact with this item ith this character");
-
             OnInteraction?.Invoke(new DisplayMessageInteraction() { Message = "Station cannot be interacted by this character" }, playerCharacter.characterTypeEnum);
+            Debug.Log($"Interactions: Player cannot interact with this item with this character");
             return false;
         }
     }

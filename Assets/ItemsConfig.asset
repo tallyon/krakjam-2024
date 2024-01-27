@@ -19,3 +19,10 @@ MonoBehaviour:
       type: 3}
     interactableItem: {fileID: 9196494427775756211, guid: 523985e0fd5e6424f81404ec8141f333,
       type: 3}
+    minPointsValue: 0
+    maxPointsValue: 0
+    finalPointsValue: 0
+    canBeGivenToGirl: 0
+  itemsGroup:
+  - groupEnum: 2
+    items: 0000000001000000

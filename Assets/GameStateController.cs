@@ -14,6 +14,7 @@ public class GameStateController : Singleton<GameStateController>
     public List<CharacterData> charactersPrefab;
     public Action<PlayerInput, PlayerCharacter> onPlayerJoined;
     public Action OnLevelStart;
+    public float roundTime = 180;
     public bool IsLevelStarted { get; private set; }
     [SerializeField] private List<LevelConfig> LevelConfigs;
     [SerializeField] private ItemsData ItemsConfig;
