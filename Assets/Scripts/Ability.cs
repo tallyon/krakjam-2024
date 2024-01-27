@@ -1,4 +1,3 @@
-using CartoonFX;
 using UnityEngine;
 
 public class SprintAbility : Ability
