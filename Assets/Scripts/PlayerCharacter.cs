@@ -181,7 +181,7 @@ public class PlayerCharacter : MonoBehaviour
 
     private IEnumerator ReturnStatusToNormal(float timeSeconds)
     {
-        yield return new WaitForSeconds(10);
+        yield return new WaitForSeconds(timeSeconds);
         ApplyStatus(PlayerCharacterStatus.Normal);
     }
 

@@ -16,5 +16,5 @@ MonoBehaviour:
   cooldownSeconds: 6
   particles: {fileID: 3432958286849152088, guid: 757009a9b14b54d1789a732ca544aae4,
     type: 3}
-  radius: 1
+  radius: 5
   duration: 2
