@@ -136,6 +136,11 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1938889112458597208, guid: d64cfce69f7d4492bae77c15fdd5eed0,
+        type: 3}
+      propertyPath: playerActions.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1954010409086792909, guid: d64cfce69f7d4492bae77c15fdd5eed0,
         type: 3}
       propertyPath: m_Pivot.x
