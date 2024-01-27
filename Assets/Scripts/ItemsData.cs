@@ -6,8 +6,8 @@ using System;
 [CreateAssetMenu]
 public class ItemsData : ScriptableObject
 {
-    public List<ItemData> items { get; private set; }
-    public List<SpecialGroupItems> itemsGroup { get; private set; }
+    public List<ItemData> items;
+    public List<SpecialGroupItems> itemsGroup;
 
     public CollectedItem GetCollectedItemPrefab(ItemsEnum itemsEnum)
     {
@@ -17,6 +17,15 @@ public class ItemsData : ScriptableObject
     public InteractableItem GetInteractableItemPrefab(ItemsEnum itemsEnum)
     {
         return items.FirstOrDefault(x => x.itemEnum == itemsEnum).interactableItem;
+    }
+
+    public bool IsItemInGroup(ItemsGroup givenGroup, ItemsEnum itemsEnum)
+    {
+        var group = itemsGroup.FirstOrDefault(x => x.groupEnum == givenGroup);
+
+        if (group == null) return false;
+
+        return group.items.Contains(itemsEnum);
     }
 
     [Serializable]
@@ -35,7 +44,7 @@ public class ItemsData : ScriptableObject
     [Serializable]
     public class SpecialGroupItems
     {
-        public ItemsGroup itemEnum;
+        public ItemsGroup groupEnum;
         public List<ItemsEnum> items;
     }
 
