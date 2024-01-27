@@ -8,6 +8,10 @@ public class PlayerCharacter : MonoBehaviour
     public CollectedItem collectedItem = null;
     public Action<ItemsData.ItemsEnum> onItemAdd;
     public Action onItemDeleted;
+    public Action<Ability> onAbility1Used;
+    public Action<Ability> onAbility2Used;
+
+    public CharacterData CharacterData => _characterData;
 
     [SerializeField] private CharacterData _characterData;
 
@@ -40,11 +44,13 @@ public class PlayerCharacter : MonoBehaviour
     public void UseAbility1()
     {
         Ability1.GoOnCooldown();
+        onAbility1Used.Invoke(Ability1);
     }
 
     public void UseAbility2()
     {
         Ability2.GoOnCooldown();
+        onAbility2Used.Invoke(Ability2);
     }
 
     private void Update()
