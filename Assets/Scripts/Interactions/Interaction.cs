@@ -10,4 +10,9 @@ public class Interaction : MonoBehaviour
     {
         return true;
     }
+
+    public virtual bool PlayAbility(PlayerCharacter playerCharacter)
+    {
+        return true;
+    }
 }

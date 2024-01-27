@@ -22,3 +22,20 @@ public class PlayerCharacter : MonoBehaviour
         onItemDeleted?.Invoke();
     }
 }
+
+public class Ability
+{
+    public enum State
+    {
+        Ready,
+        OnCooldown
+    };
+
+    public float Type { get; set; }
+    public float CooldownEndTimeSeconds { get; set; }
+
+    public void GoOnCooldown()
+    {
+        CooldownEndTimeSeconds = Time.deltaTime + 10;
+    }
+}
