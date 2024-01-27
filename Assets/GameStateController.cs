@@ -167,6 +167,11 @@ public class GameStateController : Singleton<GameStateController>
     {
         return ItemsConfig.GetCollectedItemPrefab(itemsEnum);
     }
+
+    public PlayerCharacter GetOtherPlayer(PlayerCharacter playerAsking)
+    {
+        return playerAsking == _player1 ? _player2 : _player1;
+    }
 }
 
 public enum CharacterTypeEnum
