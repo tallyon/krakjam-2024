@@ -103,7 +103,7 @@ MonoBehaviour:
   playerId: 0
   controls: {fileID: -944628639613478452, guid: 97210cd740af04df697b1fa71c9c9623,
     type: 3}
-  moveSpeed: 0.1
+  moveSpeed: 0.2
 --- !u!50 &1140143311478881074
 Rigidbody2D:
   serializedVersion: 4
@@ -130,7 +130,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!58 &7161758623677604214
 CircleCollider2D:
   m_ObjectHideFlags: 0

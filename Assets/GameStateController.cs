@@ -5,7 +5,6 @@ using static ItemsData;
 
 public class GameStateController : Singleton<GameStateController>
 {
-    
     public Dictionary<string, CharacterTypeEnum> playersCharacter = new();
     public List<CharacterData> charactersPrefab;
 

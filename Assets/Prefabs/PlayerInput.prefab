@@ -112,7 +112,19 @@ MonoBehaviour:
     m_ActionId: c6a542ef-9b23-4ce9-b1b1-b8b8b550e6eb
     m_ActionName: gameplay/movement[/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow,/DualSenseGamepadHID/leftStick/up,/DualSenseGamepadHID/leftStick/down,/DualSenseGamepadHID/leftStick/left,/DualSenseGamepadHID/leftStick/right]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3735910552527112263}
+        m_TargetAssemblyTypeName: DefaultNamespace.PlayerInputHandler, Assembly-CSharp
+        m_MethodName: OnInteractionPerformed
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 96961bf9-80eb-45be-aed8-c31e6b4667b9
     m_ActionName: gameplay/interaction[/Keyboard/e,/DualSenseGamepadHID/buttonSouth]
   - m_PersistentCalls:
@@ -147,3 +159,5 @@ MonoBehaviour:
   controls: {fileID: -944628639613478452, guid: 97210cd740af04df697b1fa71c9c9623,
     type: 3}
   moveSpeed: 0.1
+  playerCameraPrefab: {fileID: 8319639252411975029, guid: 2448e497e11cc4ef3bbaedc2ace446ab,
+    type: 3}

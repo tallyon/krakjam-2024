@@ -8,6 +8,7 @@ namespace DefaultNamespace
     {
         [SerializeField] private InputActionAsset controls;
         [SerializeField] private float moveSpeed = 0.1f;
+        [SerializeField] private PlayerCamera playerCameraPrefab;
 
         private PlayerCharacter _playerCharacter;
         private PlayerInput _playerInput;
@@ -43,12 +44,22 @@ namespace DefaultNamespace
             var index = _playerInput.playerIndex;
             var movers = FindObjectsOfType<PlayerMovementController>();
             mover = movers.FirstOrDefault(m => m.playerId == index);
+
+            var playerCamera = Instantiate(playerCameraPrefab);
+            playerCamera.tag = index == 0 ? GameTags.PLAYER_1_TAG : GameTags.PLAYER_2_TAG;
+            playerCamera.SetTarget(mover.transform);
+            _playerInput.camera = playerCamera.Camera;
             
             _actionMap = controls.FindActionMap("gameplay");
         
             _actionMap.FindAction("interaction").performed += OnInteractionPerformed;
             _actionMap.FindAction("ability1").performed += OnAbility1Performed;
             _actionMap.FindAction("ability2").performed += OnAbility2Performed;
+
+            if (index > 0)
+            {
+                FindObjectOfType<PlayerInputManager>().splitScreen = true;
+            }
         }
 
         private void OnDestroy()
@@ -68,7 +79,7 @@ namespace DefaultNamespace
             Debug.Log("Ability 1!");
         }
 
-        private void OnInteractionPerformed(InputAction.CallbackContext obj)
+        public void OnInteractionPerformed(InputAction.CallbackContext obj)
         {
             if (_currentInteractableObject != null)
             {
