@@ -1,8 +1,10 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using static ItemsData;
+using Random = UnityEngine.Random;
 
 public class GameStateController : Singleton<GameStateController>
 {
@@ -18,6 +20,9 @@ public class GameStateController : Singleton<GameStateController>
     private CharacterTypeEnum? _player2Character;
     private PlayerCharacter _player1;
     private PlayerCharacter _player2;
+
+    public PlayerScore Player1Score { get; private set; }
+    public PlayerScore Player2Score { get; private set; }
     
     protected override void Awake()
     {
@@ -27,9 +32,24 @@ public class GameStateController : Singleton<GameStateController>
 
     private void Start()
     {
+        Player1Score = new PlayerScore(20);
+        Player2Score = new PlayerScore(20);
+        
         _player1Character = charactersPrefab[0].CharacterType;
         _player2Character = charactersPrefab[1].CharacterType;
         StartLevel(0);
+
+        StartCoroutine(SimulateScore());
+    }
+
+    private IEnumerator SimulateScore()
+    {
+        while (Player1Score.PercentageVictoryAchieved < 1 && Player2Score.PercentageVictoryAchieved < 1)
+        {
+            Player1Score.AddScore(Random.Range(1, 3));
+            Player2Score.AddScore(Random.Range(1, 3));
+            yield return new WaitForSeconds(2);
+        }
     }
 
     private bool IsEachCharacterSelected()
@@ -116,12 +136,22 @@ public class GameStateController : Singleton<GameStateController>
         return interactingPlayer;
     }
 
-    public InteractableItem GetInteractableItemPrefab(ItemsEnum itemsEnum)
+    public InteractableItem GetInteractableItemPrefab(ItemsData.ItemsEnum itemsEnum)
     {
         return ItemsConfig.GetInteractableItemPrefab(itemsEnum);
     }
 
-    public CollectedItem GetCollectedItemPrefab(ItemsEnum itemsEnum)
+    public List<ItemData> GetItemsData()
+    {
+        return ItemsConfig.items;
+    }
+
+    public List<SpecialGroupItems> GetGroupsData()
+    {
+        return ItemsConfig.itemsGroup;
+    }
+
+    public CollectedItem GetCollectedItemPrefab(ItemsData.ItemsEnum itemsEnum)
     {
         return ItemsConfig.GetCollectedItemPrefab(itemsEnum);
     }
