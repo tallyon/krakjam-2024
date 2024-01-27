@@ -13,7 +13,6 @@ namespace DefaultNamespace
         private PlayerCharacter _playerCharacter;
         private PlayerInput _playerInput;
         private PlayerMovementController mover;
-        private InputActionMap _actionMap;
         private Vector2 _movementValue;
         private Interactable _currentInteractableObject;
 
@@ -49,43 +48,29 @@ namespace DefaultNamespace
             playerCamera.tag = index == 0 ? GameTags.PLAYER_1_TAG : GameTags.PLAYER_2_TAG;
             playerCamera.SetTarget(mover.transform);
             _playerInput.camera = playerCamera.Camera;
-            
-            _actionMap = controls.FindActionMap("gameplay");
-        
-            _actionMap.FindAction("interaction").performed += OnInteractionPerformed;
-            _actionMap.FindAction("ability1").performed += OnAbility1Performed;
-            _actionMap.FindAction("ability2").performed += OnAbility2Performed;
 
             if (index > 0)
             {
                 FindObjectOfType<PlayerInputManager>().splitScreen = true;
             }
         }
-
-        private void OnDestroy()
-        {
-            _actionMap.FindAction("interaction").performed -= OnInteractionPerformed;
-            _actionMap.FindAction("ability1").performed -= OnAbility1Performed;
-            _actionMap.FindAction("ability2").performed -= OnAbility2Performed;
-        }
         
-        private void OnAbility2Performed(InputAction.CallbackContext obj)
+        public void OnAbility2Performed(InputAction.CallbackContext obj)
         {
-            Debug.Log("Ability 2!");
+            if (obj.started == false) return;
+            mover.OnAbility2Performed(obj);
         }
 
-        private void OnAbility1Performed(InputAction.CallbackContext obj)
+        public void OnAbility1Performed(InputAction.CallbackContext obj)
         {
-            Debug.Log("Ability 1!");
+            if (obj.started == false) return;
+            mover.OnAbility1Performed(obj);
         }
 
         public void OnInteractionPerformed(InputAction.CallbackContext obj)
         {
-            if (_currentInteractableObject != null)
-            {
-                _currentInteractableObject.Interact(_playerCharacter);
-                Debug.Log("Interaction!");
-            }
+            if (obj.started == false) return;
+            mover.OnInteractionPerformed(obj);
         }
 
         private void FixedUpdate()

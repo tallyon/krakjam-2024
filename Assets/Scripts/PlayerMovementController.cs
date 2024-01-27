@@ -21,17 +21,6 @@ public class PlayerMovementController : MonoBehaviour
         _playerCharacter = GetComponent<PlayerCharacter>();
         _actionMap = controls.FindActionMap("gameplay");
         _movementAction = _actionMap.FindAction("movement");
-        
-        _actionMap.FindAction("interaction").performed += OnInteractionPerformed;
-        _actionMap.FindAction("ability1").performed += OnAbility1Performed;
-        _actionMap.FindAction("ability2").performed += OnAbility2Performed;
-    }
-
-    private void OnDestroy()
-    {
-        _actionMap.FindAction("interaction").performed -= OnInteractionPerformed;
-        _actionMap.FindAction("ability1").performed -= OnAbility1Performed;
-        _actionMap.FindAction("ability2").performed -= OnAbility2Performed;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -49,32 +38,31 @@ public class PlayerMovementController : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-            _currentInteractableObject = null;
+        _currentInteractableObject = null;
     }
 
-    private void OnAbility2Performed(InputAction.CallbackContext obj)
+    public void OnAbility2Performed(InputAction.CallbackContext obj)
     {
         Debug.Log("Ability 2!");
     }
 
-    private void OnAbility1Performed(InputAction.CallbackContext obj)
+    public void OnAbility1Performed(InputAction.CallbackContext obj)
     {
         Debug.Log("Ability 1!");
     }
 
-    private void OnInteractionPerformed(InputAction.CallbackContext obj)
+    public void OnInteractionPerformed(InputAction.CallbackContext obj)
     {
         if (_currentInteractableObject != null)
         {
             _currentInteractableObject.Interact(_playerCharacter);
             Debug.Log("Interaction!");
         }
+        else
+        {
+            Debug.Log("No object to interact with");
+        }
     }
-
-    // private void Update()
-    // {
-    //     _movementValue = _movementAction.ReadValue<Vector2>();
-    // }
 
     public void Move(Vector2 moveVal)
     {

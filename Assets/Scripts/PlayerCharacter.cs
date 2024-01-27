@@ -14,6 +14,24 @@ public class PlayerCharacter : MonoBehaviour
 
     public void DeleteItem()
     {
+        
         collectedItem = null;
+    }
+}
+
+public class Ability
+{
+    public enum State
+    {
+        Ready,
+        OnCooldown
+    };
+
+    public float Type { get; set; }
+    public float CooldownEndTimeSeconds { get; set; }
+
+    public void GoOnCooldown()
+    {
+        CooldownEndTimeSeconds = Time.deltaTime + 10;
     }
 }
