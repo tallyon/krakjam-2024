@@ -8,16 +8,19 @@ public class CharacterData : ScriptableObject
     [SerializeField] private GameObject prefab;
 
     [Header("Ability 1")]
-    private Sprite ability1Sprite;
+    [SerializeField] private Sprite ability1Sprite;
     [SerializeField] private int ability1CooldownSeconds;
-    private AudioClip ability1Sound;
+    [SerializeField] private AudioClip ability1Sound;
     
     [Header("Ability 2")]
-    private Sprite ability2Sprite;
+    [SerializeField] private Sprite ability2Sprite;
     [SerializeField] private int ability2CooldownSeconds;
-    private AudioClip ability2Sound; 
+    [SerializeField] private AudioClip ability2Sound; 
     
 
     public GameObject Prefab => prefab;
     public CharacterTypeEnum CharacterType => characterType;
+
+    public Sprite Ability1Sprite => ability1Sprite;
+    public Sprite Ability2Sprite => ability2Sprite;
 }
