@@ -220,6 +220,9 @@ public class PlayerCharacter : MonoBehaviour
 
         if (distanceToOtherPlayer > abilityConfig.Radius) return;
         
+        // check if other player is in normal status
+        if (otherPlayer.PlayerStatus != PlayerCharacterStatus.Normal) return;
+        
         // if other player is in radius apply Stunned status and push him back
         otherPlayer.ApplyStatus(PlayerCharacterStatus.Stunned, abilityConfig.Duration);
         otherPlayer._playerMovementController.Rigidbody.DOMove(otherPlayer.transform.position +
