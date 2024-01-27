@@ -9,6 +9,8 @@ TagManager:
   - Player1
   - Player2
   - Interactable
+  - FxTemporaire
+  - StunningSurface
   layers:
   - Default
   - TransparentFX

@@ -6,6 +6,8 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(PlayerCharacter))]
 public class PlayerMovementController : MonoBehaviour
 {
+    private const float STUNNING_SURFACE_STUN_DURATION_SECONDS = 5;
+    
     public int playerId;
     [SerializeField] private InputActionAsset controls;
     public float CharacterMoveSpeedModifier { get; set; }
@@ -37,6 +39,12 @@ public class PlayerMovementController : MonoBehaviour
             {
                 _currentInteractableObject = interactable;
             }
+        }
+
+        if (other.gameObject.CompareTag(GameTags.STUNNING_SURFACE))
+        {
+            _playerCharacter.ApplyStatus(PlayerCharacterStatus.Stunned, STUNNING_SURFACE_STUN_DURATION_SECONDS);
+            Destroy(other.gameObject);
         }
     }
 
