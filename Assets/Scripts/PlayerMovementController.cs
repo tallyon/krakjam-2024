@@ -11,6 +11,7 @@ public class PlayerMovementController : MonoBehaviour
     private InputAction _movementAction;
     private Vector2 _movementValue;
     private Rigidbody2D _rb2d;
+    private Interactable _currentInteractableObject;
 
     private void Awake()
     {
@@ -21,6 +22,31 @@ public class PlayerMovementController : MonoBehaviour
         _actionMap.FindAction("interaction").performed += OnInteractionPerformed;
         _actionMap.FindAction("ability1").performed += OnAbility1Performed;
         _actionMap.FindAction("ability2").performed += OnAbility2Performed;
+    }
+
+    private void OnDestroy()
+    {
+        _actionMap.FindAction("interaction").performed -= OnInteractionPerformed;
+        _actionMap.FindAction("ability1").performed -= OnAbility1Performed;
+        _actionMap.FindAction("ability2").performed -= OnAbility2Performed;
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag(GameTags.INTERACTABLE))
+        {
+            var interactable = other.GetComponent<Interactable>();
+
+            if(interactable != null)
+            {
+                _currentInteractableObject = interactable;
+            }
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+            _currentInteractableObject = null;
     }
 
     private void OnAbility2Performed(InputAction.CallbackContext obj)
@@ -35,6 +61,10 @@ public class PlayerMovementController : MonoBehaviour
 
     private void OnInteractionPerformed(InputAction.CallbackContext obj)
     {
+        if (_currentInteractableObject)
+        {
+            _currentInteractableObject.Interact(gameObject.tag);
+        }
         Debug.Log("Interaction!");
     }
 

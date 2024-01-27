@@ -12,8 +12,9 @@ GameObject:
   - component: {fileID: 1929956017424536445}
   - component: {fileID: 4567134162980678765}
   - component: {fileID: 879156668273861332}
+  - component: {fileID: 1740872478899043271}
   m_Layer: 0
-  m_Name: InteractableObject
+  m_Name: InteractableItem
   m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -99,7 +100,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0b16bb571704c0798d1566a242cef22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactions: []
+  interactions:
+  - {fileID: 1740872478899043271}
 --- !u!61 &879156668273861332
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -145,6 +147,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.16, y: 0.16}
   m_EdgeRadius: 0
+--- !u!114 &1740872478899043271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3256856186573402946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0a2ee51e68024595b9e3a34eb033275, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4643413399523236677
 GameObject:
   m_ObjectHideFlags: 0
