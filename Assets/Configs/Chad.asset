@@ -16,9 +16,11 @@ MonoBehaviour:
   characterType: 0
   prefab: {fileID: 956808371504728417, guid: bd23fef50aeb2451586f562299f92933, type: 3}
   moveSpeed: 1
+  ability1Config: {fileID: 11400000, guid: 525a2972b7750494091ad0b2ec8acfab, type: 2}
   ability1Sprite: {fileID: 21300000, guid: fad819cde662e4463be02ea2ecdd1524, type: 3}
   ability1CooldownSeconds: 20
   ability1Sound: {fileID: 0}
+  ability2Config: {fileID: 11400000, guid: 60e0de5892e55439c8c60fbfdcc97412, type: 2}
   ability2Sprite: {fileID: 21300000, guid: 240734dbd139c4024aa8af98c9dd0ada, type: 3}
-  ability2CooldownSeconds: 45
+  ability2CooldownSeconds: 2
   ability2Sound: {fileID: 0}

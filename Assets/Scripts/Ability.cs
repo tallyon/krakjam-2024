@@ -1,3 +1,4 @@
+using CartoonFX;
 using UnityEngine;
 
 public class Ability
@@ -13,9 +14,15 @@ public class Ability
 
     private readonly int _cooldownSeconds;
 
-    public Ability(int cooldownSeconds)
+    public GameObject Particles => _config.Particles;
+    public string Name => _config.Name;
+
+    private readonly AbilityConfig _config;
+
+    public Ability(AbilityConfig config)
     {
-        _cooldownSeconds = cooldownSeconds;
+        _cooldownSeconds = config.CooldownSeconds;
+        _config = config;
     }
     
     public void GoOnCooldown()
