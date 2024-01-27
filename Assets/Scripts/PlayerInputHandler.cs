@@ -14,6 +14,7 @@ namespace DefaultNamespace
         private PlayerCharacter _playerCharacter;
         private PlayerInput _playerInput;
         private PlayerMovementController mover;
+        private PlayerUIHandler uiSelector;
         private Vector2 _movementValue;
         private Interactable _currentInteractableObject;
         
@@ -43,6 +44,7 @@ namespace DefaultNamespace
             var index = _playerInput.playerIndex;
             var movers = FindObjectsOfType<PlayerMovementController>();
             mover = movers.FirstOrDefault(m => m.playerId == index);
+            uiSelector = mover.GetComponent<PlayerUIHandler>();
             _playerCharacter = mover.GetComponent<PlayerCharacter>();
             _playerCharacter.OnPlayerCharacterStatusChanged += OnPlayerCharacterStatusChanged;
             var playerCamera = Instantiate(playerCameraPrefab);
@@ -97,6 +99,12 @@ namespace DefaultNamespace
         {
             Debug.Log($"Submit button pressed");
             GameStateController.Instance.ResetLevel();   
+        }
+
+        public void OnCharacterSelectionInput(InputAction.CallbackContext obj)
+        {
+            float dir = obj.ReadValue<float>();
+            uiSelector.Move(dir);
         }
 
         private void SwitchActionMapToEndGame()
