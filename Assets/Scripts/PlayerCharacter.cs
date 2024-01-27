@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 
+[RequireComponent(typeof(PlayerMovementController))]
 public class PlayerCharacter : MonoBehaviour
 {
     public CharacterTypeEnum characterTypeEnum;
@@ -13,8 +14,12 @@ public class PlayerCharacter : MonoBehaviour
     public Ability Ability1 { get; set; }
     public Ability Ability2 { get; set; }
 
+    private PlayerMovementController _playerMovementController;
+
     private void Awake()
     {
+        _playerMovementController = GetComponent<PlayerMovementController>();
+        _playerMovementController.CharacterMoveSpeedModifier = _characterData.MoveSpeed;
         Ability1 = new Ability(_characterData.Ability1CooldownSeconds);
         Ability2 = new Ability(_characterData.Ability2CooldownSeconds);
     }
