@@ -63,5 +63,7 @@ public class ItemsData : ScriptableObject
         Cappuchino =2,
         Cola = 3,
         PoemOfButts = 4,
+        WateringCan = 5,
+
     }
 }
