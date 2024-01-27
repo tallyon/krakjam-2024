@@ -35,9 +35,9 @@ namespace UI
             interactableImageInputIcon.sprite = iconSet.icons.interactableIcon;
         }
 
-        private void SetItemIcon(ItemsData.ItemsEnum item)
+        private void SetItemIcon(CollectedItem item)
         {
-            Debug.Log($"Setup UI for item added");
+            interactableImage.sprite = item.itemSprite;
         }
 
         private void ClearItem()

@@ -11,7 +11,7 @@ public class PlayerCharacter : MonoBehaviour
 {
     public CharacterTypeEnum characterTypeEnum;
     public CollectedItem collectedItem = null;
-    public Action<ItemsData.ItemsEnum> onItemAdd;
+    public Action<CollectedItem> onItemAdd;
     public Action onItemDeleted;
     public Action<Ability> onAbility1Used;
     public Action<Ability> onAbility2Used;
@@ -39,7 +39,7 @@ public class PlayerCharacter : MonoBehaviour
     {
         var collected = GameStateController.Instance.GetCollectedItemPrefab(item);
         collectedItem = collected;
-        onItemAdd?.Invoke(item);
+        onItemAdd?.Invoke(collectedItem);
     }
 
     public void DeleteItem()
