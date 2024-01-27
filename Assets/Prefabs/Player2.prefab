@@ -180,3 +180,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterTypeEnum: 0
   collectedItem: {fileID: 0}
+  _characterData: {fileID: 11400000, guid: ac67ffd88a7ad4208b530424d410f768, type: 2}
