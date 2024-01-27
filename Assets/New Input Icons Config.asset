@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24a338518f484b2eab5a11e288aa16da, type: 3}
+  m_Name: New Input Icons Config
+  m_EditorClassIdentifier: 
+  iconSet:
+  - type: 2
+    icons:
+      skill1Icon: {fileID: -741608249, guid: 1af7c20d6c90c4e639abcbf698348400, type: 3}
+      skill2Icon: {fileID: 1462116476, guid: 1af7c20d6c90c4e639abcbf698348400, type: 3}
+      interactableIcon: {fileID: -1295127590, guid: 1af7c20d6c90c4e639abcbf698348400,
+        type: 3}
+      goUp: {fileID: 1232138056, guid: 1af7c20d6c90c4e639abcbf698348400, type: 3}
+      goDown: {fileID: 1660793496, guid: 1af7c20d6c90c4e639abcbf698348400, type: 3}
+      goLeft: {fileID: 1770081560, guid: 1af7c20d6c90c4e639abcbf698348400, type: 3}
+      goRight: {fileID: 1125270938, guid: 1af7c20d6c90c4e639abcbf698348400, type: 3}
+  - type: 0
+    icons:
+      skill1Icon: {fileID: -2130524084, guid: bc43cfaa57b8b43679ac5f98502414eb, type: 3}
+      skill2Icon: {fileID: -1458534768, guid: bc43cfaa57b8b43679ac5f98502414eb, type: 3}
+      interactableIcon: {fileID: 68865927, guid: bc43cfaa57b8b43679ac5f98502414eb,
+        type: 3}
+      goUp: {fileID: -858256360, guid: bc43cfaa57b8b43679ac5f98502414eb, type: 3}
+      goDown: {fileID: 630119210, guid: bc43cfaa57b8b43679ac5f98502414eb, type: 3}
+      goLeft: {fileID: -1918473614, guid: bc43cfaa57b8b43679ac5f98502414eb, type: 3}
+      goRight: {fileID: -2093903581, guid: bc43cfaa57b8b43679ac5f98502414eb, type: 3}
+  - type: 1
+    icons:
+      skill1Icon: {fileID: 0}
+      skill2Icon: {fileID: 0}
+      interactableIcon: {fileID: 0}
+      goUp: {fileID: 0}
+      goDown: {fileID: 0}
+      goLeft: {fileID: 0}
+      goRight: {fileID: 0}

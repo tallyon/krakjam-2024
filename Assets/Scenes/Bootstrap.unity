@@ -123,7 +123,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1001 &194592600
+--- !u!1001 &943475422
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -135,11 +135,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1938889112458597208, guid: d64cfce69f7d4492bae77c15fdd5eed0,
-        type: 3}
-      propertyPath: playerActions.Array.size
-      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1954010409086792909, guid: d64cfce69f7d4492bae77c15fdd5eed0,
         type: 3}
@@ -477,4 +472,4 @@ SceneRoots:
   m_Roots:
   - {fileID: 336382142616751435}
   - {fileID: 1642661488}
-  - {fileID: 194592600}
+  - {fileID: 943475422}

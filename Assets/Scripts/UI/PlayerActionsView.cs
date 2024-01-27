@@ -14,6 +14,7 @@ namespace UI
         [SerializeField] private Image skill1InputIcon;
         [SerializeField] private Image skill2;
         [SerializeField] private Image skill2InputIcon;
+        [SerializeField] private InputIconsConfig iconsConfig;
 
         public void Setup(PlayerInput playerInput, PlayerCharacter playerCharacter)
         {
@@ -21,6 +22,10 @@ namespace UI
             playerIcon.gameObject.SetActive(true);
             playerCharacter.onItemAdd += SetItemIcon;
             playerCharacter.onItemDeleted += ClearItem;
+            var iconSet = iconsConfig.GetIcons(playerInput.devices[0].GetType().Name);
+            skill1InputIcon.sprite = iconSet.icons.skill1Icon;
+            skill2InputIcon.sprite = iconSet.icons.skill2Icon;
+            interactableImageInputIcon.sprite = iconSet.icons.interactableIcon;
         }
 
         private void SetItemIcon(ItemsData.ItemsEnum item)
