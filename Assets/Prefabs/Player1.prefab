@@ -76,7 +76,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 0.2687344, g: 0.32531574, b: 0.9339623, a: 1}
   m_FlipX: 0
@@ -177,7 +177,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f69d847171e3b4ae5a77aa4c9e7f7640, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterTypeEnum: 0
   collectedItem: {fileID: 0}
   floatingTextPrefab: {fileID: 1177546734456954909, guid: 2d9d757e8e8474037b222cb1942fd01e,
     type: 3}
