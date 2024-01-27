@@ -103,7 +103,6 @@ MonoBehaviour:
   playerId: 1
   controls: {fileID: -944628639613478452, guid: 97210cd740af04df697b1fa71c9c9623,
     type: 3}
-  moveSpeed: 0.2
 --- !u!50 &1140143311478881074
 Rigidbody2D:
   serializedVersion: 4
@@ -180,4 +179,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characterTypeEnum: 0
   collectedItem: {fileID: 0}
+  floatingTextPrefab: {fileID: 1177546734456954909, guid: 2d9d757e8e8474037b222cb1942fd01e,
+    type: 3}
   _characterData: {fileID: 11400000, guid: ac67ffd88a7ad4208b530424d410f768, type: 2}

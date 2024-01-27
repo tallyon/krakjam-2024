@@ -3,12 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Serialization;
 using static ItemsData;
 using Random = UnityEngine.Random;
 
 public class GameStateController : Singleton<GameStateController>
 {
+    private const int SCORE_REQUIRED_TO_WIN = 20;
+    
     public Dictionary<string, CharacterTypeEnum> playersCharacter = new();
     public List<CharacterData> charactersPrefab;
     public Action<PlayerInput, PlayerCharacter> onPlayerJoined;
@@ -35,8 +36,8 @@ public class GameStateController : Singleton<GameStateController>
 
     private void Start()
     {
-        Player1Score = new PlayerScore(20);
-        Player2Score = new PlayerScore(20);
+        Player1Score = new PlayerScore(SCORE_REQUIRED_TO_WIN);
+        Player2Score = new PlayerScore(SCORE_REQUIRED_TO_WIN);
         
         _player1Character = charactersPrefab[0].CharacterType;
         _player2Character = charactersPrefab[1].CharacterType;
@@ -44,7 +45,7 @@ public class GameStateController : Singleton<GameStateController>
 
         StartCoroutine(SimulateScore());
         IsLevelStarted = true;
-        OnLevelStart.Invoke();
+        OnLevelStart?.Invoke();
     }
 
     private IEnumerator SimulateScore()
