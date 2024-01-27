@@ -1,5 +1,7 @@
 using System;
 using UnityEngine;
+using DG.Tweening;
+using TMPro;
 
 [RequireComponent(typeof(PlayerMovementController))]
 public class PlayerCharacter : MonoBehaviour
@@ -10,6 +12,8 @@ public class PlayerCharacter : MonoBehaviour
     public Action onItemDeleted;
     public Action<Ability> onAbility1Used;
     public Action<Ability> onAbility2Used;
+
+    [SerializeField] private TextMeshPro floatingTextPrefab;
 
     public CharacterData CharacterData => _characterData;
 
@@ -43,12 +47,44 @@ public class PlayerCharacter : MonoBehaviour
 
     public void UseAbility1()
     {
+        if (Ability1.State == Ability.AbilityState.OnCooldown) return;
+        
+        switch (_characterData.CharacterType)
+        {
+            case CharacterTypeEnum.Sigma:
+                UseSkillSprint();
+                break;
+            case CharacterTypeEnum.Beta:
+                UseSkillObstacle();
+                break;
+            case CharacterTypeEnum.Both:
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
+        
         Ability1.GoOnCooldown();
         onAbility1Used.Invoke(Ability1);
     }
 
     public void UseAbility2()
     {
+        if (Ability2.State == Ability.AbilityState.OnCooldown) return;
+        
+        switch (_characterData.CharacterType)
+        {
+            case CharacterTypeEnum.Sigma:
+                UseSkillSmash();
+                break;
+            case CharacterTypeEnum.Beta:
+                UseSkillVent();
+                break;
+            case CharacterTypeEnum.Both:
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
+        
         Ability2.GoOnCooldown();
         onAbility2Used.Invoke(Ability2);
     }
@@ -59,48 +95,47 @@ public class PlayerCharacter : MonoBehaviour
         Ability1.UpdateCooldownState(timePassedSinceLastFrame);
         Ability2.UpdateCooldownState(timePassedSinceLastFrame);
     }
-}
 
-public class Ability
-{
-    public enum AbilityState
+    private void UseSkillSprint()
     {
-        Ready,
-        OnCooldown
-    };
-
-    public AbilityState State { get; set; } = AbilityState.Ready;
-    public float CooldownLeftSeconds { get; private set; }
-
-    private readonly int _cooldownSeconds;
-
-    public Ability(int cooldownSeconds)
-    {
-        _cooldownSeconds = cooldownSeconds;
-    }
-    
-    public void GoOnCooldown()
-    {
-        if (State != AbilityState.Ready)
-        {
-            Debug.Log("Cannot use ability on cooldown!");
-            return;
-        }
-        
-        State = AbilityState.OnCooldown;
-        CooldownLeftSeconds = _cooldownSeconds;
-        Debug.Log($"Cooldown is {CooldownLeftSeconds} seconds");
+        SpawnFloatingText("Sprint!");
     }
 
-    public void UpdateCooldownState(float secondsPassedSinceLastFrame)
+    private void UseSkillSmash()
     {
-        if (State != AbilityState.OnCooldown) return;
+        SpawnFloatingText("Smash!");
+    }
+
+    private void UseSkillObstacle()
+    {
+        SpawnFloatingText("Obstacle!");
+    }
+
+    private void UseSkillVent()
+    {
+        SpawnFloatingText("Vent!");
+    }
+
+    private void SpawnFloatingText(string text)
+    {
+        var floatingText = Instantiate(floatingTextPrefab);
+        floatingText.text = text;
+        floatingText.transform.position = transform.position;
+        var seq = DOTween.Sequence();
+        var textColor = floatingText.color;
+        floatingText.color = new Color(textColor.r, textColor.g, textColor.b, 0);
+        textColor.a = 1;
+        var fadeIn = floatingText.DOColor(textColor, .25f);
+        var moveUp = floatingText.transform.DOMoveY(floatingText.transform.position.y + 5, .25f)
+            .SetEase(Ease.OutSine);
+        seq.Append(fadeIn);
+        seq.Join(moveUp);
+        seq.AppendInterval(.5f);
+        var fadeOutColorText = new Color(floatingText.color.r, floatingText.color.g, floatingText.color.b, 0);
+        var fadeOut = floatingText.DOColor(fadeOutColorText, .25f);
+        seq.Append(fadeOut);
+        seq.Play();
+        seq.onComplete += () => Destroy(floatingText.gameObject);
         
-        CooldownLeftSeconds -= secondsPassedSinceLastFrame;
-        
-        if (CooldownLeftSeconds <= 0)
-        {
-            State = AbilityState.Ready;
-        }
     }
 }

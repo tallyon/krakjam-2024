@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
@@ -14,13 +13,13 @@ namespace UI
         {
             if (!GameStateController.Instance.IsLevelStarted)
             {
-                GameStateController.Instance.OnLevelStart += onLevelStart;
+                GameStateController.Instance.OnLevelStart += OnLevelStart;
                 return;
             }
-            onLevelStart();
+            OnLevelStart();
         }
 
-        private void onLevelStart()
+        private void OnLevelStart()
         {
             GameStateController.Instance.Player1Score.OnScoreUpdated += OnScore1Updated;
             GameStateController.Instance.Player2Score.OnScoreUpdated += OnScore2Updated;
