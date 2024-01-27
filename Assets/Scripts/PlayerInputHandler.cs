@@ -121,6 +121,12 @@ namespace DefaultNamespace
             mover.OnInteractionHold(obj);
         }
 
+        public void OnUseItemPerformed(InputAction.CallbackContext obj)
+        {
+            if (obj.started == false) return;
+            mover.OnUseItemPerformed(obj);
+        }
+
         public void OnEndGameAbilityPressed(InputAction.CallbackContext obj)
         {
             Debug.Log($"Submit button pressed");

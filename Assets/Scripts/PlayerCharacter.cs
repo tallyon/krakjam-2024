@@ -179,6 +179,11 @@ public class PlayerCharacter : MonoBehaviour
         SpawnFloatingText("INTERACTION HOLD!");
     }
 
+    public void UseItem()
+    {
+        SpawnFloatingText("USING ITEM!");
+    }
+
     private IEnumerator ReturnStatusToNormal(float timeSeconds)
     {
         yield return new WaitForSeconds(timeSeconds);

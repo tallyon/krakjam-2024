@@ -1,4 +1,3 @@
-using System.Collections;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -95,6 +94,11 @@ public class PlayerMovementController : MonoBehaviour
     public void OnInteractionHold(InputAction.CallbackContext obj)
     {
         Debug.Log("INTERACTION HOLD");
+    }
+
+    public void OnUseItemPerformed(InputAction.CallbackContext obj)
+    {
+        Debug.Log("Item used");
     }
 
     public void Move(Vector2 moveVal)
