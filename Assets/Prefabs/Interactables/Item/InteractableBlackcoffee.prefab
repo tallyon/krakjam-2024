@@ -159,8 +159,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 908e882994c9f4539be6c6af177fc570, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactions:
-  - {fileID: 1740872478899043271}
+  interaction: {fileID: 1740872478899043271}
   itemsEnum: 19
 --- !u!1 &4643413399523236677
 GameObject:

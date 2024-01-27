@@ -5,4 +5,5 @@ public class CollectedItem : MonoBehaviour
 {
     public Sprite itemSprite;
     public ItemsEnum itemsEnum;
+    public bool isUsable;
 }
