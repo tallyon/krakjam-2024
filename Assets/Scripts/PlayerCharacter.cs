@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DefaultNamespace;
 using UnityEngine;
 using DG.Tweening;
 using TMPro;
@@ -90,7 +91,14 @@ public class PlayerCharacter : MonoBehaviour
                 UseSkillSmash();
                 break;
             case CharacterTypeEnum.Beta:
-                UseSkillVent();
+                var path = new List<Vector2>()
+                {
+                    transform.position + new Vector3(5, 0),
+                    transform.position + new Vector3(5, 5),
+                    transform.position + new Vector3(0, 2.5f),
+                    transform.position
+                };
+                UseSkillVent(path.ToArray());
                 break;
             case CharacterTypeEnum.Both:
                 break;
@@ -134,9 +142,9 @@ public class PlayerCharacter : MonoBehaviour
         SpawnFloatingText("Obstacle!");
     }
 
-    private void UseSkillVent()
+    private void UseSkillVent(Vector2[] pathToTraverse)
     {
-        SpawnFloatingText("Vent!");
+        _playerMovementController.EnterVent(pathToTraverse);
     }
 
     private void SpawnFloatingText(string text)
@@ -159,6 +167,5 @@ public class PlayerCharacter : MonoBehaviour
         seq.Append(fadeOut);
         seq.Play();
         seq.onComplete += () => Destroy(floatingText.gameObject);
-        
     }
 }

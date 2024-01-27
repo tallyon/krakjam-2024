@@ -1,3 +1,5 @@
+using System.Collections;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -69,5 +71,25 @@ public class PlayerMovementController : MonoBehaviour
     public void Move(Vector2 moveVal)
     {
         _rb2d.MovePosition(_rb2d.position + CharacterMoveSpeedModifier * moveVal);
+    }
+
+    public void EnterVent(Vector2[] pathToTraverse)
+    {
+        Debug.Log("Entering the vent");
+        _rb2d.simulated = false;
+        
+        var seq = DOTween.Sequence();
+        
+        foreach (var t in pathToTraverse)
+        {
+            seq.Append(_rb2d.DOMove(t, 1).SetEase(Ease.Linear));
+        }
+
+        seq.Play();
+        seq.onComplete += () =>
+        {
+            Debug.Log("Exiting the vent");
+            _rb2d.simulated = true;
+        };
     }
 }
