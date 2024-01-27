@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 3256856186573402946}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.0316, y: 0.1024, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.95210737, y: 1.0040487, z: 0.060627002}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -145,6 +145,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0a2ee51e68024595b9e3a34eb033275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  InteractionTime: 0
   possiblePlayerInteraction: 2
 --- !u!114 &9196494427775756211
 MonoBehaviour:
@@ -160,7 +161,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactions:
   - {fileID: 1740872478899043271}
-  itemsEnum: 5
+  itemsEnum: 27
 --- !u!1 &4643413399523236677
 GameObject:
   m_ObjectHideFlags: 0

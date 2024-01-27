@@ -22,11 +22,11 @@ namespace UI
 
         private void Start()
         {
-            GameStateController.Instance.onPlayerJoined += PlayerJoined;
+            GameStateController.Instance.OnGameTimerTick += DrawTimer;
             DrawTimer(GameStateController.Instance.roundTime);
         }
 
-        private void Update()
+        /*private void Update()
         {
             if (currentTime <= 0)
                 return;
@@ -41,9 +41,7 @@ namespace UI
             {
                 PlayAnimation();
             }
-
-            
-        }
+        }*/
 
         private void PlayerJoined(PlayerInput input, PlayerCharacter character)
         {
@@ -66,6 +64,11 @@ namespace UI
             string niceTime = string.Format("{0:0}:{1:00}", minutes, seconds);
 
             timerText.text = niceTime;
+            
+            if (timeValue <= 10 && tweenSequence == null && !animStarted)
+            {
+                PlayAnimation();
+            }
         }
 
         private void PlayAnimation()

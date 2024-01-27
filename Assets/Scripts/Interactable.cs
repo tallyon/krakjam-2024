@@ -4,21 +4,15 @@ using System.Linq;
 
 public class Interactable : MonoBehaviour
 {
-    [SerializeField] List<Interaction> interactions;
+    [SerializeField] Interaction interaction;
     private ISimpleAnimation _simpleTextPopAnimation;
     private List<string> currentPlayerTags = new();
-    private int _interactionIndex = 0;
-    private Interaction _activeInteraction;
 
 
     private void Awake()
     {
         _simpleTextPopAnimation = GetComponentInChildren<ISimpleAnimation>();
-        if(interactions.Count > 0)
-        {
-            _activeInteraction = interactions[0];
-            _activeInteraction.OnInteraction += HandleOnInteractionWithObject;
-        }
+        interaction.OnInteraction += HandleOnInteractionWithObject;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -35,27 +29,12 @@ public class Interactable : MonoBehaviour
 
     public void Interact(PlayerCharacter playerCharacter)
     {
-        if (_interactionIndex < interactions.Count)
-        {
-            if(_activeInteraction == null)
-            {
-                _activeInteraction = interactions[_interactionIndex];
-                _activeInteraction.OnInteraction += HandleOnInteractionWithObject;
-            }
+        interaction.PlayInteraction(playerCharacter);
+    }
 
-            var isInteractionComplete = _activeInteraction.PlayInteraction(playerCharacter);
-
-            if (isInteractionComplete)
-            {
-                _activeInteraction.OnInteraction -= HandleOnInteractionWithObject;
-                if (_interactionIndex + 1 < interactions.Count)
-                {
-                    _interactionIndex++;
-                    _activeInteraction = interactions[_interactionIndex];
-                    _activeInteraction.OnInteraction += HandleOnInteractionWithObject;
-                }
-            }
-        }
+    public List<Vector2> UseAbility(PlayerCharacter playerCharacter)
+    {
+        return interaction.PlayAbility(playerCharacter);
     }
 
     protected virtual void HandleOnInteractionWithObject(Interaction interaction, CharacterTypeEnum characterTypeEnum)
@@ -63,7 +42,7 @@ public class Interactable : MonoBehaviour
         switch (interaction)
         {
             case DisplayMessageInteraction displayMessageInteraction:
-                _simpleTextPopAnimation.PlayAnimation(transform.position);
+                _simpleTextPopAnimation.PlayAnimation(transform.position, "test message");
                 Debug.Log(displayMessageInteraction.Message);
                 break;
         }

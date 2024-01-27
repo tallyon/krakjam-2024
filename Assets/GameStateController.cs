@@ -15,10 +15,13 @@ public class GameStateController : Singleton<GameStateController>
     public Dictionary<string, CharacterTypeEnum> playersCharacter = new();
     public List<CharacterData> charactersPrefab;
     public Action<PlayerInput, PlayerCharacter> onPlayerJoined;
-    public Action OnGameBegin;
-    [FormerlySerializedAs("startTimer")] public Action<float> StartTimer;
-    [FormerlySerializedAs("OnLevelStart")] public Action OnGameInit;
-    public float roundTime = 180;
+    public Action OnGameStart;
+    public Action<float> OnStartTimerTick;
+    [FormerlySerializedAs("OnGameEnd")] public Action OnGameTimerEnd;
+    public Action<float> OnGameTimerTick;
+    public Action OnGameInit;
+    public int roundTime = 180;
+    public int startTime = 3;
     public bool IsGameInitialized { get; private set; }
     [SerializeField] private List<LevelConfig> LevelConfigs;
     [SerializeField] private ItemsData ItemsConfig;
@@ -59,15 +62,29 @@ public class GameStateController : Singleton<GameStateController>
 
     private IEnumerator BeginStartCountdown()
     {
-        int timer = 3;
+        float timer = startTime;
         while (timer > 0)
         {
-            StartTimer?.Invoke(timer);
+            OnStartTimerTick?.Invoke(timer);
             yield return new WaitForSeconds(1);
             timer--;
         }
-        StartTimer?.Invoke(0);
-        OnGameBegin?.Invoke();
+        OnStartTimerTick?.Invoke(0);
+        OnGameStart?.Invoke();
+        StartCoroutine(BeginGameCountdown());
+    }
+
+    private IEnumerator BeginGameCountdown()
+    {
+        int timer = roundTime;
+        while (timer > 0)
+        {
+            OnGameTimerTick?.Invoke(timer);
+            yield return new WaitForSeconds(1);
+            timer--;
+        }
+        OnGameTimerTick?.Invoke(0);
+        OnGameTimerEnd?.Invoke();
     }
     
     private IEnumerator SimulateScore()

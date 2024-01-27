@@ -14,6 +14,7 @@ public class PlayerMovementController : MonoBehaviour
     private InputAction _movementAction;
     private Vector2 _movementValue;
     private Rigidbody2D _rb2d;
+    private Collider2D _collider;
     public Rigidbody2D Rigidbody => _rb2d;
     private Interactable _currentInteractableObject;
     private PlayerCharacter _playerCharacter;
@@ -21,6 +22,7 @@ public class PlayerMovementController : MonoBehaviour
     private void Awake()
     {
         _rb2d = GetComponent<Rigidbody2D>();
+        _collider = GetComponent<Collider2D>();
         _playerCharacter = GetComponent<PlayerCharacter>();
         _actionMap = controls.FindActionMap("gameplay");
         _movementAction = _actionMap.FindAction("movement");
@@ -74,23 +76,37 @@ public class PlayerMovementController : MonoBehaviour
         _rb2d.MovePosition(_rb2d.position + CharacterMoveSpeedModifier * moveVal);
     }
 
-    public void EnterVent(Vector2[] pathToTraverse)
+    public void EnterVent()
     {
-        Debug.Log("Entering the vent");
-        _rb2d.simulated = false;
-        
-        var seq = DOTween.Sequence();
-        
-        foreach (var t in pathToTraverse)
-        {
-            seq.Append(_rb2d.DOMove(t, 1).SetEase(Ease.Linear));
-        }
+        var positions = _currentInteractableObject.UseAbility(_playerCharacter);
 
-        seq.Play();
-        seq.onComplete += () =>
+        if (positions?.Count > 0)
         {
-            Debug.Log("Exiting the vent");
-            _rb2d.simulated = true;
-        };
+            Debug.Log("Entering the vent");
+            _collider.enabled = false;
+
+            var seq = DOTween.Sequence();
+
+            float distance = Vector2.Distance(_playerCharacter.transform.position, positions[0]);
+            for (int i =0; i<positions.Count -1; i++)
+            {
+                distance += Vector2.Distance(positions[i], positions[i + 1]);
+            }
+
+            float time = Vector2.Distance(_playerCharacter.transform.position, positions[0]) / distance * 3;
+            seq.Append(_rb2d.DOMove(_playerCharacter.transform.position, time).SetEase(Ease.Linear));
+            for (int i =0; i < positions.Count - 1; i++)
+            {
+                time = (Vector2.Distance(positions[i], positions[i+1]) / distance) * 3;
+                seq.Append(_rb2d.DOMove(positions[i+1], time).SetEase(Ease.Linear));
+            }
+
+            seq.Play();
+            seq.onComplete += () =>
+            {
+                Debug.Log("Exiting the vent");
+                _collider.enabled = true;
+            };
+        }
     }
 }
