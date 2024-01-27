@@ -1,8 +1,10 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using static ItemsData;
+using Random = UnityEngine.Random;
 
 public class GameStateController : Singleton<GameStateController>
 {
@@ -36,6 +38,18 @@ public class GameStateController : Singleton<GameStateController>
         _player1Character = charactersPrefab[0].CharacterType;
         _player2Character = charactersPrefab[1].CharacterType;
         StartLevel(0);
+
+        StartCoroutine(SimulateScore());
+    }
+
+    private IEnumerator SimulateScore()
+    {
+        while (Player1Score.PercentageVictoryAchieved < 1 && Player2Score.PercentageVictoryAchieved < 1)
+        {
+            Player1Score.AddScore(Random.Range(1, 3));
+            Player2Score.AddScore(Random.Range(1, 3));
+            yield return new WaitForSeconds(2);
+        }
     }
 
     private bool IsEachCharacterSelected()
@@ -122,7 +136,7 @@ public class GameStateController : Singleton<GameStateController>
         return interactingPlayer;
     }
 
-    public InteractableItem GetInteractableItemPrefab(ItemsEnum itemsEnum)
+    public InteractableItem GetInteractableItemPrefab(ItemsData.ItemsEnum itemsEnum)
     {
         return ItemsConfig.GetInteractableItemPrefab(itemsEnum);
     }
@@ -137,7 +151,7 @@ public class GameStateController : Singleton<GameStateController>
         return ItemsConfig.itemsGroup;
     }
 
-    public CollectedItem GetCollectedItemPrefab(ItemsEnum itemsEnum)
+    public CollectedItem GetCollectedItemPrefab(ItemsData.ItemsEnum itemsEnum)
     {
         return ItemsConfig.GetCollectedItemPrefab(itemsEnum);
     }

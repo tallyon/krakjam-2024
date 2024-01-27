@@ -1,12 +1,11 @@
 using System;
 using UnityEngine;
-using static ItemsData;
 
 public class PlayerCharacter : MonoBehaviour
 {
     public CharacterTypeEnum characterTypeEnum;
     public CollectedItem collectedItem = null;
-    public Action<ItemsEnum> onItemAdd;
+    public Action<ItemsData.ItemsEnum> onItemAdd;
     public Action onItemDeleted;
 
     [SerializeField] private CharacterData _characterData;
@@ -20,7 +19,7 @@ public class PlayerCharacter : MonoBehaviour
         Ability2 = new Ability(_characterData.Ability2CooldownSeconds);
     }
 
-    public void AddItem(ItemsEnum item)
+    public void AddItem(ItemsData.ItemsEnum item)
     {
         var collected = GameStateController.Instance.GetCollectedItemPrefab(item);
         collectedItem = collected;

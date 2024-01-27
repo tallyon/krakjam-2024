@@ -1,10 +1,14 @@
 using System;
+using UnityEngine;
 
 public class PlayerScore
 {
     public int CurrentScore { get; private set; }
     public int MaxScore { get; private set; }
-    public float PercentageVictoryAchieved => CurrentScore / (float)MaxScore;
+    /// <summary>
+    /// Returns percentage score victory achieved 0.0 - 1.0 (0% - 100%)
+    /// </summary>
+    public float PercentageVictoryAchieved => Mathf.Clamp(CurrentScore / (float)MaxScore, 0, 1);
 
     /// <summary>
     /// Current score value and percentage (0-1) victory achieved is provided.
