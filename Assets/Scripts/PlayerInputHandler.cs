@@ -1,4 +1,3 @@
-using System;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -14,7 +13,6 @@ namespace DefaultNamespace
         private PlayerInput _playerInput;
         private PlayerMovementController mover;
         private InputActionMap _actionMap;
-        private InputAction _movementAction;
         private Vector2 _movementValue;
         private Interactable _currentInteractableObject;
 
@@ -36,7 +34,6 @@ namespace DefaultNamespace
         public void OnMovement(InputAction.CallbackContext context)
         {
             _movementValue = context.ReadValue<Vector2>();
-            Debug.Log($"{_playerInput.playerIndex}: movement {_movementValue}");
         }
 
         private void Awake()
@@ -46,10 +43,8 @@ namespace DefaultNamespace
             var index = _playerInput.playerIndex;
             var movers = FindObjectsOfType<PlayerMovementController>();
             mover = movers.FirstOrDefault(m => m.playerId == index);
-            Debug.Log($"Registered mover {mover.gameObject.name} for player {index}");
             
             _actionMap = controls.FindActionMap("gameplay");
-            _movementAction = _actionMap.FindAction("movement");
         
             _actionMap.FindAction("interaction").performed += OnInteractionPerformed;
             _actionMap.FindAction("ability1").performed += OnAbility1Performed;
@@ -82,18 +77,12 @@ namespace DefaultNamespace
             }
         }
 
-        // private void Update()
-        // {
-        //     _movementValue = _movementAction.ReadValue<Vector2>();
-        // }
-
         private void FixedUpdate()
         {
             if (mover == null) return;
 
             if (_movementValue != Vector2.zero)
             {
-                Debug.Log($"{mover.gameObject.name}: MOVE!");
                 mover.Move(_movementValue);
             }
         }
