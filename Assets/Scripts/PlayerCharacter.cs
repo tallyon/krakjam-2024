@@ -98,7 +98,7 @@ public class PlayerCharacter : MonoBehaviour
                     transform.position + new Vector3(0, 2.5f),
                     transform.position
                 };
-                UseSkillVent(path.ToArray());
+                UseSkillVent();
                 break;
             case CharacterTypeEnum.Both:
                 break;
@@ -142,9 +142,9 @@ public class PlayerCharacter : MonoBehaviour
         SpawnFloatingText("Obstacle!");
     }
 
-    private void UseSkillVent(Vector2[] pathToTraverse)
+    private void UseSkillVent()
     {
-        _playerMovementController.EnterVent(pathToTraverse);
+        _playerMovementController.EnterVent();
     }
 
     private void SpawnFloatingText(string text)
