@@ -6,6 +6,7 @@ using DG.Tweening;
 [RequireComponent(typeof(TextMeshPro))]
 public class SimpleTextPopAnimation : MonoBehaviour, ISimpleAnimation
 {
+    [SerializeField] Vector2 newPostition = new Vector2(0, 0.5f);
     private TextMeshPro messageText;
     private Sequence showSequence;
     private Sequence hideSequence;
@@ -25,7 +26,7 @@ public class SimpleTextPopAnimation : MonoBehaviour, ISimpleAnimation
             showSequence.Kill();
         }
         showSequence.Append(messageText.DOFade(1, 0.5f));
-        showSequence.Join(transform.DOMoveY(startingPos.y + 0.5f, 0.5f));
+        showSequence.Join(transform.DOMove(new Vector3(startingPos.x + newPostition.x, startingPos.y + newPostition.y, 0), 0.5f));
         //showSequence.SetLoops(1, LoopType.Yoyo);
         showSequence.Play();
     }

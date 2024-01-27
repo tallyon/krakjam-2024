@@ -1,10 +1,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using System;
 
 public class Interactable : MonoBehaviour
 {
-    [SerializeField] Interaction interaction;
+    public Action<Interaction> OnSpecialInteractionPerformed;
+
+    private Interaction interaction;
     private ISimpleAnimation _simpleTextPopAnimation;
     private List<string> currentPlayerTags = new();
 
@@ -12,6 +15,7 @@ public class Interactable : MonoBehaviour
     private void Awake()
     {
         _simpleTextPopAnimation = GetComponentInChildren<ISimpleAnimation>();
+        interaction = this.GetComponent<Interaction>();
         interaction.OnInteraction += HandleOnInteractionWithObject;
     }
 
@@ -42,22 +46,22 @@ public class Interactable : MonoBehaviour
         switch (interaction)
         {
             case DisplayMessageInteraction displayMessageInteraction:
-                _simpleTextPopAnimation.PlayAnimation(transform.position, "test message");
+                _simpleTextPopAnimation.PlayAnimation(transform.position, displayMessageInteraction.Message);
                 Debug.Log(displayMessageInteraction.Message);
                 break;
         }
     }
 
-    //private void OnTriggerExit2D(Collider2D other)
-    //{
-    //    if (currentPlayerTags.Any(val => other.gameObject.CompareTag(val)))
-    //    {
-    //        currentPlayerTags.Remove(other.gameObject.tag);
-    //    }
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (currentPlayerTags.Any(val => other.gameObject.CompareTag(val)))
+        {
+            currentPlayerTags.Remove(other.gameObject.tag);
+        }
 
-    //    if (currentPlayerTags.Count <= 0)
-    //    {
-    //        _simpleTextPopAnimation.HideAnimation();
-    //    }
-    //}
+        if (currentPlayerTags.Count <= 0)
+        {
+            _simpleTextPopAnimation.HideAnimation();
+        }
+    }
 }

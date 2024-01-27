@@ -157,7 +157,7 @@ public class GameStateController : Singleton<GameStateController>
 
     private void OnPlayerJoined(PlayerInput playerInput)
     {
-        
+
         if (playerInput.playerIndex == 0)
         {
             StartCoroutine(BeginStartCountdown());
@@ -170,17 +170,6 @@ public class GameStateController : Singleton<GameStateController>
             onPlayerJoined.Invoke(playerInput, _player2);
             //StartCoroutine(BeginStartCountdown());
         }
-    }
-    
-    public void OnInteract(Interaction interaction, CharacterTypeEnum characterEnum)
-    {
-        //var interactingPlayer = characterEnum == CharacterTypeEnum.Beta ? _player1 : _player2;
-
-        //switch (interaction)
-        //{
-        //    case TakeItemInteraction takeItemInteraction:
-        //        interactingPlayer.AddItem(takeItemInteraction.item);
-        //}
     }
 
     public PlayerCharacter GetPlayerObject(CharacterTypeEnum characterEnum)

@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 1813984046547072223}
   - component: {fileID: 1929956017424536445}
   - component: {fileID: 879156668273861332}
-  - component: {fileID: 1740872478899043271}
-  - component: {fileID: 9196494427775756211}
+  - component: {fileID: 8902202865895147233}
+  - component: {fileID: 5507877462315373992}
   m_Layer: 0
-  m_Name: InteractableCopyofthebutt
+  m_Name: InteractableCoffeeMachine
   m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29,8 +29,8 @@ Transform:
   m_GameObject: {fileID: 3256856186573402946}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.3096253, y: 0.32651663, z: 0.019715901}
+  m_LocalPosition: {x: 1.0041, y: -0.4284, z: 0}
+  m_LocalScale: {x: 0.31119147, y: 0.27916288, z: 0.1}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1790707717184502115}
@@ -76,8 +76,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: db0c93f111b4a4069820feaf8a2870af, type: 3}
+  m_SortingOrder: 7
+  m_Sprite: {fileID: 21300000, guid: b2ab8647fe0c84a21965d0bd20fd10dc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -117,23 +117,23 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.013062954, y: 0.053169906}
+  m_Offset: {x: 0.0014923811, y: -0.0020814538}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.75, y: 1.67}
+    oldSize: {x: 0.6, y: 0.82}
     newSize: {x: 0.16, y: 0.16}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.063517, y: 1.9481608}
+  m_Size: {x: 1.1419623, y: 1.4863354}
   m_EdgeRadius: 0
---- !u!114 &1740872478899043271
+--- !u!114 &8902202865895147233
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -142,25 +142,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 3256856186573402946}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0a2ee51e68024595b9e3a34eb033275, type: 3}
+  m_Script: {fileID: 11500000, guid: e86f934acce5d49f6b4200a5d661e8eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interaction: {fileID: 0}
+  stationEnum: 0
+  spriteRenderer: {fileID: 1929956017424536445}
+--- !u!114 &5507877462315373992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3256856186573402946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e5dee2686cbe4a86b5d8561505fbc9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   InteractionTime: 0
-  possiblePlayerInteraction: 0
---- !u!114 &9196494427775756211
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3256856186573402946}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 908e882994c9f4539be6c6af177fc570, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  interaction: {fileID: 1740872478899043271}
-  itemsEnum: 14
+  possiblePlayerInteraction: 2
+  takeItemEnum: 17
 --- !u!1 &4643413399523236677
 GameObject:
   m_ObjectHideFlags: 0
