@@ -71,14 +71,13 @@ public class PlayerMovementController : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        _movementValue = _movementAction.ReadValue<Vector2>();
-    }
+    // private void Update()
+    // {
+    //     _movementValue = _movementAction.ReadValue<Vector2>();
+    // }
 
     public void Move(Vector2 moveVal)
     {
-        Debug.Log($"hej {playerId} {moveVal}");
         _rb2d.MovePosition(_rb2d.position + moveVal * moveSpeed);
     }
 }

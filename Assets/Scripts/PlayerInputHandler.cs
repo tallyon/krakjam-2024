@@ -18,7 +18,26 @@ namespace DefaultNamespace
         private Vector2 _movementValue;
         private Interactable _currentInteractableObject;
 
+        public void OnControlsChanged()
+        {
+            Debug.Log("Controls changed");
+        }
 
+        public void OnDeviceLost()
+        {
+            Debug.Log("Device lost");
+        }
+
+        public void OnDeviceRegained()
+        {
+            Debug.Log("Device regained");
+        }
+
+        public void OnMovement(InputAction.CallbackContext context)
+        {
+            _movementValue = context.ReadValue<Vector2>();
+            Debug.Log($"{_playerInput.playerIndex}: movement {_movementValue}");
+        }
 
         private void Awake()
         {
@@ -27,6 +46,7 @@ namespace DefaultNamespace
             var index = _playerInput.playerIndex;
             var movers = FindObjectsOfType<PlayerMovementController>();
             mover = movers.FirstOrDefault(m => m.playerId == index);
+            Debug.Log($"Registered mover {mover.gameObject.name} for player {index}");
             
             _actionMap = controls.FindActionMap("gameplay");
             _movementAction = _actionMap.FindAction("movement");
@@ -62,15 +82,20 @@ namespace DefaultNamespace
             }
         }
 
-        private void Update()
-        {
-            _movementValue = _movementAction.ReadValue<Vector2>();
-        }
+        // private void Update()
+        // {
+        //     _movementValue = _movementAction.ReadValue<Vector2>();
+        // }
 
         private void FixedUpdate()
         {
-            if(mover != null)
+            if (mover == null) return;
+
+            if (_movementValue != Vector2.zero)
+            {
+                Debug.Log($"{mover.gameObject.name}: MOVE!");
                 mover.Move(_movementValue);
+            }
         }
     }
 }

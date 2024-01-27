@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Chad
   characterType: 0
-  prefab: {fileID: 956808371504728417, guid: cc9abc23bd9bd437f959c84e7a7dc923, type: 3}
+  prefab: {fileID: 956808371504728417, guid: bd23fef50aeb2451586f562299f92933, type: 3}

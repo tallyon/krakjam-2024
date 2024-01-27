@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class GameStateController : Singleton<GameStateController>
 {
@@ -9,6 +10,7 @@ public class GameStateController : Singleton<GameStateController>
 
     [SerializeField] private List<LevelConfig> LevelConfigs;
     [SerializeField] private ItemsData ItemsConfig;
+    [SerializeField] private PlayerInputManager playerInputManagerPrefab;
 
     private List<GameObject> currentLevelSpawnedObjects = new();
     private CharacterTypeEnum? _player1Character;
@@ -81,6 +83,9 @@ public class GameStateController : Singleton<GameStateController>
 
         _player1 = player1.GetComponent<PlayerCharacter>();
         _player2 = player2.GetComponent<PlayerCharacter>();
+
+        var inputManager = Instantiate(playerInputManagerPrefab);
+        currentLevelSpawnedObjects.Add(inputManager.gameObject);
     }
 
     public void OnInteract(Interaction interaction, CharacterTypeEnum characterEnum)

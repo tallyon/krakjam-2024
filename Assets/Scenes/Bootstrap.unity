@@ -309,6 +309,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ac67ffd88a7ad4208b530424d410f768, type: 2}
   LevelConfigs:
   - {fileID: 11400000, guid: 60f73dca117e74ae7a2f0e8ffcaf2b40, type: 2}
+  ItemsConfig: {fileID: 0}
+  playerInputManagerPrefab: {fileID: 6909887786468595233, guid: 39eb843f3f6a64e0fbfba3739de76573,
+    type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

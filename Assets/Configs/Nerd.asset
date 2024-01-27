@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Nerd
   characterType: 1
-  prefab: {fileID: 956808371504728417, guid: e3bdecf185f6b45b893dd2e7897ed10e, type: 3}
+  prefab: {fileID: 956808371504728417, guid: 00aafeec28e7d45dda13bd8aec2605ff, type: 3}
