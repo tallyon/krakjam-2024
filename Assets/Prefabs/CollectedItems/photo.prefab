@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4053658126012001004}
   - component: {fileID: 8381654774350127443}
   m_Layer: 0
-  m_Name: Pork
+  m_Name: photo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,5 +44,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6835a68469beb44689a37d441a24419b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemSprite: {fileID: 21300000, guid: 545df0bf87a714f8abfee7b2b7d44a1d, type: 3}
-  itemsEnum: 1
+  itemSprite: {fileID: 21300000, guid: 86f8b95f2c0df48e2bf2cae274539b70, type: 3}
+  itemsEnum: 11
