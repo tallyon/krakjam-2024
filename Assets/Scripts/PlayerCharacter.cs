@@ -1,4 +1,5 @@
 using UnityEngine;
+using static ItemsData;
 
 public class PlayerCharacter : MonoBehaviour
 {
