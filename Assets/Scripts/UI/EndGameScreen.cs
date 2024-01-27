@@ -21,14 +21,20 @@ namespace UI
         {
             GameStateController.Instance.Player1Score.OnPlayerWon += ShowEndGameScreenPlayer1;
             GameStateController.Instance.Player2Score.OnPlayerWon += ShowEndGameScreenPlayer2;
+            GameStateController.Instance.OnGameTimerEnd += ShowEndGame;
         }
 
         private void ShowEndGameScreenPlayer1()
         {
-            //content.SetActive(true);
+            content.SetActive(true);
         }
         
         private void ShowEndGameScreenPlayer2()
+        {
+            content.SetActive(true);
+        }
+
+        private void ShowEndGame()
         {
             content.SetActive(true);
         }

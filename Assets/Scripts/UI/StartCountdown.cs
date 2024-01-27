@@ -16,12 +16,12 @@ namespace UI
         {
             if (GameStateController.Instance.IsGameInitialized)
             {
-                GameStateController.Instance.StartTimer += TimerCallback;
+                GameStateController.Instance.OnStartTimerTick += TimerCallback;
             }
             else
             {
                 GameStateController.Instance.OnGameInit +=
-                    () => GameStateController.Instance.StartTimer += TimerCallback;
+                    () => GameStateController.Instance.OnStartTimerTick += TimerCallback;
             }
         }
 
@@ -35,8 +35,8 @@ namespace UI
             countDownText.text = timer.ToString();
                 //currentScaleTween?.Kill();
                 //tweenSeq?.Kill();
-                currentScaleTween = countdownrect.DOScale(new Vector3(1.2f, 1.2f, 1.2f), 0.5f);
-                currentScaleTween.SetLoops(2, LoopType.Yoyo);
+            currentScaleTween = countdownrect.DOScale(new Vector3(1.2f, 1.2f, 1.2f), 0.5f);
+            currentScaleTween.SetLoops(2, LoopType.Yoyo);
                     
 
             currentScaleTween.Play();

@@ -11,7 +11,7 @@ namespace UI
 
         //TODO: here subscribe to GameManager, and initialize and inform different playerAction set based on ID callback
 
-        public void Start()
+        public void Awake()
         {
             GameStateController.Instance.onPlayerJoined += SetupSplitScreen;
         }
