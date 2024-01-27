@@ -76,7 +76,7 @@ public class PlayerMovementController : MonoBehaviour
         _rb2d.MovePosition(_rb2d.position + CharacterMoveSpeedModifier * moveVal);
     }
 
-    public void EnterVent()
+    public void EnterVent(float travelTime)
     {
         var positions = _currentInteractableObject.UseAbility(_playerCharacter);
 
@@ -93,11 +93,11 @@ public class PlayerMovementController : MonoBehaviour
                 distance += Vector2.Distance(positions[i], positions[i + 1]);
             }
 
-            float time = Vector2.Distance(_playerCharacter.transform.position, positions[0]) / distance * 3;
+            float time = Vector2.Distance(_playerCharacter.transform.position, positions[0]) / distance * travelTime;
             seq.Append(_rb2d.DOMove(_playerCharacter.transform.position, time).SetEase(Ease.Linear));
             for (int i =0; i < positions.Count - 1; i++)
             {
-                time = (Vector2.Distance(positions[i], positions[i+1]) / distance) * 3;
+                time = (Vector2.Distance(positions[i], positions[i+1]) / distance) * travelTime;
                 seq.Append(_rb2d.DOMove(positions[i+1], time).SetEase(Ease.Linear));
             }
 

@@ -1,5 +1,14 @@
 using UnityEngine;
 
+public class VentAbility : Ability
+{
+    public float TravelDuration => (Config as VentAbilityConfig).TravelDuration;
+    public VentAbility(Ability ability) : base(ability.Config)
+    {
+        
+    }
+}
+
 public class SmashAbility : Ability
 {
     public float Radius => (Config as SmashAbilityConfig).Radius;

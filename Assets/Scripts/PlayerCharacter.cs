@@ -133,14 +133,8 @@ public class PlayerCharacter : MonoBehaviour
                 UseSkillSmash(smashAbility);
                 break;
             case CharacterTypeEnum.Beta:
-                var path = new List<Vector2>()
-                {
-                    transform.position + new Vector3(5, 0),
-                    transform.position + new Vector3(5, 5),
-                    transform.position + new Vector3(0, 2.5f),
-                    transform.position
-                };
-                UseSkillVent();
+                var ventAbility = new VentAbility(Ability2);
+                UseSkillVent(ventAbility);
                 break;
             case CharacterTypeEnum.Both:
                 break;
@@ -208,9 +202,9 @@ public class PlayerCharacter : MonoBehaviour
         SpawnFloatingText("Obstacle!");
     }
 
-    private void UseSkillVent()
+    private void UseSkillVent(VentAbility ventAbility)
     {
-        _playerMovementController.EnterVent();
+        _playerMovementController.EnterVent(ventAbility.TravelDuration);
     }
 
     private void SpawnFloatingText(string text)
