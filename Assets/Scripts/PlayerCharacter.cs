@@ -1,5 +1,6 @@
 using System;
-using CartoonFX;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using TMPro;
@@ -15,7 +16,6 @@ public class PlayerCharacter : MonoBehaviour
     public Action<Ability> onAbility2Used;
 
     [SerializeField] private TextMeshPro floatingTextPrefab;
-    [SerializeField] private CFXR_Effect smashParticles;
 
     public CharacterData CharacterData => _characterData;
 
@@ -30,8 +30,8 @@ public class PlayerCharacter : MonoBehaviour
     {
         _playerMovementController = GetComponent<PlayerMovementController>();
         _playerMovementController.CharacterMoveSpeedModifier = _characterData.MoveSpeed;
-        Ability1 = new Ability(_characterData.Ability1CooldownSeconds);
-        Ability2 = new Ability(_characterData.Ability2CooldownSeconds);
+        Ability1 = new Ability(_characterData.Ability1Config);
+        Ability2 = new Ability(_characterData.Ability2Config);
     }
 
     public void AddItem(ItemsData.ItemsEnum item)
@@ -50,11 +50,17 @@ public class PlayerCharacter : MonoBehaviour
     public void UseAbility1()
     {
         if (Ability1.State == Ability.AbilityState.OnCooldown) return;
+
+        var abilityName = Ability1.Name;
+        var particles = Ability1.Particles;
+        if (string.IsNullOrEmpty(abilityName) == false) SpawnFloatingText(abilityName);
+        if (particles != null) Instantiate(particles, transform.position, transform.rotation);
         
         switch (_characterData.CharacterType)
         {
             case CharacterTypeEnum.Sigma:
-                UseSkillSprint();
+                var sprintAbility = new SprintAbility(Ability1);
+                UseSkillSprint(sprintAbility);
                 break;
             case CharacterTypeEnum.Beta:
                 UseSkillObstacle();
@@ -72,6 +78,11 @@ public class PlayerCharacter : MonoBehaviour
     public void UseAbility2()
     {
         if (Ability2.State == Ability.AbilityState.OnCooldown) return;
+        
+        var abilityName = Ability2.Name;
+        var particles = Ability2.Particles;
+        if (string.IsNullOrEmpty(abilityName) == false) SpawnFloatingText(abilityName);
+        if (particles != null) Instantiate(particles, transform.position, transform.rotation);
         
         switch (_characterData.CharacterType)
         {
@@ -98,15 +109,24 @@ public class PlayerCharacter : MonoBehaviour
         Ability2.UpdateCooldownState(timePassedSinceLastFrame);
     }
 
-    private void UseSkillSprint()
+    private void UseSkillSprint(SprintAbility sprintAbility)
     {
-        SpawnFloatingText("Sprint!");
+        var previousSpeedModifier = _playerMovementController.CharacterMoveSpeedModifier;
+        StartCoroutine(RestorePreviousSpeedModifier(previousSpeedModifier, sprintAbility.Duration));
+        
+        var newSpeedModifier = _playerMovementController.CharacterMoveSpeedModifier * sprintAbility.SpeedModifier;
+        _playerMovementController.CharacterMoveSpeedModifier = newSpeedModifier;
+    }
+
+    private IEnumerator RestorePreviousSpeedModifier(float speedModifier, float delaySeconds)
+    {
+        yield return new WaitForSeconds(delaySeconds);
+        _playerMovementController.CharacterMoveSpeedModifier = speedModifier;
     }
 
     private void UseSkillSmash()
     {
-        SpawnFloatingText("Smash!");
-        var particleInstance = Instantiate(smashParticles, transform.position, transform.rotation);
+        
     }
 
     private void UseSkillObstacle()
