@@ -1,5 +1,16 @@
 using UnityEngine;
 
+public class SmashAbility : Ability
+{
+    public float Radius => (Config as SmashAbilityConfig).Radius;
+    public float Duration => (Config as SmashAbilityConfig).Duration;
+    
+    public SmashAbility(Ability ability) : base(ability.Config)
+    {
+        
+    }
+}
+
 public class SprintAbility : Ability
 {
     public float SpeedModifier => (Config as SprintAbilityConfig).SpeedModifier;
