@@ -128,11 +128,35 @@ MonoBehaviour:
     m_ActionId: 96961bf9-80eb-45be-aed8-c31e6b4667b9
     m_ActionName: gameplay/interaction[/Keyboard/e,/DualSenseGamepadHID/buttonSouth]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3735910552527112263}
+        m_TargetAssemblyTypeName: DefaultNamespace.PlayerInputHandler, Assembly-CSharp
+        m_MethodName: OnAbility1Performed
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 17122413-2030-40a0-b90f-5f68900341e6
     m_ActionName: gameplay/ability1[/Keyboard/q,/DualSenseGamepadHID/buttonWest]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3735910552527112263}
+        m_TargetAssemblyTypeName: DefaultNamespace.PlayerInputHandler, Assembly-CSharp
+        m_MethodName: OnAbility2Performed
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 8b4311f9-5751-4418-8821-a33ec6e02fe2
     m_ActionName: gameplay/ability2[/Keyboard/w,/DualSenseGamepadHID/buttonNorth]
   - m_PersistentCalls:
