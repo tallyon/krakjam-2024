@@ -21,7 +21,7 @@ MonoBehaviour:
       type: 3}
     minPointsValue: 2
     maxPointsValue: 4
-    finalPointsValue: 2
+    finalPointsValue: 0
     canBeGivenToGirl: 1
   - Name: pork
     itemEnum: 0
