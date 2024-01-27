@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class Interaction : MonoBehaviour
 {
+    public float InteractionTime;
     public Action<Interaction, CharacterTypeEnum> OnInteraction;
     public CharacterTypeEnum possiblePlayerInteraction;
 
