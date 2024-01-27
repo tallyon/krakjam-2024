@@ -89,8 +89,7 @@ public class ItemsData : ScriptableObject
         Trophy = 28,
         Origami = 29,
         None = 30,
-        ToiletPaper =31
-            
-           
+        ToiletPaper =31,
+        Marker = 32
     }
 }
