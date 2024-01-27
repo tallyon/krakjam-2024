@@ -24,6 +24,8 @@ public class InteractableStations : Interactable
             case StationTakeItemInteraction stationTakeItemInteraction:
                 player.AddItem(stationTakeItemInteraction.takeItemEnum);
                 break;
+            case DoorInteraction doorInteraction:
+                break;
         }
     }
 }

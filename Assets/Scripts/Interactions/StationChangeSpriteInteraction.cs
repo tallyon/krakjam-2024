@@ -7,7 +7,7 @@ public class StationChangeSpriteInteraction : Interaction
 {
     [SerializeField] List<ChangeStationSpriteData> sprites;
 
-    public Sprite newSprite { get; private set; }
+    public Sprite newSprite { get; set; }
 
     public override bool PlayInteraction(PlayerCharacter playerCharacter)
     {

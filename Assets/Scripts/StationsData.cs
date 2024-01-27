@@ -24,6 +24,7 @@ public class StationsData : ScriptableObject
     public enum StationEnum
     {
         Fridge = 0,
-        Board = 1
+        Board = 1,
+        Door =2,
     }
 }
