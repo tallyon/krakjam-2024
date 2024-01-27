@@ -159,21 +159,6 @@ public class PlayerCharacter : MonoBehaviour
         PlayerStatus = status;
     }
 
-    public void ChooseItem1()
-    {
-        Debug.Log("Choosing item 1");
-    }
-
-    public void ChooseItem2()
-    {
-        Debug.Log("Choosing item 2");
-    }
-
-    public void ChooseItem3()
-    {
-        Debug.Log("Choosing item 3");
-    }
-
     public void HandleInteractionHold()
     {
         SpawnFloatingText("INTERACTION HOLD!");

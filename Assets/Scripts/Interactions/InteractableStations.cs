@@ -1,16 +1,14 @@
 using UnityEngine;
+using static ItemsData;
 using static StationsData;
 
 public class InteractableStations : Interactable
 {
-    [SerializeField] ISimpleAnimation _simpleTextPopAnimation1;
-    [SerializeField] ISimpleAnimation _simpleTextPopAnimation2;
-    [SerializeField] ISimpleAnimation _simpleTextPopAnimation3;
+    [SerializeField] SimpleTextPopAnimation _simpleTextPopAnimationLeft;
+    [SerializeField] SimpleTextPopAnimation _simpleTextPopAnimationRight;
 
     [SerializeField] StationEnum stationEnum;
     [SerializeField] SpriteRenderer spriteRenderer;
-
-
 
     protected override void HandleOnInteractionWithObject(Interaction interaction, CharacterTypeEnum characterTypeEnum)
     {
@@ -40,8 +38,6 @@ public class InteractableStations : Interactable
             case StationOptionInteraction stationOptionInteraction:
                 Debug.Log($"Player has 3 items to get: {stationOptionInteraction.takeItemEnum1} {stationOptionInteraction.takeItemEnum2} {stationOptionInteraction.takeItemEnum3}");
                 OnSpecialInteractionPerformed?.Invoke(stationOptionInteraction);
-
-
                 break;
             case DoorInteraction doorInteraction:
                 Debug.Log($"Interactable item: {characterTypeEnum} has interacted with  door");
@@ -49,9 +45,22 @@ public class InteractableStations : Interactable
         }
     }
 
-    public void ShowChoices()
+    public void ShowChoices(ItemsEnum itemsEnum1, ItemsEnum itemsEnum2, ItemsEnum itemsEnum3)
     {
-        
+        _simpleTextPopAnimationLeft.Setup(SimpleTextPopAnimation.InfoEnums.SimpleItem, itemsEnum1);
+        _simpleTextPopAnimationMiddle.Setup(SimpleTextPopAnimation.InfoEnums.SimpleItem, itemsEnum2);
+        _simpleTextPopAnimationRight.Setup(SimpleTextPopAnimation.InfoEnums.SimpleItem, itemsEnum3);
+
+        _simpleTextPopAnimationLeft.PlayAnimation(transform.position);
+        _simpleTextPopAnimationMiddle.PlayAnimation(transform.position);
+        _simpleTextPopAnimationRight.PlayAnimation(transform.position);
+    }
+
+    public void HideChoises()
+    {
+        _simpleTextPopAnimationLeft.HideAnimation();
+        _simpleTextPopAnimationMiddle.HideAnimation();
+        _simpleTextPopAnimationRight.HideAnimation();
     }
 }
 

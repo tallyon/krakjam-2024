@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 1929956017424536445}
   - component: {fileID: 879156668273861332}
   - component: {fileID: 8902202865895147233}
-  - component: {fileID: 3876903808112122718}
+  - component: {fileID: 5507877462315373992}
   m_Layer: 0
-  m_Name: InteractableCoffeeMachine
+  m_Name: InteractalbeFridge
   m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29,8 +29,8 @@ Transform:
   m_GameObject: {fileID: 3256856186573402946}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.0041, y: -0.4284, z: 0}
-  m_LocalScale: {x: 0.31119147, y: 0.27916288, z: 0.1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.42020184, y: 0.37695363, z: 0.13503}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 5490649981950624756}
@@ -79,7 +79,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 7
-  m_Sprite: {fileID: 21300000, guid: b2ab8647fe0c84a21965d0bd20fd10dc, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a1b4b0474af334f428fccff0810b8f89, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -119,21 +119,21 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0014923811, y: -0.0020814538}
+  m_Offset: {x: -0.0010314286, y: -0.0020814538}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.6, y: 0.82}
+    oldSize: {x: 1.1, y: 1.25}
     newSize: {x: 0.16, y: 0.16}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.1419623, y: 1.4863354}
+  m_Size: {x: 1.3085337, y: 1.4863354}
   m_EdgeRadius: 0
 --- !u!114 &8902202865895147233
 MonoBehaviour:
@@ -147,12 +147,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e86f934acce5d49f6b4200a5d661e8eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _simpleTextPopAnimationMiddle: {fileID: 181226898238814309}
-  _simpleTextPopAnimationLeft: {fileID: 5312898427318244777}
-  _simpleTextPopAnimationRight: {fileID: 7836721144836982506}
-  stationEnum: 13
+  stationEnum: 0
   spriteRenderer: {fileID: 1929956017424536445}
---- !u!114 &3876903808112122718
+--- !u!114 &5507877462315373992
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -161,14 +158,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 3256856186573402946}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8085b3257bb94471b9211debf5f6513b, type: 3}
+  m_Script: {fileID: 11500000, guid: 3e5dee2686cbe4a86b5d8561505fbc9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InteractionTime: 2
+  InteractionTime: 0
   possiblePlayerInteraction: 2
-  takeItemEnum1: 19
-  takeItemEnum2: 2
-  takeItemEnum3: 18
+  takeItemEnum: 17
 --- !u!1001 &2172645901268015847
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -258,18 +253,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2172645901268015847}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &5312898427318244777 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6313480528402108238, guid: 92c247399782d42c1824bc912ea2c75b,
-    type: 3}
-  m_PrefabInstance: {fileID: 2172645901268015847}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7871cb3af5a4b6996fae3a7032d48a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &4277396324242803108
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -364,18 +347,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 4277396324242803108}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &7836721144836982506 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6313480528402108238, guid: 92c247399782d42c1824bc912ea2c75b,
-    type: 3}
-  m_PrefabInstance: {fileID: 4277396324242803108}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7871cb3af5a4b6996fae3a7032d48a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &6133381456363648811
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -464,18 +435,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 92c247399782d42c1824bc912ea2c75b, type: 3}
---- !u!114 &181226898238814309 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6313480528402108238, guid: 92c247399782d42c1824bc912ea2c75b,
-    type: 3}
-  m_PrefabInstance: {fileID: 6133381456363648811}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7871cb3af5a4b6996fae3a7032d48a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &5490649981950624756 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1813984046547072223, guid: 92c247399782d42c1824bc912ea2c75b,
