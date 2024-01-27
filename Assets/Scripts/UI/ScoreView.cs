@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 namespace UI
 {
@@ -25,12 +26,22 @@ namespace UI
         }
         private void OnScore1Updated(int val, float percent)
         {
-            player1ScoreSlider.value = percent;
+            PlaySliderTweenAnimation(player1ScoreSlider, percent);
         }
         
         private void OnScore2Updated(int val, float percent)
         {
-            player2ScoreSlider.value = percent;
+            PlaySliderTweenAnimation(player2ScoreSlider, percent);
         }
+
+        private void PlaySliderTweenAnimation(Slider targetSlider, float targetValue)
+        {
+            player1ScoreSlider.DOValue(targetValue, 0.5f);
+            var scaleTween = targetSlider.targetGraphic.GetComponent<RectTransform>()
+                .DOScale(new Vector3(1.2f, 1.2f, 1.2f), 0.25f);
+            scaleTween.SetLoops(2, LoopType.Yoyo);
+            scaleTween.Play();
+        }
+        
     }
 }
