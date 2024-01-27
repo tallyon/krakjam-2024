@@ -15,9 +15,9 @@ MonoBehaviour:
   name: Nerd
   characterType: 1
   prefab: {fileID: 956808371504728417, guid: 00aafeec28e7d45dda13bd8aec2605ff, type: 3}
-  ability1Sprite: {fileID: 0}
+  ability1Sprite: {fileID: 21300000, guid: d60436ac0fb6940969d4a8a01cc84727, type: 3}
   ability1CooldownSeconds: 6
   ability1Sound: {fileID: 0}
-  ability2Sprite: {fileID: 0}
+  ability2Sprite: {fileID: 21300000, guid: 68455e12c19764fb9b2302948cd2a38f, type: 3}
   ability2CooldownSeconds: 13
   ability2Sound: {fileID: 0}
