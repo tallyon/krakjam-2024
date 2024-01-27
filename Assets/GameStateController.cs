@@ -18,6 +18,9 @@ public class GameStateController : Singleton<GameStateController>
     private CharacterTypeEnum? _player2Character;
     private PlayerCharacter _player1;
     private PlayerCharacter _player2;
+
+    public PlayerScore Player1Score { get; private set; }
+    public PlayerScore Player2Score { get; private set; }
     
     protected override void Awake()
     {
@@ -27,6 +30,9 @@ public class GameStateController : Singleton<GameStateController>
 
     private void Start()
     {
+        Player1Score = new PlayerScore(20);
+        Player2Score = new PlayerScore(20);
+        
         _player1Character = charactersPrefab[0].CharacterType;
         _player2Character = charactersPrefab[1].CharacterType;
         StartLevel(0);
