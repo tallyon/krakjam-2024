@@ -123,6 +123,50 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &487124207 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 354886898024714380, guid: d64cfce69f7d4492bae77c15fdd5eed0,
+    type: 3}
+  m_PrefabInstance: {fileID: 1606735720}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &487124209
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 487124207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf4b80c9bea7439a8936c417d01eeb0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player1ScoreSlider: {fileID: 1312612844}
+  player2ScoreSlider: {fileID: 1439297731}
+--- !u!114 &1312612844 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 482292733363844484, guid: d64cfce69f7d4492bae77c15fdd5eed0,
+    type: 3}
+  m_PrefabInstance: {fileID: 1606735720}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1439297731 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5612620365199976748, guid: d64cfce69f7d4492bae77c15fdd5eed0,
+    type: 3}
+  m_PrefabInstance: {fileID: 1606735720}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1606735720
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -284,7 +328,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 354886898024714380, guid: d64cfce69f7d4492bae77c15fdd5eed0,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 487124209}
   m_SourcePrefab: {fileID: 100100000, guid: d64cfce69f7d4492bae77c15fdd5eed0, type: 3}
 --- !u!1 &1642661484
 GameObject:

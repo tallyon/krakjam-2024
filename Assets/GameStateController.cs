@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 using static ItemsData;
 using Random = UnityEngine.Random;
 
@@ -11,6 +12,8 @@ public class GameStateController : Singleton<GameStateController>
     public Dictionary<string, CharacterTypeEnum> playersCharacter = new();
     public List<CharacterData> charactersPrefab;
     public Action<PlayerInput, PlayerCharacter> onPlayerJoined;
+    public Action OnLevelStart;
+    public bool IsLevelStarted { get; private set; }
     [SerializeField] private List<LevelConfig> LevelConfigs;
     [SerializeField] private ItemsData ItemsConfig;
     [SerializeField] private PlayerInputManager playerInputManagerPrefab;
@@ -40,6 +43,8 @@ public class GameStateController : Singleton<GameStateController>
         StartLevel(0);
 
         StartCoroutine(SimulateScore());
+        IsLevelStarted = true;
+        OnLevelStart.Invoke();
     }
 
     private IEnumerator SimulateScore()
