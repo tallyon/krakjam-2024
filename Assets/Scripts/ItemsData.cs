@@ -87,6 +87,10 @@ public class ItemsData : ScriptableObject
         Weights = 26,
         Juice = 27,
         Trophy = 28,
-        Origami = 29
+        Origami = 29,
+        None = 30,
+        ToiletPaper =31
+            
+           
     }
 }
