@@ -42,7 +42,7 @@ public class Interactable : MonoBehaviour
         switch (interaction)
         {
             case DisplayMessageInteraction displayMessageInteraction:
-                _simpleTextPopAnimation.PlayAnimation(transform.position);
+                _simpleTextPopAnimation.PlayAnimation(transform.position, "test message");
                 Debug.Log(displayMessageInteraction.Message);
                 break;
         }
