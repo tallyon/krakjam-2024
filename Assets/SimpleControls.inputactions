@@ -303,6 +303,34 @@
                     "isPartOfComposite": true
                 }
             ]
+        },
+        {
+            "name": "endgame",
+            "id": "153391e7-76e0-4f41-bdb3-bfdd5c715a54",
+            "actions": [
+                {
+                    "name": "reset",
+                    "type": "Button",
+                    "id": "1480a1aa-d7ee-4ebc-a6a5-c053c494bfbc",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "8e2f7cef-db76-44b1-9934-e33c22c2b9bf",
+                    "path": "*/{Submit}",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard;Gamepad",
+                    "action": "reset",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [

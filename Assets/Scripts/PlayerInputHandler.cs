@@ -15,7 +15,7 @@ namespace DefaultNamespace
         private PlayerMovementController mover;
         private Vector2 _movementValue;
         private Interactable _currentInteractableObject;
-
+        
         public void OnControlsChanged()
         {
             Debug.Log("Controls changed");
@@ -43,12 +43,12 @@ namespace DefaultNamespace
             var index = _playerInput.playerIndex;
             var movers = FindObjectsOfType<PlayerMovementController>();
             mover = movers.FirstOrDefault(m => m.playerId == index);
-
             var playerCamera = Instantiate(playerCameraPrefab);
             playerCamera.tag = index == 0 ? GameTags.PLAYER_1_TAG : GameTags.PLAYER_2_TAG;
             playerCamera.SetTarget(mover.transform);
             _playerInput.camera = playerCamera.Camera;
-
+            GameStateController.Instance.Player1Score.OnPlayerWon += SwitchActionMapToEndGame;
+            GameStateController.Instance.Player2Score.OnPlayerWon += SwitchActionMapToEndGame;
             if (index > 0)
             {
                 FindObjectOfType<PlayerInputManager>().splitScreen = true;
@@ -71,6 +71,18 @@ namespace DefaultNamespace
         {
             if (obj.started == false) return;
             mover.OnInteractionPerformed(obj);
+        }
+
+        public void OnEndGameAbilityPressed(InputAction.CallbackContext obj)
+        {
+            Debug.Log($"Submit button pressed");
+            GameStateController.Instance.ResetLevel();   
+        }
+
+        private void SwitchActionMapToEndGame()
+        {
+            Debug.Log($"Remember to enable endgame action map before release");
+            //_playerInput.SwitchCurrentActionMap("endgame");
         }
 
         private void FixedUpdate()

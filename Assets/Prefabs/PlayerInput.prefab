@@ -163,6 +163,22 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: c12727e6-82b2-490f-96cd-9222f6ddf2c9
     m_ActionName: character selection/choose character[/DualSenseGamepadHID/leftStick/left,/DualSenseGamepadHID/leftStick/right,/Keyboard/leftArrow,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3735910552527112263}
+        m_TargetAssemblyTypeName: DefaultNamespace.PlayerInputHandler, Assembly-CSharp
+        m_MethodName: OnEndGameAbilityPressed
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 1480a1aa-d7ee-4ebc-a6a5-c053c494bfbc
+    m_ActionName: endgame/reset[/Keyboard/enter]
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: 
   m_DefaultActionMap: gameplay

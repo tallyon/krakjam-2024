@@ -15,6 +15,8 @@ public class PlayerScore
     /// </summary>
     public Action<int, float> OnScoreUpdated;
 
+    public Action OnPlayerWon;
+
     public PlayerScore(int maxScore)
     {
         MaxScore = maxScore;
@@ -23,6 +25,9 @@ public class PlayerScore
     public void AddScore(int score)
     {
         CurrentScore += score;
+        if(CurrentScore >= MaxScore)
+            OnPlayerWon?.Invoke();
+        
         OnScoreUpdated?.Invoke(CurrentScore, PercentageVictoryAchieved);
     }
 }

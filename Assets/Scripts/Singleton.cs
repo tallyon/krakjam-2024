@@ -20,8 +20,6 @@ public class Singleton<T> : MonoBehaviour where T : class
             instance = this as T;
             StartCoroutine(SendOnInstantiateInNextFrame());
         }
-
-        DontDestroyOnLoad(gameObject);
     }
 
     private IEnumerator SendOnInstantiateInNextFrame()

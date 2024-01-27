@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 using static ItemsData;
 using Random = UnityEngine.Random;
 
@@ -32,7 +33,6 @@ public class GameStateController : Singleton<GameStateController>
     protected override void Awake()
     {
         base.Awake();
-        DontDestroyOnLoad(this);
     }
 
     private void Start()
@@ -48,14 +48,19 @@ public class GameStateController : Singleton<GameStateController>
         IsLevelStarted = true;
         OnLevelStart?.Invoke();
     }
-
+    
+    public void ResetLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+    
     private IEnumerator SimulateScore()
     {
         while (Player1Score.PercentageVictoryAchieved < 1 && Player2Score.PercentageVictoryAchieved < 1)
         {
-            Player1Score.AddScore(Random.Range(1, 3));
-            Player2Score.AddScore(Random.Range(1, 3));
-            yield return new WaitForSeconds(2);
+            Player1Score.AddScore(Random.Range(1,3));
+            Player2Score.AddScore(Random.Range(1,3));
+            yield return new WaitForSeconds(1);
         }
     }
 

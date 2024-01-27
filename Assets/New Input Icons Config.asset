@@ -15,7 +15,7 @@ MonoBehaviour:
   iconSet:
   - type: 2
     icons:
-      skill1Icon: {fileID: -741608249, guid: 1af7c20d6c90c4e639abcbf698348400, type: 3}
+      skill1Icon: {fileID: 21300000, guid: 6df9e89e57d684ee280870138c9a9233, type: 3}
       skill2Icon: {fileID: 1462116476, guid: 1af7c20d6c90c4e639abcbf698348400, type: 3}
       interactableIcon: {fileID: -1295127590, guid: 1af7c20d6c90c4e639abcbf698348400,
         type: 3}
@@ -29,10 +29,10 @@ MonoBehaviour:
       skill2Icon: {fileID: -1458534768, guid: bc43cfaa57b8b43679ac5f98502414eb, type: 3}
       interactableIcon: {fileID: 68865927, guid: bc43cfaa57b8b43679ac5f98502414eb,
         type: 3}
-      goUp: {fileID: -858256360, guid: bc43cfaa57b8b43679ac5f98502414eb, type: 3}
-      goDown: {fileID: 630119210, guid: bc43cfaa57b8b43679ac5f98502414eb, type: 3}
-      goLeft: {fileID: -1918473614, guid: bc43cfaa57b8b43679ac5f98502414eb, type: 3}
-      goRight: {fileID: -2093903581, guid: bc43cfaa57b8b43679ac5f98502414eb, type: 3}
+      goUp: {fileID: 21300000, guid: 23142b2d549b24469acbb352322218b6, type: 3}
+      goDown: {fileID: 21300000, guid: d629a16193bb54edd97586788d05d8e2, type: 3}
+      goLeft: {fileID: 21300000, guid: e13aaac73166f48efa986b656615a83d, type: 3}
+      goRight: {fileID: 21300000, guid: 08ab65aab7797433f832008f0ee064ca, type: 3}
   - type: 1
     icons:
       skill1Icon: {fileID: 0}
