@@ -24,9 +24,7 @@ namespace UI
     public enum ControllerType
     {
         PS,
-        XBOX,
         KB,
-        DEFAULT
     }
 
     [Serializable]
