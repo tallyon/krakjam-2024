@@ -8,6 +8,7 @@ public class GameStateController : Singleton<GameStateController>
     public List<CharacterData> charactersPrefab;
 
     [SerializeField] private List<LevelConfig> LevelConfigs;
+    [SerializeField] private ItemsData ItemsConfig;
 
     private List<GameObject> currentLevelSpawnedObjects = new();
     private CharacterTypeEnum? _player1Character;
@@ -98,6 +99,16 @@ public class GameStateController : Singleton<GameStateController>
         var interactingPlayer = characterEnum == CharacterTypeEnum.Beta ? _player1 : _player2;
 
         return interactingPlayer;
+    }
+
+    public InteractableItem GetInteractableItemPrefab(ItemsEnum itemsEnum)
+    {
+        return ItemsConfig.GetInteractableItemPrefab(itemsEnum);
+    }
+
+    public CollectedItem GetCollectedItemPrefab(ItemsEnum itemsEnum)
+    {
+        return ItemsConfig.GetCollectedItemPrefab(itemsEnum);
     }
 }
 

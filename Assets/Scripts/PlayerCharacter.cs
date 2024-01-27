@@ -7,8 +7,8 @@ public class PlayerCharacter : MonoBehaviour
 
     public void AddItem(ItemsEnum item)
     {
-
-        //collectedItem = item;
+        var collected = GameStateController.Instance.GetCollectedItemPrefab(item);
+        collectedItem = collected;
     }
 
     public void DeleteItem()

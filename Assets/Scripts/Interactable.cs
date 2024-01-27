@@ -9,7 +9,6 @@ public class Interactable : MonoBehaviour
     private List<string> currentPlayerTags = new();
     private int _interactionIndex = 0;
     private Interaction _activeInteraction;
-    protected GameStateController _gameStateController;
 
 
     private void Awake()

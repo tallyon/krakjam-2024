@@ -8,9 +8,9 @@ public class InteractableItem : Interactable
     {
         base.HandleOnInteractionWithObject(interaction, characterTypeEnum);
 
-        if (interaction is TakeItemInteraction takeItemInteraction)
+        if (interaction is TakeItemInteraction)
         {
-            var player = _gameStateController.GetPlayerObject(characterTypeEnum);
+            var player = GameStateController.Instance.GetPlayerObject(characterTypeEnum);
             player.AddItem(itemsEnum);
             Destroy(gameObject);
         }
