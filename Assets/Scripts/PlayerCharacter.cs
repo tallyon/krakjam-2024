@@ -7,7 +7,8 @@ using TMPro;
 public enum PlayerCharacterStatus
 {
     Normal,
-    Stunned
+    Stunned,
+    InVent
 }
 
 [RequireComponent(typeof(PlayerMovementController))]
@@ -70,8 +71,9 @@ public class PlayerCharacter : MonoBehaviour
                 _stunParticlesInstance = Instantiate(stunParticlesPrefab, transform.position + new Vector3(0, 3, -10), transform.rotation);
                 _stunParticlesInstance.transform.SetParent(transform, true);
                 break;
-            default:
-                throw new ArgumentOutOfRangeException(nameof(status), status, null);
+            case PlayerCharacterStatus.InVent:
+                Debug.Log($"IN VENT on {gameObject.name}");
+                break;
         }
     }
 
