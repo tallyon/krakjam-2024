@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40cb7f1c2c523498882e87d284a45d68, type: 3}
   m_Name: TestLevel
   m_EditorClassIdentifier: 
-  LevelPrefab: {fileID: 7926323267015988835, guid: c6d57895268414452870c25d7072caca,
+  LevelPrefab: {fileID: 8704519624284178530, guid: 0b95e6d07fe5543af8edee2351b5585a,
     type: 3}
   Player1SpawnPosition: {x: -0.5, y: -0.2}
   Player2SpawnPosition: {x: 0.5, y: 0.2}
