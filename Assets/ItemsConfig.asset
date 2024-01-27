@@ -275,14 +275,24 @@ MonoBehaviour:
     canBeGivenToGirl: 1
   - Name: Toilet Paper
     itemEnum: 31
-    collectedItem: {fileID: 8381654774350127443, guid: 8b381404c6d804acab143514bde3bc36,
+    collectedItem: {fileID: 8381654774350127443, guid: dcffe350e324940cc9478e3ccfadf208,
       type: 3}
-    interactableItem: {fileID: 9196494427775756211, guid: d7c305ef145434faca7c0aaea45502b9,
+    interactableItem: {fileID: 9196494427775756211, guid: 17ffbe3092b6b4c34b08860e8b3c4044,
       type: 3}
-    minPointsValue: 3
-    maxPointsValue: 3
+    minPointsValue: 0
+    maxPointsValue: 0
     finalPointsValue: 0
-    canBeGivenToGirl: 1
+    canBeGivenToGirl: 0
+  - Name: Marker
+    itemEnum: 32
+    collectedItem: {fileID: 8381654774350127443, guid: 31533d5aa7ea04a5f85a6f8b6176a436,
+      type: 3}
+    interactableItem: {fileID: 9196494427775756211, guid: fd2d3c6b52421459c850a31e8ccb8f4f,
+      type: 3}
+    minPointsValue: 0
+    maxPointsValue: 0
+    finalPointsValue: 0
+    canBeGivenToGirl: 0
   itemsGroup:
   - groupEnum: 2
     items: 0000000001000000
