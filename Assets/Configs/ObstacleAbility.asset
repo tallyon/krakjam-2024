@@ -9,8 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 1450d3a1dc7245d3a64e118a3f870a13, type: 3}
   m_Name: ObstacleAbility
   m_EditorClassIdentifier: Assembly-CSharp::AbilityConfig
   abilityName: Obstacle
   cooldownSeconds: 5
+  particles: {fileID: 0}

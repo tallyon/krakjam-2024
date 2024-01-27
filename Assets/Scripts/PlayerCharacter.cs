@@ -1,5 +1,6 @@
 using System;
-using CartoonFX;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using TMPro;
@@ -15,7 +16,6 @@ public class PlayerCharacter : MonoBehaviour
     public Action<Ability> onAbility2Used;
 
     [SerializeField] private TextMeshPro floatingTextPrefab;
-    [SerializeField] private CFXR_Effect smashParticles;
 
     public CharacterData CharacterData => _characterData;
 
@@ -59,7 +59,8 @@ public class PlayerCharacter : MonoBehaviour
         switch (_characterData.CharacterType)
         {
             case CharacterTypeEnum.Sigma:
-                UseSkillSprint();
+                var sprintAbility = new SprintAbility(Ability1);
+                UseSkillSprint(sprintAbility);
                 break;
             case CharacterTypeEnum.Beta:
                 UseSkillObstacle();
@@ -108,9 +109,19 @@ public class PlayerCharacter : MonoBehaviour
         Ability2.UpdateCooldownState(timePassedSinceLastFrame);
     }
 
-    private void UseSkillSprint()
+    private void UseSkillSprint(SprintAbility sprintAbility)
     {
-        SpawnFloatingText("Sprint!");
+        var previousSpeedModifier = _playerMovementController.CharacterMoveSpeedModifier;
+        StartCoroutine(RestorePreviousSpeedModifier(previousSpeedModifier, sprintAbility.Duration));
+        
+        var newSpeedModifier = _playerMovementController.CharacterMoveSpeedModifier * sprintAbility.SpeedModifier;
+        _playerMovementController.CharacterMoveSpeedModifier = newSpeedModifier;
+    }
+
+    private IEnumerator RestorePreviousSpeedModifier(float speedModifier, float delaySeconds)
+    {
+        yield return new WaitForSeconds(delaySeconds);
+        _playerMovementController.CharacterMoveSpeedModifier = speedModifier;
     }
 
     private void UseSkillSmash()

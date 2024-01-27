@@ -9,12 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 2a9c36b2fd37456995a8ae160be91c4f, type: 3}
   m_Name: SprintAbility
-  m_EditorClassIdentifier: Assembly-CSharp::SprintAbilityConfig
+  m_EditorClassIdentifier: 
   abilityName: Sprint
   cooldownSeconds: 4
   particles: {fileID: 9157105887711914197, guid: ca1285f0628ec4405a96a8a652f77dbd,
     type: 3}
   durationSeconds: 2
-  speedModifier: 1.3
+  speedModifier: 2

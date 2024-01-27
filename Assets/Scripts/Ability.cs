@@ -1,6 +1,21 @@
 using CartoonFX;
 using UnityEngine;
 
+public class SprintAbility : Ability
+{
+    public float SpeedModifier => (Config as SprintAbilityConfig).SpeedModifier;
+    public float Duration => (Config as SprintAbilityConfig).DurationSeconds;
+    
+    public SprintAbility(AbilityConfig config) : base(config)
+    {
+    }
+
+    public SprintAbility(Ability ability) : base(ability.Config)
+    {
+        
+    }
+}
+
 public class Ability
 {
     public enum AbilityState
@@ -14,15 +29,15 @@ public class Ability
 
     private readonly int _cooldownSeconds;
 
-    public GameObject Particles => _config.Particles;
-    public string Name => _config.Name;
+    public GameObject Particles => Config.Particles;
+    public string Name => Config.Name;
 
-    private readonly AbilityConfig _config;
+    public readonly AbilityConfig Config;
 
     public Ability(AbilityConfig config)
     {
         _cooldownSeconds = config.CooldownSeconds;
-        _config = config;
+        Config = config;
     }
     
     public void GoOnCooldown()
