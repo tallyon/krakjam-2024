@@ -7,7 +7,8 @@ public class PlayerMovementController : MonoBehaviour
 {
     public int playerId;
     [SerializeField] private InputActionAsset controls;
-    [SerializeField] private float moveSpeed;
+    private float internalMoveSpeedModifier = 0.2f;
+    public float CharacterMoveSpeedModifier { get; set; }
     private InputActionMap _actionMap;
     private InputAction _movementAction;
     private Vector2 _movementValue;
@@ -68,6 +69,6 @@ public class PlayerMovementController : MonoBehaviour
 
     public void Move(Vector2 moveVal)
     {
-        _rb2d.MovePosition(_rb2d.position + moveVal * moveSpeed);
+        _rb2d.MovePosition(_rb2d.position + internalMoveSpeedModifier * CharacterMoveSpeedModifier * moveVal);
     }
 }

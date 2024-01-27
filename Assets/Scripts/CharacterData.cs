@@ -6,6 +6,7 @@ public class CharacterData : ScriptableObject
     [SerializeField] private string name;
     [SerializeField] private CharacterTypeEnum characterType;
     [SerializeField] private GameObject prefab;
+    [SerializeField] private float moveSpeed = 1.0f;
 
     [Header("Ability 1")]
     [SerializeField] private Sprite ability1Sprite;
@@ -26,4 +27,6 @@ public class CharacterData : ScriptableObject
 
     public int Ability1CooldownSeconds => ability1CooldownSeconds;
     public int Ability2CooldownSeconds => ability2CooldownSeconds;
+
+    public float MoveSpeed => moveSpeed;
 }
