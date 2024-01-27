@@ -24,6 +24,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "interaction hold",
+                    "type": "Button",
+                    "id": "636b1ff0-da73-4e69-82a4-b95d862dca79",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Hold",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "ability1",
                     "type": "Button",
                     "id": "17122413-2030-40a0-b90f-5f68900341e6",
@@ -36,6 +45,42 @@
                     "name": "ability2",
                     "type": "Button",
                     "id": "8b4311f9-5751-4418-8821-a33ec6e02fe2",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "choose item 1",
+                    "type": "Button",
+                    "id": "34840e3f-61a7-4786-98d2-f39a0f0d9714",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "choose item 2",
+                    "type": "Button",
+                    "id": "6ff750f6-bf76-46cc-a13f-843ce33a146b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "choose item 3",
+                    "type": "Button",
+                    "id": "67d7bd0d-8aba-4ca8-b948-bc20e6161878",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "use item",
+                    "type": "Button",
+                    "id": "8f4a3e89-65b3-444f-a6f6-246aab9bbd16",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -216,6 +261,116 @@
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "ability2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "55943fa5-849f-41bb-bd3e-0eeb0039757b",
+                    "path": "<Keyboard>/1",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "choose item 1",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6196ff8a-20d7-494f-bf06-ee0675892259",
+                    "path": "<Gamepad>/dpad/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "choose item 1",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3c202033-e4c1-4811-a291-f28343410095",
+                    "path": "<Keyboard>/2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "choose item 2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "764fc079-658c-42f4-b2c5-7f0a7c646ccc",
+                    "path": "<Gamepad>/dpad/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "choose item 2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2136f7da-23e4-4116-8b22-7a0284f8d446",
+                    "path": "<Keyboard>/3",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "choose item 3",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "04b801c7-2a54-4b7a-89f8-0551654adfd9",
+                    "path": "<Gamepad>/dpad/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "choose item 3",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f17c0c22-d7fa-4567-8d91-786918792fed",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "interaction hold",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7b784e35-2c87-4c8e-a300-f613a1e90ec9",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "interaction hold",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "df5dc403-f8d5-460f-9a85-fabc10aab1c3",
+                    "path": "<Keyboard>/r",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "use item",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "966e2225-cfdc-41a0-b65f-fd9723729672",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "use item",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -1,4 +1,3 @@
-using System.Collections;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -57,6 +56,27 @@ public class PlayerMovementController : MonoBehaviour
         Debug.Log("Ability 1!");
         _playerCharacter.UseAbility1();
     }
+    
+    public void OnChooseItem1Performed(InputAction.CallbackContext obj)
+    {
+        _playerCharacter.ApplyStatus(PlayerCharacterStatus.ChoosingItem);
+        _playerCharacter.ChooseItem1();
+        _playerCharacter.ApplyStatus(PlayerCharacterStatus.Normal);
+    }
+
+    public void OnChooseItem2Performed(InputAction.CallbackContext obj)
+    {
+        _playerCharacter.ApplyStatus(PlayerCharacterStatus.ChoosingItem);
+        _playerCharacter.ChooseItem2();
+        _playerCharacter.ApplyStatus(PlayerCharacterStatus.Normal);
+    }
+
+    public void OnChooseItem3Performed(InputAction.CallbackContext obj)
+    {
+        _playerCharacter.ApplyStatus(PlayerCharacterStatus.ChoosingItem);
+        _playerCharacter.ChooseItem3();
+        _playerCharacter.ApplyStatus(PlayerCharacterStatus.Normal);
+    }
 
     public void OnInteractionPerformed(InputAction.CallbackContext obj)
     {
@@ -69,6 +89,16 @@ public class PlayerMovementController : MonoBehaviour
         {
             Debug.Log("No object to interact with");
         }
+    }
+
+    public void OnInteractionHold(InputAction.CallbackContext obj)
+    {
+        Debug.Log("INTERACTION HOLD");
+    }
+
+    public void OnUseItemPerformed(InputAction.CallbackContext obj)
+    {
+        Debug.Log("Item used");
     }
 
     public void Move(Vector2 moveVal)

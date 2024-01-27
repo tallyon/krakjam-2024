@@ -8,7 +8,8 @@ public enum PlayerCharacterStatus
 {
     Normal,
     Stunned,
-    InVent
+    InVent,
+    ChoosingItem
 }
 
 [RequireComponent(typeof(PlayerMovementController))]
@@ -96,7 +97,7 @@ public class PlayerCharacter : MonoBehaviour
 
         var abilityName = Ability1.Name;
         var particles = Ability1.Particles;
-        if (string.IsNullOrEmpty(abilityName) == false) SpawnFloatingText(abilityName);
+        if (string.IsNullOrEmpty(abilityName) == false) SpawnFloatingText($"{abilityName}!");
         if (particles != null) Instantiate(particles, transform.position, transform.rotation);
         
         switch (_characterData.CharacterType)
@@ -124,7 +125,7 @@ public class PlayerCharacter : MonoBehaviour
 
         var abilityName = Ability2.Name;
         var particles = Ability2.Particles;
-        if (string.IsNullOrEmpty(abilityName) == false) SpawnFloatingText(abilityName);
+        if (string.IsNullOrEmpty(abilityName) == false) SpawnFloatingText($"{abilityName}!");
         if (particles != null) Instantiate(particles, transform.position, transform.rotation);
 
         switch (_characterData.CharacterType)
@@ -158,9 +159,34 @@ public class PlayerCharacter : MonoBehaviour
         PlayerStatus = status;
     }
 
+    public void ChooseItem1()
+    {
+        Debug.Log("Choosing item 1");
+    }
+
+    public void ChooseItem2()
+    {
+        Debug.Log("Choosing item 2");
+    }
+
+    public void ChooseItem3()
+    {
+        Debug.Log("Choosing item 3");
+    }
+
+    public void HandleInteractionHold()
+    {
+        SpawnFloatingText("INTERACTION HOLD!");
+    }
+
+    public void UseItem()
+    {
+        SpawnFloatingText("USING ITEM!");
+    }
+
     private IEnumerator ReturnStatusToNormal(float timeSeconds)
     {
-        yield return new WaitForSeconds(10);
+        yield return new WaitForSeconds(timeSeconds);
         ApplyStatus(PlayerCharacterStatus.Normal);
     }
 
@@ -191,6 +217,8 @@ public class PlayerCharacter : MonoBehaviour
         // check if other player is in the radius of the skill
         var otherPlayer = GameStateController.Instance.GetOtherPlayer(this);
         var distanceToOtherPlayer = Vector2.Distance(otherPlayer.transform.position, transform.position);
+
+        if (distanceToOtherPlayer > abilityConfig.Radius) return;
         
         // if other player is in radius apply Stunned status and push him back
         otherPlayer.ApplyStatus(PlayerCharacterStatus.Stunned, abilityConfig.Duration);
