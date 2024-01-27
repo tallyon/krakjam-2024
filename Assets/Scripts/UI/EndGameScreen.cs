@@ -11,8 +11,8 @@ namespace UI
 
         private void Start()
         {
-            if (!GameStateController.Instance.IsLevelStarted)
-                GameStateController.Instance.OnLevelStart += SignToEvents;
+            if (!GameStateController.Instance.IsGameInitialized)
+                GameStateController.Instance.OnGameInit += SignToEvents;
             else
                 SignToEvents();
         }

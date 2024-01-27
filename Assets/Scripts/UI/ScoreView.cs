@@ -11,9 +11,9 @@ namespace UI
 
         private void Start()
         {
-            if (!GameStateController.Instance.IsLevelStarted)
+            if (!GameStateController.Instance.IsGameInitialized)
             {
-                GameStateController.Instance.OnLevelStart += OnLevelStart;
+                GameStateController.Instance.OnGameInit += OnLevelStart;
                 return;
             }
             OnLevelStart();
