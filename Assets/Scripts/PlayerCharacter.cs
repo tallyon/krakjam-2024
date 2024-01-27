@@ -14,7 +14,7 @@ public enum PlayerCharacterStatus
 [RequireComponent(typeof(PlayerMovementController))]
 public class PlayerCharacter : MonoBehaviour
 {
-    public CharacterTypeEnum characterTypeEnum;
+    public CharacterTypeEnum characterTypeEnum => CharacterData.CharacterType;
     public CollectedItem collectedItem = null;
     public Action<CollectedItem> onItemAdd;
     public Action onItemDeleted;
@@ -33,7 +33,9 @@ public class PlayerCharacter : MonoBehaviour
     }
 
     [SerializeField] private TextMeshPro floatingTextPrefab;
-
+    [SerializeField] private GameObject stunParticlesPrefab;
+    private GameObject _stunParticlesInstance;
+    
     public Action<PlayerCharacterStatus> OnPlayerCharacterStatusChanged;
 
     public CharacterData CharacterData => _characterData;
@@ -51,6 +53,27 @@ public class PlayerCharacter : MonoBehaviour
         _playerMovementController.CharacterMoveSpeedModifier = _characterData.MoveSpeed;
         Ability1 = new Ability(_characterData.Ability1Config);
         Ability2 = new Ability(_characterData.Ability2Config);
+        
+        OnPlayerCharacterStatusChanged += HandlePlayerStatusChanged;
+    }
+
+    private void HandlePlayerStatusChanged(PlayerCharacterStatus status)
+    {
+        if (_stunParticlesInstance != null) Destroy(_stunParticlesInstance);
+
+        switch (status)
+        {
+            case PlayerCharacterStatus.Normal:
+                Debug.Log($"NORMAL on {gameObject.name}!");
+                break;
+            case PlayerCharacterStatus.Stunned:
+                Debug.Log($"STUN on {gameObject.name}!");
+                _stunParticlesInstance = Instantiate(stunParticlesPrefab, transform.position + new Vector3(0, 3, -10), transform.rotation);
+                _stunParticlesInstance.transform.SetParent(transform, true);
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(status), status, null);
+        }
     }
 
     public void AddItem(ItemsData.ItemsEnum item)
@@ -133,7 +156,6 @@ public class PlayerCharacter : MonoBehaviour
     {
         ApplyStatus(status);
         StartCoroutine(ReturnStatusToNormal(timeSeconds));
-        
     }
 
     public void ApplyStatus(PlayerCharacterStatus status)
@@ -143,7 +165,7 @@ public class PlayerCharacter : MonoBehaviour
 
     private IEnumerator ReturnStatusToNormal(float timeSeconds)
     {
-        yield return new WaitForSeconds(timeSeconds);
+        yield return new WaitForSeconds(10);
         ApplyStatus(PlayerCharacterStatus.Normal);
     }
 
