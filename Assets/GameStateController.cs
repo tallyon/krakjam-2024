@@ -35,11 +35,6 @@ public class GameStateController : Singleton<GameStateController>
 
     public PlayerScore Player1Score { get; private set; }
     public PlayerScore Player2Score { get; private set; }
-    
-    protected override void Awake()
-    {
-        base.Awake();
-    }
 
     private void Start()
     {
@@ -212,6 +207,26 @@ public class GameStateController : Singleton<GameStateController>
     public PlayerCharacter GetOtherPlayer(PlayerCharacter playerAsking)
     {
         return playerAsking == _player1 ? _player2 : _player1;
+    }
+
+    private void Update()
+    {
+        var keyboard = Keyboard.current;
+        var gamepad = Gamepad.current;
+
+        if (keyboard != null && keyboard.escapeKey.wasPressedThisFrame ||
+            gamepad != null && gamepad.startButton.wasPressedThisFrame)
+        {
+            QuitGame();
+        }
+    }
+    
+    private void QuitGame()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#endif
+        Application.Quit();
     }
 }
 
