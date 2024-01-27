@@ -5,9 +5,9 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(PlayerCharacter))]
 public class PlayerMovementController : MonoBehaviour
 {
+    public int playerId;
     [SerializeField] private InputActionAsset controls;
     [SerializeField] private float moveSpeed;
-
     private InputActionMap _actionMap;
     private InputAction _movementAction;
     private Vector2 _movementValue;
@@ -76,8 +76,9 @@ public class PlayerMovementController : MonoBehaviour
         _movementValue = _movementAction.ReadValue<Vector2>();
     }
 
-    private void FixedUpdate()
+    public void Move(Vector2 moveVal)
     {
-        _rb2d.MovePosition(_rb2d.position + _movementValue * moveSpeed);
+        Debug.Log($"hej {playerId} {moveVal}");
+        _rb2d.MovePosition(_rb2d.position + moveVal * moveSpeed);
     }
 }
