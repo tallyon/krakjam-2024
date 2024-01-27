@@ -9,7 +9,7 @@ public class StationChangeSpriteInteraction : Interaction
 
     public Sprite newSprite { get; set; }
 
-    public override bool PlayInteraction(PlayerCharacter playerCharacter)
+    public override void PlayInteraction(PlayerCharacter playerCharacter)
     {
         if (possiblePlayerInteraction == CharacterTypeEnum.Both || playerCharacter.characterTypeEnum == possiblePlayerInteraction)
         {
@@ -17,13 +17,11 @@ public class StationChangeSpriteInteraction : Interaction
 
             OnInteraction?.Invoke(this, playerCharacter.characterTypeEnum);
             Debug.Log($"Interactions: Player chnged sprite of item");
-            return true;
         }
         else
         {
             OnInteraction?.Invoke(new DisplayMessageInteraction() { Message = "Station cannot be taken by this character" }, playerCharacter.characterTypeEnum);
             Debug.Log($"Interactions: Player cannot interact with this item with this character");
-            return false;
         }
     }
 }

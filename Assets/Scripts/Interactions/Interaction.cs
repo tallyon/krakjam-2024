@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Interaction : MonoBehaviour
@@ -7,13 +8,12 @@ public class Interaction : MonoBehaviour
     public Action<Interaction, CharacterTypeEnum> OnInteraction;
     public CharacterTypeEnum possiblePlayerInteraction;
 
-    public virtual bool PlayInteraction(PlayerCharacter playerCharacter)
+    public virtual void PlayInteraction(PlayerCharacter playerCharacter)
     {
-        return true;
     }
 
-    public virtual bool PlayAbility(PlayerCharacter playerCharacter)
+    public virtual List<Vector2> PlayAbility(PlayerCharacter playerCharacter)
     {
-        return true;
+        return null;
     }
 }
