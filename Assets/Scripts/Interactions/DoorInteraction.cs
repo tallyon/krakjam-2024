@@ -9,7 +9,7 @@ public class DoorInteraction : Interaction
 
     public DoorState doorState = DoorState.Open;
 
-    public override bool PlayInteraction(PlayerCharacter playerCharacter)
+    public override void PlayInteraction(PlayerCharacter playerCharacter)
     {
         if (doorState == DoorState.Open && playerCharacter.characterTypeEnum == CharacterTypeEnum.Beta)
         {
@@ -18,7 +18,6 @@ public class DoorInteraction : Interaction
 
             doorState = DoorState.Close;
             OnInteraction?.Invoke(this, playerCharacter.characterTypeEnum);
-            return false;
         }
         if(doorState == DoorState.Close && playerCharacter.characterTypeEnum == CharacterTypeEnum.Sigma)
         {
@@ -27,12 +26,11 @@ public class DoorInteraction : Interaction
 
             doorState = DoorState.Destroyed;
             OnInteraction?.Invoke(this, playerCharacter.characterTypeEnum);
-            return true;
         }
         else
         {
             OnInteraction?.Invoke(new DisplayMessageInteraction() { Message = "Station cannot be taken by this character" }, playerCharacter.characterTypeEnum);
-            return false;
+
         }
     }
 

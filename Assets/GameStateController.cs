@@ -1,9 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UI;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 using static ItemsData;
 using Random = UnityEngine.Random;
 
@@ -14,9 +16,14 @@ public class GameStateController : Singleton<GameStateController>
     public Dictionary<string, CharacterTypeEnum> playersCharacter = new();
     public List<CharacterData> charactersPrefab;
     public Action<PlayerInput, PlayerCharacter> onPlayerJoined;
-    public Action OnLevelStart;
-    public float roundTime = 180;
-    public bool IsLevelStarted { get; private set; }
+    public Action OnGameStart;
+    public Action<float> OnStartTimerTick;
+    [FormerlySerializedAs("OnGameEnd")] public Action OnGameTimerEnd;
+    public Action<float> OnGameTimerTick;
+    public Action OnGameInit;
+    public int roundTime = 180;
+    public int startTime = 3;
+    public bool IsGameInitialized { get; private set; }
     [SerializeField] private List<LevelConfig> LevelConfigs;
     [SerializeField] private ItemsData ItemsConfig;
     [SerializeField] private PlayerInputManager playerInputManagerPrefab;
@@ -45,13 +52,40 @@ public class GameStateController : Singleton<GameStateController>
         StartLevel(0);
 
         StartCoroutine(SimulateScore());
-        IsLevelStarted = true;
-        OnLevelStart?.Invoke();
+        IsGameInitialized = true;
+        OnGameInit?.Invoke();
     }
     
     public void ResetLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    private IEnumerator BeginStartCountdown()
+    {
+        float timer = startTime;
+        while (timer > 0)
+        {
+            OnStartTimerTick?.Invoke(timer);
+            yield return new WaitForSeconds(1);
+            timer--;
+        }
+        OnStartTimerTick?.Invoke(0);
+        OnGameStart?.Invoke();
+        StartCoroutine(BeginGameCountdown());
+    }
+
+    private IEnumerator BeginGameCountdown()
+    {
+        int timer = roundTime;
+        while (timer > 0)
+        {
+            OnGameTimerTick?.Invoke(timer);
+            yield return new WaitForSeconds(1);
+            timer--;
+        }
+        OnGameTimerTick?.Invoke(0);
+        OnGameTimerEnd?.Invoke();
     }
     
     private IEnumerator SimulateScore()
@@ -124,10 +158,17 @@ public class GameStateController : Singleton<GameStateController>
 
     private void OnPlayerJoined(PlayerInput playerInput)
     {
-        if(playerInput.playerIndex == 0)
+        if (playerInput.playerIndex == 0)
+        {
             onPlayerJoined.Invoke(playerInput, _player1);
-        else if(playerInput.playerIndex == 1)
+            //TODO: USE ON PLAYER 2 LAATER
+        }
+        else if (playerInput.playerIndex == 1)
+        {
+            StartCoroutine(BeginStartCountdown());
             onPlayerJoined.Invoke(playerInput, _player2);
+            //StartCoroutine(BeginStartCountdown());
+        }
     }
     
     public void OnInteract(Interaction interaction, CharacterTypeEnum characterEnum)
@@ -166,6 +207,11 @@ public class GameStateController : Singleton<GameStateController>
     public CollectedItem GetCollectedItemPrefab(ItemsData.ItemsEnum itemsEnum)
     {
         return ItemsConfig.GetCollectedItemPrefab(itemsEnum);
+    }
+
+    public PlayerCharacter GetOtherPlayer(PlayerCharacter playerAsking)
+    {
+        return playerAsking == _player1 ? _player2 : _player1;
     }
 }
 

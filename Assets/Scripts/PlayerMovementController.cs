@@ -15,6 +15,7 @@ public class PlayerMovementController : MonoBehaviour
     private Vector2 _movementValue;
     private Rigidbody2D _rb2d;
     private Collider2D _collider;
+    public Rigidbody2D Rigidbody => _rb2d;
     private Interactable _currentInteractableObject;
     private PlayerCharacter _playerCharacter;
 

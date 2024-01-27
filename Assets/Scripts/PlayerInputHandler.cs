@@ -38,17 +38,20 @@ namespace DefaultNamespace
 
         private void Awake()
         {
-            _playerCharacter = GetComponent<PlayerCharacter>();
             _playerInput = GetComponent<PlayerInput>();
             var index = _playerInput.playerIndex;
             var movers = FindObjectsOfType<PlayerMovementController>();
             mover = movers.FirstOrDefault(m => m.playerId == index);
+            _playerCharacter = mover.GetComponent<PlayerCharacter>();
             var playerCamera = Instantiate(playerCameraPrefab);
             playerCamera.tag = index == 0 ? GameTags.PLAYER_1_TAG : GameTags.PLAYER_2_TAG;
             playerCamera.SetTarget(mover.transform);
             _playerInput.camera = playerCamera.Camera;
+            
             GameStateController.Instance.Player1Score.OnPlayerWon += SwitchActionMapToEndGame;
             GameStateController.Instance.Player2Score.OnPlayerWon += SwitchActionMapToEndGame;
+            GameStateController.Instance.OnGameTimerEnd += EnableInput;
+            
             if (index > 0)
             {
                 FindObjectOfType<PlayerInputManager>().splitScreen = true;
@@ -84,6 +87,17 @@ namespace DefaultNamespace
             Debug.Log($"Remember to enable endgame action map before release");
             //_playerInput.SwitchCurrentActionMap("endgame");
         }
+
+        private void EnableInput()
+        {
+            _playerInput.SwitchCurrentActionMap("gameplay");
+        }
+
+        private void DisableInput()
+        {
+            _playerInput.SwitchCurrentActionMap("idle");            
+        }
+        
 
         private void FixedUpdate()
         {

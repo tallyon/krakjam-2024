@@ -1,10 +1,15 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using DefaultNamespace;
 using UnityEngine;
 using DG.Tweening;
 using TMPro;
+
+public enum PlayerCharacterStatus
+{
+    Normal,
+    Stunned
+}
 
 [RequireComponent(typeof(PlayerMovementController))]
 public class PlayerCharacter : MonoBehaviour
@@ -16,7 +21,20 @@ public class PlayerCharacter : MonoBehaviour
     public Action<Ability> onAbility1Used;
     public Action<Ability> onAbility2Used;
 
+    private PlayerCharacterStatus _playerStatus;
+    public PlayerCharacterStatus PlayerStatus
+    {
+        get => _playerStatus;
+        private set
+        {
+            _playerStatus = value;
+            OnPlayerCharacterStatusChanged?.Invoke(value);
+        }
+    }
+
     [SerializeField] private TextMeshPro floatingTextPrefab;
+
+    public Action<PlayerCharacterStatus> OnPlayerCharacterStatusChanged;
 
     public CharacterData CharacterData => _characterData;
 
@@ -79,16 +97,17 @@ public class PlayerCharacter : MonoBehaviour
     public void UseAbility2()
     {
         if (Ability2.State == Ability.AbilityState.OnCooldown) return;
-        
+
         var abilityName = Ability2.Name;
         var particles = Ability2.Particles;
         if (string.IsNullOrEmpty(abilityName) == false) SpawnFloatingText(abilityName);
         if (particles != null) Instantiate(particles, transform.position, transform.rotation);
-        
+
         switch (_characterData.CharacterType)
         {
             case CharacterTypeEnum.Sigma:
-                UseSkillSmash();
+                var smashAbility = new SmashAbility(Ability2);
+                UseSkillSmash(smashAbility);
                 break;
             case CharacterTypeEnum.Beta:
                 var path = new List<Vector2>()
@@ -105,9 +124,27 @@ public class PlayerCharacter : MonoBehaviour
             default:
                 throw new ArgumentOutOfRangeException();
         }
-        
+
         Ability2.GoOnCooldown();
         onAbility2Used.Invoke(Ability2);
+    }
+
+    public void ApplyStatus(PlayerCharacterStatus status, float timeSeconds)
+    {
+        ApplyStatus(status);
+        StartCoroutine(ReturnStatusToNormal(timeSeconds));
+        
+    }
+
+    public void ApplyStatus(PlayerCharacterStatus status)
+    {
+        PlayerStatus = status;
+    }
+
+    private IEnumerator ReturnStatusToNormal(float timeSeconds)
+    {
+        yield return new WaitForSeconds(timeSeconds);
+        ApplyStatus(PlayerCharacterStatus.Normal);
     }
 
     private void Update()
@@ -132,9 +169,16 @@ public class PlayerCharacter : MonoBehaviour
         _playerMovementController.CharacterMoveSpeedModifier = speedModifier;
     }
 
-    private void UseSkillSmash()
+    private void UseSkillSmash(SmashAbility abilityConfig)
     {
+        // check if other player is in the radius of the skill
+        var otherPlayer = GameStateController.Instance.GetOtherPlayer(this);
+        var distanceToOtherPlayer = Vector2.Distance(otherPlayer.transform.position, transform.position);
         
+        // if other player is in radius apply Stunned status and push him back
+        otherPlayer.ApplyStatus(PlayerCharacterStatus.Stunned, abilityConfig.Duration);
+        otherPlayer._playerMovementController.Rigidbody.DOMove(otherPlayer.transform.position +
+                                     (otherPlayer.transform.position - transform.position), .5f);
     }
 
     private void UseSkillObstacle()

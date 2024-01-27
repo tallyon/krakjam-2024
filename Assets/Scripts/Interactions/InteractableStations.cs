@@ -28,6 +28,9 @@ public class InteractableStations : Interactable
                 Debug.Log($"Interactable item: {characterTypeEnum} has taken {stationTakeItemInteraction.takeItemEnum} from {stationEnum}");
                 player.AddItem(stationTakeItemInteraction.takeItemEnum);
                 break;
+            case VentPathInteraction ventPathInteraction:
+                Debug.Log($"Interactable item: {characterTypeEnum} has taken vent from");
+                break;
             case DoorInteraction doorInteraction:
                 Debug.Log($"Interactable item: {characterTypeEnum} has interacted with  door");
                 break;
