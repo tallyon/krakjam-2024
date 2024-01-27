@@ -35,11 +35,6 @@ public class GameStateController : Singleton<GameStateController>
 
     public PlayerScore Player1Score { get; private set; }
     public PlayerScore Player2Score { get; private set; }
-    
-    protected override void Awake()
-    {
-        base.Awake();
-    }
 
     private void Start()
     {
@@ -157,7 +152,7 @@ public class GameStateController : Singleton<GameStateController>
 
     private void OnPlayerJoined(PlayerInput playerInput)
     {
-        
+
         if (playerInput.playerIndex == 0)
         {
             StartCoroutine(BeginStartCountdown());
@@ -170,17 +165,6 @@ public class GameStateController : Singleton<GameStateController>
             onPlayerJoined.Invoke(playerInput, _player2);
             //StartCoroutine(BeginStartCountdown());
         }
-    }
-    
-    public void OnInteract(Interaction interaction, CharacterTypeEnum characterEnum)
-    {
-        //var interactingPlayer = characterEnum == CharacterTypeEnum.Beta ? _player1 : _player2;
-
-        //switch (interaction)
-        //{
-        //    case TakeItemInteraction takeItemInteraction:
-        //        interactingPlayer.AddItem(takeItemInteraction.item);
-        //}
     }
 
     public PlayerCharacter GetPlayerObject(CharacterTypeEnum characterEnum)
@@ -212,6 +196,26 @@ public class GameStateController : Singleton<GameStateController>
     public PlayerCharacter GetOtherPlayer(PlayerCharacter playerAsking)
     {
         return playerAsking == _player1 ? _player2 : _player1;
+    }
+
+    private void Update()
+    {
+        var keyboard = Keyboard.current;
+        var gamepad = Gamepad.current;
+
+        if (keyboard != null && keyboard.escapeKey.wasPressedThisFrame ||
+            gamepad != null && gamepad.startButton.wasPressedThisFrame)
+        {
+            QuitGame();
+        }
+    }
+    
+    private void QuitGame()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#endif
+        Application.Quit();
     }
 }
 

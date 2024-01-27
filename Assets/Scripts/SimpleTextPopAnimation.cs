@@ -3,16 +3,18 @@ using TMPro;
 using UnityEngine;
 using DG.Tweening;
 
-[RequireComponent(typeof(TextMeshPro))]
 public class SimpleTextPopAnimation : MonoBehaviour, ISimpleAnimation
 {
-    private TextMeshPro messageText;
+    [SerializeField] Vector2 newPostition = new Vector2(0, 0.5f);
+    [SerializeField] float animationTime = 0.5f;
+    [SerializeField] private TextMeshPro messageText;
+    private SpriteRenderer spriteRenderer;
     private Sequence showSequence;
     private Sequence hideSequence;
     private Vector3 startingPos;
     private void Awake()
     {
-        messageText = GetComponent<TextMeshPro>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     public void PlayAnimation(Vector3 startingPos, string text)
@@ -24,8 +26,9 @@ public class SimpleTextPopAnimation : MonoBehaviour, ISimpleAnimation
         {
             showSequence.Kill();
         }
-        showSequence.Append(messageText.DOFade(1, 0.5f));
-        showSequence.Join(transform.DOMoveY(startingPos.y + 0.5f, 0.5f));
+        showSequence.Append(messageText.DOFade(1, animationTime));
+        showSequence.Join(spriteRenderer.DOFade(1, animationTime));
+        showSequence.Join(transform.DOMove(new Vector3(startingPos.x + newPostition.x, startingPos.y + newPostition.y, 0), animationTime));
         //showSequence.SetLoops(1, LoopType.Yoyo);
         showSequence.Play();
     }
@@ -36,9 +39,12 @@ public class SimpleTextPopAnimation : MonoBehaviour, ISimpleAnimation
         {
             showSequence.Kill();
         }
-        showSequence.Append(messageText.DOFade(0, 0.5f));
-        showSequence.Join(transform.DOMoveY(startingPos.y, 0.5f));
+        showSequence.Append(messageText.DOFade(0, animationTime));
+        showSequence.Join(transform.DOMoveY(startingPos.y, animationTime));
+        showSequence.Join(spriteRenderer.DOFade(0, animationTime));
         showSequence.Play();
+
+        
     }
     
 }
