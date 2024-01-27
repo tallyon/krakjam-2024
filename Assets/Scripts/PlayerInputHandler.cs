@@ -70,8 +70,9 @@ namespace DefaultNamespace
                 case PlayerCharacterStatus.Stunned:
                     DisableInput();
                     break;
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(status), status, null);
+                case PlayerCharacterStatus.InVent:
+                    DisableInput();
+                    break;
             }
         }
 

@@ -84,6 +84,7 @@ public class PlayerMovementController : MonoBehaviour
         {
             Debug.Log("Entering the vent");
             _collider.enabled = false;
+            _playerCharacter.ApplyStatus(PlayerCharacterStatus.InVent);
 
             var seq = DOTween.Sequence();
 
@@ -106,6 +107,7 @@ public class PlayerMovementController : MonoBehaviour
             {
                 Debug.Log("Exiting the vent");
                 _collider.enabled = true;
+                _playerCharacter.ApplyStatus(PlayerCharacterStatus.Normal);
             };
         }
     }
