@@ -13,7 +13,14 @@ namespace UI
 
         public void Awake()
         {
-            GameStateController.Instance.onPlayerJoined += SetupSplitScreen;
+            if (GameStateController.Instance.IsGameInitialized)
+            {
+                GameStateController.Instance.onPlayerJoined += SetupSplitScreen;
+            }
+            else
+            {
+                GameStateController.Instance.OnGameInit += () => GameStateController.Instance.onPlayerJoined += SetupSplitScreen;
+            }
         }
 
         public void SetupSplitScreen(PlayerInput playerInput, PlayerCharacter playerCharacter)
