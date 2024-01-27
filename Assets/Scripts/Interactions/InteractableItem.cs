@@ -1,4 +1,5 @@
 using UnityEngine;
+using static ItemsData;
 
 public class InteractableItem : Interactable
 {
@@ -15,10 +16,4 @@ public class InteractableItem : Interactable
             Destroy(gameObject);
         }
     }
-}
-
-public enum ItemsEnum
-{
-    Cake = 0,
-    Pork =1
 }

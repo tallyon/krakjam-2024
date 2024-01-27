@@ -26,4 +26,10 @@ public class ItemsData : ScriptableObject
         public CollectedItem collectedItem;
         public InteractableItem interactableItem;
     }
+
+    public enum ItemsEnum
+    {
+        Cake = 0,
+        Pork = 1
+    }
 }

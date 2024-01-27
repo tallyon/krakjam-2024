@@ -1,8 +1,13 @@
-public class TakeItemInteraction : Interaction
+using UnityEngine;
+using static ItemsData;
+
+public class StationTakeItemInteraction : Interaction
 {
+    public ItemsEnum takeItemEnum;
+
     public override bool PlayInteraction(PlayerCharacter playerCharacter)
     {
-        if(possiblePlayerInteraction  == CharacterTypeEnum.Both || playerCharacter.characterTypeEnum == possiblePlayerInteraction)
+        if (possiblePlayerInteraction == CharacterTypeEnum.Both || playerCharacter.characterTypeEnum == possiblePlayerInteraction)
         {
             if (playerCharacter.collectedItem != null)
             {
@@ -17,7 +22,7 @@ public class TakeItemInteraction : Interaction
         }
         else
         {
-            OnInteraction?.Invoke(new DisplayMessageInteraction() { Message = "Item cannot be taken by this character" }, playerCharacter.characterTypeEnum);
+            OnInteraction?.Invoke(new DisplayMessageInteraction() { Message = "Station cannot be interacted by this character" }, playerCharacter.characterTypeEnum);
             return false;
         }
     }

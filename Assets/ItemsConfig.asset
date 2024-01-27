@@ -12,3 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a9eeb200cb7242deaddd86c93b339b6, type: 3}
   m_Name: ItemsConfig
   m_EditorClassIdentifier: 
+  items:
+  - Name: pork
+    itemEnum: 1
+    collectedItem: {fileID: 8381654774350127443, guid: d4866ac5a4261464db9d2a0b564a7a79,
+      type: 3}
+    interactableItem: {fileID: 9196494427775756211, guid: 523985e0fd5e6424f81404ec8141f333,
+      type: 3}

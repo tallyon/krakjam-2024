@@ -1,7 +1,8 @@
 using UnityEngine;
+using static ItemsData;
 
 public class CollectedItem : MonoBehaviour
 {
-    [SerializeField] Sprite itemSprite;
-    [SerializeField] ItemsEnum itemsEnum;
+    public Sprite itemSprite;
+    public ItemsEnum itemsEnum;
 }
