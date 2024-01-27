@@ -19,3 +19,20 @@ MonoBehaviour:
       type: 3}
     interactableItem: {fileID: 9196494427775756211, guid: 523985e0fd5e6424f81404ec8141f333,
       type: 3}
+    minPointsValue: 2
+    maxPointsValue: 4
+    finalPointsValue: 2
+    canBeGivenToGirl: 1
+  - Name: pork
+    itemEnum: 0
+    collectedItem: {fileID: 8381654774350127443, guid: 81874dfb83d1646d0ba029d5b7c2def3,
+      type: 3}
+    interactableItem: {fileID: 9196494427775756211, guid: 756a410e32a754ca0aba685e3432243f,
+      type: 3}
+    minPointsValue: 1
+    maxPointsValue: 3
+    finalPointsValue: 1
+    canBeGivenToGirl: 1
+  itemsGroup:
+  - groupEnum: 2
+    items: 0000000001000000

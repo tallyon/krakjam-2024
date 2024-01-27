@@ -1,4 +1,5 @@
 using System;
+using CartoonFX;
 using UnityEngine;
 using DG.Tweening;
 using TMPro;
@@ -14,6 +15,7 @@ public class PlayerCharacter : MonoBehaviour
     public Action<Ability> onAbility2Used;
 
     [SerializeField] private TextMeshPro floatingTextPrefab;
+    [SerializeField] private CFXR_Effect smashParticles;
 
     public CharacterData CharacterData => _characterData;
 
@@ -104,6 +106,7 @@ public class PlayerCharacter : MonoBehaviour
     private void UseSkillSmash()
     {
         SpawnFloatingText("Smash!");
+        var particleInstance = Instantiate(smashParticles, transform.position, transform.rotation);
     }
 
     private void UseSkillObstacle()

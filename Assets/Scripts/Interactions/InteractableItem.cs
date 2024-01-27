@@ -11,6 +11,8 @@ public class InteractableItem : Interactable
 
         if (interaction is TakeItemInteraction)
         {
+            Debug.Log($"Interactable item: {characterTypeEnum} has taken {itemsEnum}");
+
             var player = GameStateController.Instance.GetPlayerObject(characterTypeEnum);
             player.AddItem(itemsEnum);
             Destroy(gameObject);

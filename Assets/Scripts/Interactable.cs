@@ -40,6 +40,7 @@ public class Interactable : MonoBehaviour
             if(_activeInteraction == null)
             {
                 _activeInteraction = interactions[_interactionIndex];
+                _activeInteraction.OnInteraction += HandleOnInteractionWithObject;
             }
 
             var isInteractionComplete = _activeInteraction.PlayInteraction(playerCharacter);
