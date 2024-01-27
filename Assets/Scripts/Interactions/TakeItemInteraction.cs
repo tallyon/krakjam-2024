@@ -1,20 +1,24 @@
-using System;
-using UnityEngine;
-
 public class TakeItemInteraction : Interaction
 {
-
-    public override bool PlayInteraction(string playerTag)
+    public override bool PlayInteraction(PlayerCharacter playerCharacter)
     {
-        if(playerTag == "Player1")
+        if(playerCharacter.characterTypeEnum  == CharacterTypeEnum.Both || playerCharacter.characterTypeEnum == possiblePlayerInteraction)
         {
-            OnInteraction?.Invoke(new DisplayMessageInteraction() { Message = "Item cannot be taken right now" });
-            return false;
+            if (playerCharacter.collectedItem != null)
+            {
+                OnInteraction?.Invoke(new DisplayMessageInteraction() { Message = "You cannot have 2 collected items" }, playerCharacter.characterTypeEnum);
+                return false;
+            }
+            else
+            {
+                OnInteraction?.Invoke(this, playerCharacter.characterTypeEnum);
+                return true;
+            }
         }
         else
         {
-            OnInteraction?.Invoke(this);
-            return true;
+            OnInteraction?.Invoke(new DisplayMessageInteraction() { Message = "Item cannot be taken by this character" }, playerCharacter.characterTypeEnum);
+            return false;
         }
     }
 }

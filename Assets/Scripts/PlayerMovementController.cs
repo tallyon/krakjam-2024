@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(PlayerCharacter))]
 public class PlayerMovementController : MonoBehaviour
 {
     [SerializeField] private InputActionAsset controls;
@@ -12,10 +13,12 @@ public class PlayerMovementController : MonoBehaviour
     private Vector2 _movementValue;
     private Rigidbody2D _rb2d;
     private Interactable _currentInteractableObject;
+    private PlayerCharacter _playerCharacter;
 
     private void Awake()
     {
         _rb2d = GetComponent<Rigidbody2D>();
+        _playerCharacter = GetComponent<PlayerCharacter>();
         _actionMap = controls.FindActionMap("gameplay");
         _movementAction = _actionMap.FindAction("movement");
         
@@ -61,11 +64,11 @@ public class PlayerMovementController : MonoBehaviour
 
     private void OnInteractionPerformed(InputAction.CallbackContext obj)
     {
-        if (_currentInteractableObject)
+        if (_currentInteractableObject != null)
         {
-            _currentInteractableObject.Interact(gameObject.tag);
+            _currentInteractableObject.Interact(_playerCharacter);
+            Debug.Log("Interaction!");
         }
-        Debug.Log("Interaction!");
     }
 
     private void Update()

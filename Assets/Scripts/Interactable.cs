@@ -1,17 +1,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
-using System;
 
 public class Interactable : MonoBehaviour
 {
-    public Action<Interaction> OnInteractionWithObject;
-
     [SerializeField] List<Interaction> interactions;
     private ISimpleAnimation _simpleTextPopAnimation;
     private List<string> currentPlayerTags = new();
     private int _interactionIndex = 0;
     private Interaction _activeInteraction;
+    protected GameStateController _gameStateController;
 
 
     private void Awake()
@@ -36,11 +34,11 @@ public class Interactable : MonoBehaviour
 
     }
 
-    public void Interact(string playerTag)
+    public void Interact(PlayerCharacter playerCharacter)
     {
         if (_interactionIndex < interactions.Count)
         {
-            var isInteractionComplete = _activeInteraction.PlayInteraction(playerTag);
+            var isInteractionComplete = _activeInteraction.PlayInteraction(playerCharacter);
 
             if (isInteractionComplete)
             {
@@ -55,17 +53,13 @@ public class Interactable : MonoBehaviour
         }
     }
 
-    private void HandleOnInteractionWithObject(Interaction interaction)
+    protected virtual void HandleOnInteractionWithObject(Interaction interaction, CharacterTypeEnum characterTypeEnum)
     {
         switch (interaction)
         {
             case DisplayMessageInteraction displayMessageInteraction:
                 _simpleTextPopAnimation.PlayAnimation(transform.position);
                 Debug.Log(displayMessageInteraction.Message);
-                break;
-            case TakeItemInteraction:
-                OnInteractionWithObject?.Invoke(interaction);
-                Destroy(gameObject);
                 break;
         }
     }

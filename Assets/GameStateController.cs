@@ -12,6 +12,8 @@ public class GameStateController : Singleton<GameStateController>
     private List<GameObject> currentLevelSpawnedObjects = new();
     private CharacterTypeEnum? _player1Character;
     private CharacterTypeEnum? _player2Character;
+    private PlayerCharacter _player1;
+    private PlayerCharacter _player2;
 
     protected override void Awake()
     {
@@ -75,11 +77,33 @@ public class GameStateController : Singleton<GameStateController>
         var player2 = Instantiate(charactersPrefab[1].Prefab);
         currentLevelSpawnedObjects.Add(player1);
         currentLevelSpawnedObjects.Add(player2);
+
+        _player1 = player1.GetComponent<PlayerCharacter>();
+        _player2 = player2.GetComponent<PlayerCharacter>();
+    }
+
+    public void OnInteract(Interaction interaction, CharacterTypeEnum characterEnum)
+    {
+        //var interactingPlayer = characterEnum == CharacterTypeEnum.Beta ? _player1 : _player2;
+
+        //switch (interaction)
+        //{
+        //    case TakeItemInteraction takeItemInteraction:
+        //        interactingPlayer.AddItem(takeItemInteraction.item);
+        //}
+    }
+
+    public PlayerCharacter GetPlayerObject(CharacterTypeEnum characterEnum)
+    {
+        var interactingPlayer = characterEnum == CharacterTypeEnum.Beta ? _player1 : _player2;
+
+        return interactingPlayer;
     }
 }
 
 public enum CharacterTypeEnum
 {
     Sigma,
-    Beta
+    Beta,
+    Both
 }

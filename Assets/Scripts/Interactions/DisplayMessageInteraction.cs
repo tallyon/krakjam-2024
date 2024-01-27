@@ -1,16 +1,10 @@
-using System;
-using UnityEngine;
-
 public class DisplayMessageInteraction : Interaction
 {
     public string Message;
 
-    public override bool PlayInteraction(string playerTag)
+    public override bool PlayInteraction(PlayerCharacter playerCharacter)
     {
-        if (playerTag == "Player1")
-        {
-            OnInteraction?.Invoke(this);
-        }
+        OnInteraction?.Invoke(this, playerCharacter.characterTypeEnum);
 
         return false;
     }

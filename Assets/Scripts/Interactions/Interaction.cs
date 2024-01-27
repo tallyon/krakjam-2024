@@ -3,8 +3,10 @@ using UnityEngine;
 
 public class Interaction : MonoBehaviour
 {
-    public Action<Interaction> OnInteraction;
-    public virtual bool PlayInteraction(string playerTag)
+    public Action<Interaction, CharacterTypeEnum> OnInteraction;
+    public CharacterTypeEnum possiblePlayerInteraction;
+
+    public virtual bool PlayInteraction(PlayerCharacter playerCharacter)
     {
         return true;
     }
