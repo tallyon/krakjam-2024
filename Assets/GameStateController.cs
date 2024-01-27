@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UI;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -141,9 +140,11 @@ public class GameStateController : Singleton<GameStateController>
 
     private void OnPlayerJoined(PlayerInput playerInput)
     {
+        
         if (playerInput.playerIndex == 0)
         {
-            onPlayerJoined.Invoke(playerInput, _player1);
+            StartCoroutine(BeginStartCountdown());
+            onPlayerJoined.Invoke(playerInput, _player1); // remove this
             //TODO: USE ON PLAYER 2 LAATER
         }
         else if (playerInput.playerIndex == 1)
@@ -167,9 +168,8 @@ public class GameStateController : Singleton<GameStateController>
 
     public PlayerCharacter GetPlayerObject(CharacterTypeEnum characterEnum)
     {
-        var interactingPlayer = characterEnum == CharacterTypeEnum.Beta ? _player1 : _player2;
-
-        return interactingPlayer;
+        if (_player1.characterTypeEnum == characterEnum) return _player1;
+        return _player2;
     }
 
     public InteractableItem GetInteractableItemPrefab(ItemsData.ItemsEnum itemsEnum)

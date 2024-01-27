@@ -181,4 +181,6 @@ MonoBehaviour:
   collectedItem: {fileID: 0}
   floatingTextPrefab: {fileID: 1177546734456954909, guid: 2d9d757e8e8474037b222cb1942fd01e,
     type: 3}
+  stunParticlesPrefab: {fileID: 8487402871801164198, guid: 2db04772dab7f418199b6df7cf3507d8,
+    type: 3}
   _characterData: {fileID: 11400000, guid: ac67ffd88a7ad4208b530424d410f768, type: 2}

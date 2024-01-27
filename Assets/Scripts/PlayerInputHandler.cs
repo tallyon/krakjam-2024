@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -43,6 +44,7 @@ namespace DefaultNamespace
             var movers = FindObjectsOfType<PlayerMovementController>();
             mover = movers.FirstOrDefault(m => m.playerId == index);
             _playerCharacter = mover.GetComponent<PlayerCharacter>();
+            _playerCharacter.OnPlayerCharacterStatusChanged += OnPlayerCharacterStatusChanged;
             var playerCamera = Instantiate(playerCameraPrefab);
             playerCamera.tag = index == 0 ? GameTags.PLAYER_1_TAG : GameTags.PLAYER_2_TAG;
             playerCamera.SetTarget(mover.transform);
@@ -57,7 +59,22 @@ namespace DefaultNamespace
                 FindObjectOfType<PlayerInputManager>().splitScreen = true;
             }
         }
-        
+
+        private void OnPlayerCharacterStatusChanged(PlayerCharacterStatus status)
+        {
+            switch (status)
+            {
+                case PlayerCharacterStatus.Normal:
+                    EnableInput();
+                    break;
+                case PlayerCharacterStatus.Stunned:
+                    DisableInput();
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(status), status, null);
+            }
+        }
+
         public void OnAbility2Performed(InputAction.CallbackContext obj)
         {
             if (obj.started == false) return;
