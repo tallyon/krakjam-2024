@@ -112,6 +112,16 @@ public class GameStateController : Singleton<GameStateController>
         return ItemsConfig.GetInteractableItemPrefab(itemsEnum);
     }
 
+    public List<ItemData> GetItemsData()
+    {
+        return ItemsConfig.items;
+    }
+
+    public List<SpecialGroupItems> GetGroupsData()
+    {
+        return ItemsConfig.itemsGroup;
+    }
+
     public CollectedItem GetCollectedItemPrefab(ItemsEnum itemsEnum)
     {
         return ItemsConfig.GetCollectedItemPrefab(itemsEnum);
