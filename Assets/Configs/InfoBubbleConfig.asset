@@ -14,5 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   infoPrefabs:
   - infoEnums: 2
-    prefab: {fileID: 3228463811845940285, guid: 78dd619f4831849e2aa0299f5097cde0,
-      type: 3}
+    sprite: {fileID: 21300000, guid: da4c45ed2ddf44f3e8b6118db2899049, type: 3}
+  - infoEnums: 0
+    sprite: {fileID: 21300000, guid: 70b8ee62f9228432b96868413f44883d, type: 3}
+  - infoEnums: 1
+    sprite: {fileID: 21300000, guid: adc74db1415ab45b0a7a7388f4b88858, type: 3}
+  - infoEnums: 3
+    sprite: {fileID: 21300000, guid: 70b8ee62f9228432b96868413f44883d, type: 3}
+  - infoEnums: 4
+    sprite: {fileID: 21300000, guid: 8738f17b9f3214a18b6b5df1b0313ba1, type: 3}
+  - infoEnums: 5
+    sprite: {fileID: 21300000, guid: a28d364bc863f4c50af1062fd592c5f9, type: 3}
+  - infoEnums: 6
+    sprite: {fileID: 21300000, guid: 866ea3db69f3d4501ac6e4ae784e7f90, type: 3}

@@ -146,7 +146,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isOneTimeUse: 0
-  InteractionTime: 0
+  InteractionTimeMS: 0
   possiblePlayerInteraction: 2
 --- !u!114 &9196494427775756211
 MonoBehaviour:
@@ -161,7 +161,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _simpleTextPopAnimationMiddle: {fileID: 0}
-  itemsEnum: 10
+  particle: {fileID: 0}
+  itemsEnum: 0
 --- !u!1001 &8183152442330515720
 PrefabInstance:
   m_ObjectHideFlags: 0

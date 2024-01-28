@@ -142,7 +142,7 @@ public class GirlInteractable : Interactable
                 }
                 else
                 {
-                    Debug.Log($"Girl: Girl does not want {itemData.itemEnum}");
+                    Debug.Log($"Girl: Girl does not want this item.");
                     ShowSad();
                 }
                 break;

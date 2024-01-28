@@ -151,7 +151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e86f934acce5d49f6b4200a5d661e8eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _simpleTextPopAnimationMiddle: {fileID: 6906514093613690645}
+  _simpleTextPopAnimationMiddle: {fileID: 3971275344275324263}
   particle: {fileID: 1705649436100556440}
   _simpleTextPopAnimationLeft: {fileID: 3971275344275324263}
   _simpleTextPopAnimationRight: {fileID: 1968509504128265305}
@@ -442,18 +442,6 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 757076455835964540}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &6906514093613690645 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6150071008078904169, guid: 78dd619f4831849e2aa0299f5097cde0,
-    type: 3}
-  m_PrefabInstance: {fileID: 757076455835964540}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7871cb3af5a4b6996fae3a7032d48a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &2172645901268015847
 PrefabInstance:
   m_ObjectHideFlags: 0

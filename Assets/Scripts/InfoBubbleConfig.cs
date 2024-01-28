@@ -9,15 +9,15 @@ public class InfoBubbleConfig : ScriptableObject
 {
     public List<InfoData> infoPrefabs;
 
-    public GameObject GetCollectedItemPrefab(InfoEnums infoEnums)
+    public Sprite GetCollectedItemPrefab(InfoEnums infoEnums)
     {
-        return infoPrefabs.FirstOrDefault(x => x.infoEnums == infoEnums).prefab;
+        return infoPrefabs.FirstOrDefault(x => x.infoEnums == infoEnums).sprite;
     }
 
     [Serializable]
     public class InfoData
     {
         public InfoEnums infoEnums;
-        public GameObject prefab;
+        public Sprite sprite;
     }
 }
