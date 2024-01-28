@@ -21,7 +21,7 @@ public class GameStateController : Singleton<GameStateController>
     public Action<float> OnGameTimerTick;
     public Action OnGameInit;
     public int roundTime = 180;
-    public int startTime = 3;
+    private int startTime = 17;
     public bool IsGameInitialized { get; private set; }
     [SerializeField] private List<LevelConfig> LevelConfigs;
     [SerializeField] private ItemsData ItemsConfig;
@@ -151,7 +151,6 @@ public class GameStateController : Singleton<GameStateController>
 
     private void OnPlayerJoined(PlayerInput playerInput)
     {
-
         if (playerInput.playerIndex == 0)
         {
             StartCoroutine(BeginStartCountdown());
