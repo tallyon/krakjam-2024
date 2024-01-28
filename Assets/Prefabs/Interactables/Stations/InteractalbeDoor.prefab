@@ -313,6 +313,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _simpleTextPopAnimationMiddle: {fileID: 5312898427318244777}
+  particle: {fileID: 0}
   _simpleTextPopAnimationLeft: {fileID: 181226898238814309}
   _simpleTextPopAnimationRight: {fileID: 7836721144836982506}
   stationEnum: 2
@@ -330,7 +331,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isOneTimeUse: 0
-  InteractionTime: 0
+  InteractionTimeMS: 0
   possiblePlayerInteraction: 2
   doorOpen: {fileID: 4228711865367334076}
   doorClosed: {fileID: 2994640768625171094}
@@ -454,7 +455,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0032192543, y: 0.004283786}
+  m_Offset: {x: 0.008622855, y: 0.0042836666}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -465,7 +466,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.14437668, y: 1.279233}
+  m_Size: {x: 1.1312118, y: 1.8248603}
   m_EdgeRadius: 0
 --- !u!1 &8095092870295746315
 GameObject:

@@ -4,6 +4,13 @@ using UnityEngine;
 using DG.Tweening;
 using TMPro;
 
+public enum FloatingTextColor
+{
+    Neutral,
+    Positive,
+    Negative
+}
+
 public enum PlayerCharacterStatus
 {
     Normal,
@@ -15,6 +22,7 @@ public enum PlayerCharacterStatus
 }
 
 [RequireComponent(typeof(PlayerMovementController))]
+[RequireComponent(typeof(Rigidbody2D))]
 public class PlayerCharacter : MonoBehaviour
 {
     public CharacterTypeEnum characterTypeEnum => CharacterData.CharacterType;
@@ -30,8 +38,9 @@ public class PlayerCharacter : MonoBehaviour
         get => _playerStatus;
         private set
         {
+            var previousValue = _playerStatus;
             _playerStatus = value;
-            OnPlayerCharacterStatusChanged?.Invoke(value);
+            OnPlayerCharacterStatusChanged?.Invoke(value, previousValue);
         }
     }
 
@@ -39,15 +48,23 @@ public class PlayerCharacter : MonoBehaviour
 
     [SerializeField] private TextMeshPro floatingTextPrefab;
     [SerializeField] private GameObject stunParticlesPrefab;
+    [SerializeField] private GameObject ventingParticlesPrefab;
     [SerializeField] private GameObject slippingParticlesPrefab;
     [SerializeField] private SpriteRadialFill spriteRadialFill;
     [SerializeField] private SpriteRenderer interactingFillingSpritePrefab;
     private GameObject _stunParticlesInstance;
+    private GameObject _ventingParticlesInstance;
     private GameObject _slippingParticlesInstance;
     private SpriteRadialFill _interactableRadialFill;
     private SpriteRenderer _interactingFillingSpriteInstance;
     
-    public Action<PlayerCharacterStatus> OnPlayerCharacterStatusChanged;
+    [SerializeField] private SpriteRenderer characterSpriteRenderer;
+    private int defaultSortOrder;
+    
+    /// <summary>
+    /// Parameters are current status, previous status
+    /// </summary>
+    public Action<PlayerCharacterStatus, PlayerCharacterStatus> OnPlayerCharacterStatusChanged;
 
     public CharacterData CharacterData => _characterData;
 
@@ -60,6 +77,7 @@ public class PlayerCharacter : MonoBehaviour
 
     private void Awake()
     {
+        defaultSortOrder = characterSpriteRenderer.sortingOrder;
         _playerMovementController = GetComponent<PlayerMovementController>();
         _playerMovementController.CharacterMoveSpeedModifier = _characterData.MoveSpeed;
         Ability1 = new Ability(_characterData.Ability1Config);
@@ -68,13 +86,22 @@ public class PlayerCharacter : MonoBehaviour
         OnPlayerCharacterStatusChanged += HandlePlayerStatusChanged;
     }
 
-    private void HandlePlayerStatusChanged(PlayerCharacterStatus status)
+    private void HandlePlayerStatusChanged(PlayerCharacterStatus status, PlayerCharacterStatus previousStatus)
     {
         if (_stunParticlesInstance != null) Destroy(_stunParticlesInstance);
+        if (_ventingParticlesInstance != null) Destroy(_ventingParticlesInstance);
         if (_slippingParticlesInstance != null) Destroy(_slippingParticlesInstance);
         if (_interactingFillingSpriteInstance != null) Destroy(_interactingFillingSpriteInstance);
         if (_interactableRadialFill != null) Destroy(_interactableRadialFill);
 
+        Debug.Log($"{previousStatus} -> {status}");
+        // if previously was in vent set sort order to 1
+        if (previousStatus == PlayerCharacterStatus.InVent)
+        {
+            characterSpriteRenderer.sortingOrder = defaultSortOrder;
+            _ventingParticlesInstance = Instantiate(ventingParticlesPrefab, transform.position, transform.rotation);
+        }
+        
         switch (status)
         {
             case PlayerCharacterStatus.Normal:
@@ -87,6 +114,8 @@ public class PlayerCharacter : MonoBehaviour
                 break;
             case PlayerCharacterStatus.InVent:
                 Debug.Log($"IN VENT on {gameObject.name}");
+                characterSpriteRenderer.sortingOrder = -10;
+                _ventingParticlesInstance = Instantiate(ventingParticlesPrefab, transform.position, transform.rotation);
                 break;
             case PlayerCharacterStatus.Slipping:
                 Debug.Log($"SLIPPING on {gameObject.name}!");
@@ -130,26 +159,35 @@ public class PlayerCharacter : MonoBehaviour
 
         var abilityName = Ability1.Name;
         var particles = Ability1.Particles;
-        if (string.IsNullOrEmpty(abilityName) == false) SpawnFloatingText($"{abilityName}!");
         if (particles != null) Instantiate(particles, transform.position, transform.rotation);
+
+        var wasSkillUSed = false;
         
         switch (_characterData.CharacterType)
         {
             case CharacterTypeEnum.Sigma:
                 var sprintAbility = new SprintAbility(Ability1);
-                UseSkillSprint(sprintAbility);
+                wasSkillUSed = UseSkillSprint(sprintAbility);
                 break;
             case CharacterTypeEnum.Beta:
-                UseSkillObstacle();
+                wasSkillUSed = UseSkillObstacle();
                 break;
             case CharacterTypeEnum.Both:
                 break;
             default:
                 throw new ArgumentOutOfRangeException();
         }
-        
-        Ability1.GoOnCooldown();
-        onAbility1Used.Invoke(Ability1);
+
+        if (wasSkillUSed)
+        {
+            Ability1.GoOnCooldown();
+            onAbility1Used.Invoke(Ability1);
+            if (string.IsNullOrEmpty(abilityName) == false) SpawnFloatingText($"{abilityName}!", FloatingTextColor.Positive);
+        }
+        else
+        {
+            if (string.IsNullOrEmpty(abilityName) == false) SpawnFloatingText($"{abilityName}?", FloatingTextColor.Negative);
+        }
     }
 
     public void UseAbility2()
@@ -158,19 +196,19 @@ public class PlayerCharacter : MonoBehaviour
 
         var abilityName = Ability2.Name;
         var particles = Ability2.Particles;
-        if (string.IsNullOrEmpty(abilityName) == false) SpawnFloatingText($"{abilityName}!");
         if (particles != null) Instantiate(particles, transform.position, transform.rotation);
 
+        var wasSkillUsed = false;
         switch (_characterData.CharacterType)
         {
             case CharacterTypeEnum.Sigma:
                 var smashAbility = new SmashAbility(Ability2);
-                UseSkillSmash(smashAbility);
+                wasSkillUsed = UseSkillSmash(smashAbility);
                 _playerMovementController.SmashItem();
                 break;
             case CharacterTypeEnum.Beta:
                 var ventAbility = new VentAbility(Ability2);
-                UseSkillVent(ventAbility);
+                wasSkillUsed = UseSkillVent(ventAbility);
                 break;
             case CharacterTypeEnum.Both:
                 break;
@@ -178,8 +216,16 @@ public class PlayerCharacter : MonoBehaviour
                 throw new ArgumentOutOfRangeException();
         }
 
-        Ability2.GoOnCooldown();
-        onAbility2Used.Invoke(Ability2);
+        if (wasSkillUsed)
+        {
+            Ability2.GoOnCooldown();
+            onAbility2Used.Invoke(Ability2);
+            if (string.IsNullOrEmpty(abilityName) == false) SpawnFloatingText($"{abilityName}!", FloatingTextColor.Positive);
+        }
+        else
+        {
+            if (string.IsNullOrEmpty(abilityName) == false) SpawnFloatingText($"{abilityName}?", FloatingTextColor.Negative);
+        }
     }
 
     public void ApplyStatus(PlayerCharacterStatus status, float timeSeconds)
@@ -216,13 +262,15 @@ public class PlayerCharacter : MonoBehaviour
         Ability2.UpdateCooldownState(timePassedSinceLastFrame);
     }
 
-    private void UseSkillSprint(SprintAbility sprintAbility)
+    private bool UseSkillSprint(SprintAbility sprintAbility)
     {
         var previousSpeedModifier = _playerMovementController.CharacterMoveSpeedModifier;
         StartCoroutine(RestorePreviousSpeedModifier(previousSpeedModifier, sprintAbility.Duration));
         
         var newSpeedModifier = _playerMovementController.CharacterMoveSpeedModifier * sprintAbility.SpeedModifier;
         _playerMovementController.CharacterMoveSpeedModifier = newSpeedModifier;
+        
+        return true;
     }
 
     private IEnumerator RestorePreviousSpeedModifier(float speedModifier, float delaySeconds)
@@ -231,39 +279,52 @@ public class PlayerCharacter : MonoBehaviour
         _playerMovementController.CharacterMoveSpeedModifier = speedModifier;
     }
 
-    private void UseSkillSmash(SmashAbility abilityConfig)
+    private bool UseSkillSmash(SmashAbility abilityConfig)
     {
         // check if other player is in the radius of the skill
         var otherPlayer = GameStateController.Instance.GetOtherPlayer(this);
         var distanceToOtherPlayer = Vector2.Distance(otherPlayer.transform.position, transform.position);
 
-        if (distanceToOtherPlayer > abilityConfig.Radius) return;
+        if (distanceToOtherPlayer > abilityConfig.Radius) return false;
         
         // check if other player is in normal status
-        if (otherPlayer.PlayerStatus != PlayerCharacterStatus.Normal) return;
+        if (otherPlayer.PlayerStatus != PlayerCharacterStatus.Normal) return false;
         
         // if other player is in radius apply Stunned status and push him back
         otherPlayer.ApplyStatus(PlayerCharacterStatus.Stunned, abilityConfig.Duration);
         otherPlayer._playerMovementController.Rigidbody.DOMove(otherPlayer.transform.position +
                                      (otherPlayer.transform.position - transform.position), .5f);
+
+        return true;
     }
 
-    private void UseSkillObstacle()
+    private bool UseSkillObstacle()
     {
-        _playerMovementController.CloseDoor();
-        SpawnFloatingText("Obstacle!");
+        return _playerMovementController.CloseDoor();
     }
 
-    private void UseSkillVent(VentAbility ventAbility)
+    private bool UseSkillVent(VentAbility ventAbility)
     {
-        _playerMovementController.EnterVent(ventAbility.TravelDuration);
+        return _playerMovementController.EnterVent(ventAbility.TravelDuration);
     }
 
-    private void SpawnFloatingText(string text)
+    private void SpawnFloatingText(string text, FloatingTextColor color = FloatingTextColor.Neutral)
     {
         var floatingText = Instantiate(floatingTextPrefab);
         floatingText.text = text;
         floatingText.transform.position = transform.position;
+        switch (color)
+        {
+            case FloatingTextColor.Neutral:
+                floatingText.color = Color.white;
+                break;
+            case FloatingTextColor.Positive:
+                floatingText.color = Color.green;
+                break;
+            case FloatingTextColor.Negative:
+                floatingText.color = Color.red;
+                break;
+        }
         var seq = DOTween.Sequence();
         var textColor = floatingText.color;
         floatingText.color = new Color(textColor.r, textColor.g, textColor.b, 0);

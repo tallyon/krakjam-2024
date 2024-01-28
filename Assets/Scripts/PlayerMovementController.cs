@@ -172,7 +172,7 @@ public class PlayerMovementController : MonoBehaviour
         _animator.SetBool("IsMoving", MoveVelocity != Vector2.zero);
     }
 
-    public void CloseDoor()
+    public bool CloseDoor()
     {
         if(_currentInteractableObject is InteractableStations station && station.StationEnum == StationsData.StationEnum.Door)
         {
@@ -182,10 +182,14 @@ public class PlayerMovementController : MonoBehaviour
             {
                 Debug.Log("Closing doors");
             }
+
+            return true;
         }
+
+        return false;
     }
 
-    public void EnterVent(float travelTime)
+    public bool EnterVent(float travelTime)
     {
         if (_currentInteractableObject is InteractableStations station && station.StationEnum == StationsData.StationEnum.Vents)
         {
@@ -221,7 +225,11 @@ public class PlayerMovementController : MonoBehaviour
                     _playerCharacter.ApplyStatus(PlayerCharacterStatus.Normal);
                 };
             }
+
+            return true;
         }
+
+        return false;
     }
 
     public void SmashItem()

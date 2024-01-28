@@ -59,7 +59,7 @@ namespace DefaultNamespace
             }
         }
 
-        private void OnPlayerCharacterStatusChanged(PlayerCharacterStatus status)
+        private void OnPlayerCharacterStatusChanged(PlayerCharacterStatus status, PlayerCharacterStatus previousStatus)
         {
             switch (status)
             {
