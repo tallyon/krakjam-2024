@@ -2,8 +2,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using System;
-using System.Threading.Tasks;
-using static UnityEngine.ParticleSystem;
 
 public class Interactable : MonoBehaviour
 {

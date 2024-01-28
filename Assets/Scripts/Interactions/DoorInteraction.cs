@@ -13,6 +13,12 @@ public class DoorInteraction : Interaction
 
     public override void PlayInteraction(PlayerCharacter playerCharacter)
     {
+        if (isOneTimeUse && _wasUsed)
+        {
+            OnInteraction?.Invoke(new DisplayMessageInteraction() { Message = "Station cannot be taken by this character" }, playerCharacter.characterTypeEnum);
+            return;
+        }
+
         if (doorState == DoorState.Open)
         {
             if(playerCharacter.characterTypeEnum == CharacterTypeEnum.Beta)
@@ -48,6 +54,13 @@ public class DoorInteraction : Interaction
 
     public override List<Vector2> PlayAbility(PlayerCharacter playerCharacter)
     {
+        if (isOneTimeUse && _wasUsed)
+        {
+            OnInteraction?.Invoke(new DisplayMessageInteraction() { Message = "Station cannot be taken by this character" }, playerCharacter.characterTypeEnum);
+            return null;
+        }
+
+
         if (doorState == DoorState.Open && playerCharacter.characterTypeEnum == CharacterTypeEnum.Beta)
         {
             doorOpen.SetActive(false);
@@ -65,6 +78,7 @@ public class DoorInteraction : Interaction
 
             doorState = DoorState.Destroyed;
             OnInteraction?.Invoke(this, playerCharacter.characterTypeEnum);
+            _wasUsed = true;
             return new List<Vector2>() { playerCharacter.transform.position };
         }
         else

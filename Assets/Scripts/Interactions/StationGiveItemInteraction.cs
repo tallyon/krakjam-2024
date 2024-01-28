@@ -7,7 +7,13 @@ public class StationGiveItemInteraction : Interaction
 
     public override void PlayInteraction(PlayerCharacter playerCharacter)
     {
-        if(possiblePlayerInteraction == CharacterTypeEnum.Both || playerCharacter.characterTypeEnum == possiblePlayerInteraction)
+        if (isOneTimeUse && _wasUsed)
+        {
+            OnInteraction?.Invoke(new DisplayMessageInteraction() { Message = "Station cannot be taken by this character" }, playerCharacter.characterTypeEnum);
+            return;
+        }
+
+        if (possiblePlayerInteraction == CharacterTypeEnum.Both || playerCharacter.characterTypeEnum == possiblePlayerInteraction)
         {
             if (playerCharacter.collectedItem != null && playerCharacter.collectedItem.itemsEnum == giveItemEnum)
             {
@@ -15,6 +21,8 @@ public class StationGiveItemInteraction : Interaction
                 Debug.Log($"Interactions: Player has given item");
 
                 OnInteraction?.Invoke(this, playerCharacter.characterTypeEnum);
+                _wasUsed = true;
+
             }
             else
             {
