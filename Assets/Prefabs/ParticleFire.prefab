@@ -9517,7 +9517,7 @@ GameObject:
   - component: {fileID: 1791253607598497178}
   - component: {fileID: 8923317632647517712}
   m_Layer: 0
-  m_Name: TorchParticle
+  m_Name: ParticleFire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
