@@ -4,11 +4,15 @@ using DG.Tweening;
 public class TutorialUI : MonoBehaviour
 {
     [SerializeField] private CanvasGroup[] sectionsToAppear;
+    [SerializeField] private bool skipTutorial;
 
     private Sequence _seq;
 
     private void Awake()
     {
+        if (skipTutorial) gameObject.SetActive(false);
+        return;
+        
         _seq = DOTween.Sequence();
         foreach (var section in sectionsToAppear)
         {

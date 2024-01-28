@@ -1111,6 +1111,7 @@ MonoBehaviour:
   - {fileID: 2117926690}
   - {fileID: 471291325}
   - {fileID: 1140686984}
+  skipTutorial: 1
 --- !u!225 &1193009226
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -1192,7 +1193,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.18341}
+  m_AnchoredPosition: {x: 0, y: -0.18341064}
   m_SizeDelta: {x: 0, y: -128.37}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1369036733
