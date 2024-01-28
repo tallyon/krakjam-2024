@@ -187,54 +187,6 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 3735910552527112263}
         m_TargetAssemblyTypeName: DefaultNamespace.PlayerInputHandler, Assembly-CSharp
-        m_MethodName: OnChooseItem1Performed
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 34840e3f-61a7-4786-98d2-f39a0f0d9714
-    m_ActionName: gameplay/choose item 1[/Keyboard/1,/DualSenseGamepadHID/dpad/left]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 3735910552527112263}
-        m_TargetAssemblyTypeName: DefaultNamespace.PlayerInputHandler, Assembly-CSharp
-        m_MethodName: OnChooseItem2Performed
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 6ff750f6-bf76-46cc-a13f-843ce33a146b
-    m_ActionName: gameplay/choose item 2[/Keyboard/2,/DualSenseGamepadHID/dpad/up]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 3735910552527112263}
-        m_TargetAssemblyTypeName: DefaultNamespace.PlayerInputHandler, Assembly-CSharp
-        m_MethodName: OnChooseItem3Performed
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 67d7bd0d-8aba-4ca8-b948-bc20e6161878
-    m_ActionName: gameplay/choose item 3[/Keyboard/3,/DualSenseGamepadHID/dpad/right]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 3735910552527112263}
-        m_TargetAssemblyTypeName: DefaultNamespace.PlayerInputHandler, Assembly-CSharp
         m_MethodName: OnInteractionHold
         m_Mode: 0
         m_Arguments:
@@ -263,6 +215,54 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 8f4a3e89-65b3-444f-a6f6-246aab9bbd16
     m_ActionName: gameplay/use item[/Keyboard/r,/DualSenseGamepadHID/buttonEast]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3735910552527112263}
+        m_TargetAssemblyTypeName: DefaultNamespace.PlayerInputHandler, Assembly-CSharp
+        m_MethodName: OnChooseItem1Performed
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 133bd792-d074-44d5-917c-ccb2747825d1
+    m_ActionName: choosing item/choose item 3[/Keyboard/3,/DualSenseGamepadHID/dpad/right]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3735910552527112263}
+        m_TargetAssemblyTypeName: DefaultNamespace.PlayerInputHandler, Assembly-CSharp
+        m_MethodName: OnChooseItem2Performed
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 1f191f26-115e-47d0-a897-d55438d39eba
+    m_ActionName: choosing item/choose item 2[/Keyboard/2,/DualSenseGamepadHID/dpad/up]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3735910552527112263}
+        m_TargetAssemblyTypeName: DefaultNamespace.PlayerInputHandler, Assembly-CSharp
+        m_MethodName: OnChooseItem3Performed
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 4f9359e9-ede4-4be7-bf84-52623144a020
+    m_ActionName: choosing item/choose item 1[/Keyboard/1,/DualSenseGamepadHID/dpad/left]
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: 
   m_DefaultActionMap: idle

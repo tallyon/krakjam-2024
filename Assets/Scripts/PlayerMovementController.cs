@@ -69,7 +69,8 @@ public class PlayerMovementController : MonoBehaviour
     
     public void OnChooseItem1Performed(InputAction.CallbackContext obj)
     {
-        if(_playerCharacter.PlayerStatus == PlayerCharacterStatus.ChoosingItem)
+        Debug.Log("Player Clicked 1st item");
+        if (_playerCharacter.PlayerStatus == PlayerCharacterStatus.ChoosingItem)
         {
             _playerCharacter.AddItem(_optionInteractionInProgress.takeItemEnum1);
             _playerCharacter.ApplyStatus(PlayerCharacterStatus.Normal);
@@ -81,6 +82,7 @@ public class PlayerMovementController : MonoBehaviour
 
     public void OnChooseItem2Performed(InputAction.CallbackContext obj)
     {
+        Debug.Log("Player Clicked 2nd item");
         if (_playerCharacter.PlayerStatus == PlayerCharacterStatus.ChoosingItem)
         {
             _playerCharacter.AddItem(_optionInteractionInProgress.takeItemEnum1);
@@ -93,6 +95,7 @@ public class PlayerMovementController : MonoBehaviour
 
     public void OnChooseItem3Performed(InputAction.CallbackContext obj)
     {
+        Debug.Log("Player Clicked 3rd item");
         if (_playerCharacter.PlayerStatus == PlayerCharacterStatus.ChoosingItem)
         {
             _playerCharacter.AddItem(_optionInteractionInProgress.takeItemEnum1);
@@ -125,7 +128,7 @@ public class PlayerMovementController : MonoBehaviour
             _playerCharacter.ApplyStatus(PlayerCharacterStatus.ChoosingItem);
             var stationChoiceObject = _currentInteractableObject as InteractableStations;
 
-            stationChoiceObject.ShowChoices(optionInteraction.takeItemEnum1, optionInteraction.takeItemEnum2, optionInteraction.takeItemEnum2);
+            stationChoiceObject.ShowChoices(optionInteraction.takeItemEnum1, optionInteraction.takeItemEnum2, optionInteraction.takeItemEnum3);
         }
     }
 
