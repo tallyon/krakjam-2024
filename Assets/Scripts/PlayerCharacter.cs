@@ -111,6 +111,9 @@ public class PlayerCharacter : MonoBehaviour
         {
             characterSpriteRenderer.sortingOrder = defaultSortOrder;
             _ventingParticlesInstance = Instantiate(ventingParticlesPrefab, transform.position, transform.rotation);
+
+            var audio = GetComponent<AudioSource>();
+            if (audio.isPlaying) audio.Stop();
         }
         
         switch (status)
