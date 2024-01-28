@@ -31,12 +31,21 @@ namespace UI
         
         private void OnScore2Updated(int val, float percent)
         {
-            PlaySliderTweenAnimation(player2ScoreSlider, percent);
+            PlaySlider2TweenAnimation(player2ScoreSlider, percent);
         }
 
         private void PlaySliderTweenAnimation(Slider targetSlider, float targetValue)
         {
             player1ScoreSlider.DOValue(targetValue, 0.5f);
+            var scaleTween = targetSlider.targetGraphic.GetComponent<RectTransform>()
+                .DOScale(new Vector3(1.2f, 1.2f, 1.2f), 0.25f);
+            scaleTween.SetLoops(2, LoopType.Yoyo);
+            scaleTween.Play();
+        }
+        
+        private void PlaySlider2TweenAnimation(Slider targetSlider, float targetValue)
+        {
+            player2ScoreSlider.DOValue(targetValue, 0.5f);
             var scaleTween = targetSlider.targetGraphic.GetComponent<RectTransform>()
                 .DOScale(new Vector3(1.2f, 1.2f, 1.2f), 0.25f);
             scaleTween.SetLoops(2, LoopType.Yoyo);
