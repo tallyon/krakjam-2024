@@ -14,6 +14,7 @@ public class SmashAbility : Ability
 {
     public float Radius => (Config as SmashAbilityConfig).Radius;
     public float Duration => (Config as SmashAbilityConfig).Duration;
+    public AudioClip Sound => Config.Sound;
     
     public SmashAbility(Ability ability) : base(ability.Config)
     {

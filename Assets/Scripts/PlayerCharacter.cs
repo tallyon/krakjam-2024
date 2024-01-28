@@ -342,7 +342,10 @@ public class PlayerCharacter : MonoBehaviour
         otherPlayer.ApplyStatus(PlayerCharacterStatus.Stunned, abilityConfig.Duration);
         otherPlayer._playerMovementController.Rigidbody.DOMove(otherPlayer.transform.position +
                                      (otherPlayer.transform.position - transform.position), .5f);
-
+        
+        Debug.Log("Playing smash");
+        var audio = GetComponent<AudioSource>();
+        audio.PlayOneShot(abilityConfig.Sound);
         return true;
     }
 
