@@ -11,7 +11,13 @@ public class StationOptionGiveAdnTakeItemInteraction : Interaction
 
     public override void PlayInteraction(PlayerCharacter playerCharacter)
     {
-        if(possiblePlayerInteraction == CharacterTypeEnum.Both || playerCharacter.characterTypeEnum == possiblePlayerInteraction)
+        if (isOneTimeUse && _wasUsed)
+        {
+            OnInteraction?.Invoke(new DisplayMessageInteraction() { Message = "Station cannot be taken by this character" }, playerCharacter.characterTypeEnum);
+            return;
+        }
+
+        if (possiblePlayerInteraction == CharacterTypeEnum.Both || playerCharacter.characterTypeEnum == possiblePlayerInteraction)
         {
             if (playerCharacter.collectedItem != null)
             {
@@ -21,6 +27,7 @@ public class StationOptionGiveAdnTakeItemInteraction : Interaction
                     OnInteraction?.Invoke(new StationGiveItemInteraction() { giveItemEnum = giveItemEnum1 }, playerCharacter.characterTypeEnum);
                     Debug.Log($"Interactions: Player has given item");
                     OnInteraction?.Invoke(new StationTakeItemInteraction() { takeItemEnum = takeItemEnum1 }, playerCharacter.characterTypeEnum);
+                    _wasUsed = true;
                 }
                 else if (playerCharacter.collectedItem.itemsEnum == giveItemEnum2)
                 {
@@ -28,6 +35,7 @@ public class StationOptionGiveAdnTakeItemInteraction : Interaction
                     OnInteraction?.Invoke(new StationGiveItemInteraction() { giveItemEnum = giveItemEnum2 }, playerCharacter.characterTypeEnum);
                     Debug.Log($"Interactions: Player has given item");
                     OnInteraction?.Invoke(new StationTakeItemInteraction() { takeItemEnum = takeItemEnum2 }, playerCharacter.characterTypeEnum);
+                    _wasUsed = true;
                 }
                 else
                 {
