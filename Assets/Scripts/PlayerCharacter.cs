@@ -60,6 +60,10 @@ public class PlayerCharacter : MonoBehaviour
     
     [SerializeField] private SpriteRenderer characterSpriteRenderer;
     private int defaultSortOrder;
+
+    [SerializeField] private Transform aimingLine;
+    private float aimingLineOffsetPositionX;
+    private float aimingLineOffsetPositionY;
     
     /// <summary>
     /// Parameters are current status, previous status
@@ -82,6 +86,9 @@ public class PlayerCharacter : MonoBehaviour
         _playerMovementController.CharacterMoveSpeedModifier = _characterData.MoveSpeed;
         Ability1 = new Ability(_characterData.Ability1Config);
         Ability2 = new Ability(_characterData.Ability2Config);
+
+        aimingLineOffsetPositionX = aimingLine.localPosition.x;
+        aimingLineOffsetPositionY = aimingLine.localPosition.y;
         
         OnPlayerCharacterStatusChanged += HandlePlayerStatusChanged;
     }
@@ -144,12 +151,14 @@ public class PlayerCharacter : MonoBehaviour
     {
         var collected = GameStateController.Instance.GetCollectedItemPrefab(item);
         collectedItem = collected;
+        if (item == ItemsData.ItemsEnum.FireExtinguisher) aimingLine.gameObject.SetActive(true);
         onItemAdd?.Invoke(collectedItem);
     }
 
     public void DeleteItem()
     {
         collectedItem = null;
+        aimingLine.gameObject.SetActive(false);
         onItemDeleted?.Invoke();
     }
 
@@ -247,6 +256,20 @@ public class PlayerCharacter : MonoBehaviour
     public void UseItem()
     {
         SpawnFloatingText("USING ITEM!");
+        Debug.Log("Using item " + collectedItem.itemsEnum);
+        switch (collectedItem.itemsEnum)
+        {
+            case ItemsData.ItemsEnum.FireExtinguisher:
+                SpawnStunningSurface(collectedItem.gameObject);
+                DeleteItem();
+                break;
+        }
+    }
+
+    private void SpawnStunningSurface(GameObject prefabToSpawn)
+    {
+        var moveDirection = _playerMovementController.MoveVelocity.normalized;
+        Instantiate(prefabToSpawn, transform.position + new Vector3(moveDirection.x, moveDirection.y, 0) * 5, Quaternion.identity);
     }
 
     private IEnumerator ReturnStatusToNormal(float timeSeconds)
@@ -260,6 +283,16 @@ public class PlayerCharacter : MonoBehaviour
         var timePassedSinceLastFrame = Time.deltaTime;
         Ability1.UpdateCooldownState(timePassedSinceLastFrame);
         Ability2.UpdateCooldownState(timePassedSinceLastFrame);
+
+        if (_playerMovementController.MoveVelocity != Vector2.zero)
+        {
+            // update aiming line rotation to match move direction
+            var directionNormalized = _playerMovementController.MoveVelocity.normalized;
+            var angle = Vector2.SignedAngle(Vector2.right, _playerMovementController.MoveVelocity.normalized);
+            var scaleVector = aimingLineOffsetPositionX;
+            aimingLine.position = transform.position + new Vector3(directionNormalized.x * scaleVector, directionNormalized.y * scaleVector + aimingLineOffsetPositionY, 0);
+            aimingLine.rotation = Quaternion.Euler(aimingLine.rotation.eulerAngles.x, aimingLine.rotation.eulerAngles.y, angle);
+        }
     }
 
     private bool UseSkillSprint(SprintAbility sprintAbility)
