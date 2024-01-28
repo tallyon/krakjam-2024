@@ -1782,6 +1782,16 @@ PrefabInstance:
       propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7910718815804444783, guid: d64cfce69f7d4492bae77c15fdd5eed0,
+        type: 3}
+      propertyPath: winSound
+      value: 
+      objectReference: {fileID: 8300000, guid: b3f0aa17b49fd416cbe68c0e18a0b96c, type: 3}
+    - target: {fileID: 7910718815804444783, guid: d64cfce69f7d4492bae77c15fdd5eed0,
+        type: 3}
+      propertyPath: loseSound
+      value: 
+      objectReference: {fileID: 8300000, guid: a3ef67bbcdd11470eba9ffe0c7a54345, type: 3}
     - target: {fileID: 7983267444528355454, guid: d64cfce69f7d4492bae77c15fdd5eed0,
         type: 3}
       propertyPath: tutorialUI
