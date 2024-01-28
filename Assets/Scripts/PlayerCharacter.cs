@@ -159,21 +159,6 @@ public class PlayerCharacter : MonoBehaviour
         PlayerStatus = status;
     }
 
-    public void ChooseItem1()
-    {
-        Debug.Log("Choosing item 1");
-    }
-
-    public void ChooseItem2()
-    {
-        Debug.Log("Choosing item 2");
-    }
-
-    public void ChooseItem3()
-    {
-        Debug.Log("Choosing item 3");
-    }
-
     public void HandleInteractionHold()
     {
         SpawnFloatingText("INTERACTION HOLD!");
@@ -219,6 +204,9 @@ public class PlayerCharacter : MonoBehaviour
         var distanceToOtherPlayer = Vector2.Distance(otherPlayer.transform.position, transform.position);
 
         if (distanceToOtherPlayer > abilityConfig.Radius) return;
+        
+        // check if other player is in normal status
+        if (otherPlayer.PlayerStatus != PlayerCharacterStatus.Normal) return;
         
         // if other player is in radius apply Stunned status and push him back
         otherPlayer.ApplyStatus(PlayerCharacterStatus.Stunned, abilityConfig.Duration);

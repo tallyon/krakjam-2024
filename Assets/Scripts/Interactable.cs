@@ -7,14 +7,13 @@ public class Interactable : MonoBehaviour
 {
     public Action<Interaction> OnSpecialInteractionPerformed;
 
+    [SerializeField] protected SimpleTextPopAnimation _simpleTextPopAnimationMiddle;
     private Interaction interaction;
-    private ISimpleAnimation _simpleTextPopAnimation;
     private List<string> currentPlayerTags = new();
 
 
     private void Awake()
     {
-        _simpleTextPopAnimation = GetComponentInChildren<ISimpleAnimation>();
         interaction = this.GetComponent<Interaction>();
         interaction.OnInteraction += HandleOnInteractionWithObject;
     }
@@ -46,22 +45,22 @@ public class Interactable : MonoBehaviour
         switch (interaction)
         {
             case DisplayMessageInteraction displayMessageInteraction:
-                _simpleTextPopAnimation.PlayAnimation(transform.position, displayMessageInteraction.Message);
+                _simpleTextPopAnimationMiddle.PlayAnimation(transform.position);
                 Debug.Log(displayMessageInteraction.Message);
                 break;
         }
     }
 
-    private void OnTriggerExit2D(Collider2D other)
-    {
-        if (currentPlayerTags.Any(val => other.gameObject.CompareTag(val)))
-        {
-            currentPlayerTags.Remove(other.gameObject.tag);
-        }
+    //private void OnTriggerExit2D(Collider2D other)
+    //{
+    //    if (currentPlayerTags.Any(val => other.gameObject.CompareTag(val)))
+    //    {
+    //        currentPlayerTags.Remove(other.gameObject.tag);
+    //    }
 
-        if (currentPlayerTags.Count <= 0)
-        {
-            _simpleTextPopAnimation.HideAnimation();
-        }
-    }
+    //    if (currentPlayerTags.Count <= 0)
+    //    {
+    //        _simpleTextPopAnimation1.HideAnimation();
+    //    }
+    //}
 }

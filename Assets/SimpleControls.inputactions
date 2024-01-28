@@ -51,33 +51,6 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "choose item 1",
-                    "type": "Button",
-                    "id": "34840e3f-61a7-4786-98d2-f39a0f0d9714",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "choose item 2",
-                    "type": "Button",
-                    "id": "6ff750f6-bf76-46cc-a13f-843ce33a146b",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "choose item 3",
-                    "type": "Button",
-                    "id": "67d7bd0d-8aba-4ca8-b948-bc20e6161878",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "use item",
                     "type": "Button",
                     "id": "8f4a3e89-65b3-444f-a6f6-246aab9bbd16",
@@ -266,72 +239,6 @@
                 },
                 {
                     "name": "",
-                    "id": "55943fa5-849f-41bb-bd3e-0eeb0039757b",
-                    "path": "<Keyboard>/1",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard",
-                    "action": "choose item 1",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "6196ff8a-20d7-494f-bf06-ee0675892259",
-                    "path": "<Gamepad>/dpad/left",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Gamepad",
-                    "action": "choose item 1",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "3c202033-e4c1-4811-a291-f28343410095",
-                    "path": "<Keyboard>/2",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard",
-                    "action": "choose item 2",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "764fc079-658c-42f4-b2c5-7f0a7c646ccc",
-                    "path": "<Gamepad>/dpad/up",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Gamepad",
-                    "action": "choose item 2",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "2136f7da-23e4-4116-8b22-7a0284f8d446",
-                    "path": "<Keyboard>/3",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard",
-                    "action": "choose item 3",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "04b801c7-2a54-4b7a-89f8-0551654adfd9",
-                    "path": "<Gamepad>/dpad/right",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Gamepad",
-                    "action": "choose item 3",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "f17c0c22-d7fa-4567-8d91-786918792fed",
                     "path": "<Keyboard>/e",
                     "interactions": "",
@@ -510,6 +417,107 @@
                     "processors": "",
                     "groups": "",
                     "action": "New action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "choosing item",
+            "id": "5b69072a-a411-4d6c-94aa-1405e89934f6",
+            "actions": [
+                {
+                    "name": "choose item 3",
+                    "type": "Button",
+                    "id": "133bd792-d074-44d5-917c-ccb2747825d1",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "choose item 2",
+                    "type": "Button",
+                    "id": "1f191f26-115e-47d0-a897-d55438d39eba",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "choose item 1",
+                    "type": "Button",
+                    "id": "4f9359e9-ede4-4be7-bf84-52623144a020",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "6c39e8ba-1acc-485b-98b5-90a8dc71e0e2",
+                    "path": "<Keyboard>/1",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "choose item 1",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "47a24a1f-7d5c-41d7-8dfa-6f9f3c4dea56",
+                    "path": "<Gamepad>/dpad/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "choose item 1",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b2629620-1103-4861-8ea3-7b07d7afc90b",
+                    "path": "<Keyboard>/2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "choose item 2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "83fb10e3-fa3e-4abb-ac15-95ae17cf09b2",
+                    "path": "<Gamepad>/dpad/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "choose item 2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f756d534-6511-4aa9-97a1-8d6156de8d05",
+                    "path": "<Keyboard>/3",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard",
+                    "action": "choose item 3",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6f00c8a2-c04a-429a-8458-e2545566a095",
+                    "path": "<Gamepad>/dpad/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "choose item 3",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8902202865895147233}
   - component: {fileID: 5507877462315373992}
   m_Layer: 0
-  m_Name: InteractableCoffeeMach
+  m_Name: InteractalbeDoor
   m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -79,7 +79,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 7
-  m_Sprite: {fileID: 21300000, guid: a1b4b0474af334f428fccff0810b8f89, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d31e5c6c9463f422b900d1bd1018ce7d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -122,18 +122,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0014923811, y: -0.0020814538}
+  m_Offset: {x: -0.003219232, y: -0.017222404}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.1, y: 1.25}
+    oldSize: {x: 0.13, y: 1.27}
     newSize: {x: 0.16, y: 0.16}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.1419623, y: 1.4863354}
+  m_Size: {x: 0.5559536, y: 1.5946562}
   m_EdgeRadius: 0
 --- !u!114 &8902202865895147233
 MonoBehaviour:

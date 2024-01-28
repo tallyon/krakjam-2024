@@ -44,5 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6835a68469beb44689a37d441a24419b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemSprite: {fileID: 21300000, guid: 545df0bf87a714f8abfee7b2b7d44a1d, type: 3}
+  itemSprite: {fileID: 21300000, guid: 510c0d25ccdf84b6bb2cad85cf69f27e, type: 3}
   itemsEnum: 19
+  isUsable: 0

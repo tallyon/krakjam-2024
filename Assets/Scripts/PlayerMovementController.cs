@@ -6,6 +6,8 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(PlayerCharacter))]
 public class PlayerMovementController : MonoBehaviour
 {
+    private const float STUNNING_SURFACE_STUN_DURATION_SECONDS = 5;
+    
     public int playerId;
     [SerializeField] private InputActionAsset controls;
     public float CharacterMoveSpeedModifier { get; set; }
@@ -18,6 +20,7 @@ public class PlayerMovementController : MonoBehaviour
     private Interactable _currentInteractableObject;
     private PlayerCharacter _playerCharacter;
     private Animator _animator;
+    private StationOptionInteraction _optionInteractionInProgress;
 
     private void Awake()
     {
@@ -40,10 +43,17 @@ public class PlayerMovementController : MonoBehaviour
                 _currentInteractableObject = interactable;
             }
         }
+
+        if (other.gameObject.CompareTag(GameTags.STUNNING_SURFACE))
+        {
+            _playerCharacter.ApplyStatus(PlayerCharacterStatus.Stunned, STUNNING_SURFACE_STUN_DURATION_SECONDS);
+            Destroy(other.gameObject);
+        }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
+        _currentInteractableObject.OnSpecialInteractionPerformed -= HandleOnSpecialInteractionPerformed;
         _currentInteractableObject = null;
     }
 
@@ -61,35 +71,63 @@ public class PlayerMovementController : MonoBehaviour
     
     public void OnChooseItem1Performed(InputAction.CallbackContext obj)
     {
-        _playerCharacter.ApplyStatus(PlayerCharacterStatus.ChoosingItem);
-        _playerCharacter.ChooseItem1();
-        _playerCharacter.ApplyStatus(PlayerCharacterStatus.Normal);
+        if(_playerCharacter.PlayerStatus == PlayerCharacterStatus.ChoosingItem)
+        {
+            _playerCharacter.AddItem(_optionInteractionInProgress.takeItemEnum1);
+            _playerCharacter.ApplyStatus(PlayerCharacterStatus.Normal);
+            var stationChoiceObject = _currentInteractableObject as InteractableStations;
+            stationChoiceObject.HideChoises();
+            _optionInteractionInProgress = null;
+        }
     }
 
     public void OnChooseItem2Performed(InputAction.CallbackContext obj)
     {
-        _playerCharacter.ApplyStatus(PlayerCharacterStatus.ChoosingItem);
-        _playerCharacter.ChooseItem2();
-        _playerCharacter.ApplyStatus(PlayerCharacterStatus.Normal);
+        if (_playerCharacter.PlayerStatus == PlayerCharacterStatus.ChoosingItem)
+        {
+            _playerCharacter.AddItem(_optionInteractionInProgress.takeItemEnum1);
+            _playerCharacter.ApplyStatus(PlayerCharacterStatus.Normal);
+            var stationChoiceObject = _currentInteractableObject as InteractableStations;
+            stationChoiceObject.HideChoises();
+            _optionInteractionInProgress = null;
+        }
     }
 
     public void OnChooseItem3Performed(InputAction.CallbackContext obj)
     {
-        _playerCharacter.ApplyStatus(PlayerCharacterStatus.ChoosingItem);
-        _playerCharacter.ChooseItem3();
-        _playerCharacter.ApplyStatus(PlayerCharacterStatus.Normal);
+        if (_playerCharacter.PlayerStatus == PlayerCharacterStatus.ChoosingItem)
+        {
+            _playerCharacter.AddItem(_optionInteractionInProgress.takeItemEnum1);
+            _playerCharacter.ApplyStatus(PlayerCharacterStatus.Normal);
+            var stationChoiceObject = _currentInteractableObject as InteractableStations;
+            stationChoiceObject.HideChoises();
+            _optionInteractionInProgress = null;
+        }
     }
 
     public void OnInteractionPerformed(InputAction.CallbackContext obj)
     {
         if (_currentInteractableObject != null)
         {
+            _currentInteractableObject.OnSpecialInteractionPerformed += HandleOnSpecialInteractionPerformed;
             _currentInteractableObject.Interact(_playerCharacter);
             Debug.Log("Interaction!");
         }
         else
         {
             Debug.Log("No object to interact with");
+        }
+    }
+
+    private void HandleOnSpecialInteractionPerformed(Interaction interaction)
+    {
+        if (interaction is StationOptionInteraction optionInteraction)
+        { 
+            _optionInteractionInProgress = optionInteraction;
+            _playerCharacter.ApplyStatus(PlayerCharacterStatus.ChoosingItem);
+            var stationChoiceObject = _currentInteractableObject as InteractableStations;
+
+            stationChoiceObject.ShowChoices(optionInteraction.takeItemEnum1, optionInteraction.takeItemEnum2, optionInteraction.takeItemEnum2);
         }
     }
 
