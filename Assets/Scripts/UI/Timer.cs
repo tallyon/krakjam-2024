@@ -23,7 +23,7 @@ namespace UI
         private void Start()
         {
             GameStateController.Instance.OnGameTimerTick += DrawTimer;
-            DrawTimer(GameStateController.Instance.roundTime);
+            DrawTimer(GameStateController.Instance.GetRoundTime());
         }
 
         /*private void Update()
@@ -51,7 +51,7 @@ namespace UI
         
         private void Reset()
         {
-            currentTime = GameStateController.Instance.roundTime;
+            currentTime = GameStateController.Instance.GetRoundTime();
             tweenSequence?.Kill();
             animStarted = false;
         }

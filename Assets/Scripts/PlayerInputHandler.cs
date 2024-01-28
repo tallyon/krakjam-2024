@@ -51,6 +51,7 @@ namespace DefaultNamespace
             
             GameStateController.Instance.Player1Score.OnPlayerWon += SwitchActionMapToEndGame;
             GameStateController.Instance.Player2Score.OnPlayerWon += SwitchActionMapToEndGame;
+            GameStateController.Instance.OnGameTimerEnd += SwitchActionMapToEndGame;
             GameStateController.Instance.OnGameStart += EnableInput;
             
             if (index > 0)
