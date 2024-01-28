@@ -54,16 +54,16 @@ public class Interactable : MonoBehaviour
         }
     }
 
-    //private void OnTriggerExit2D(Collider2D other)
-    //{
-    //    if (currentPlayerTags.Any(val => other.gameObject.CompareTag(val)))
-    //    {
-    //        currentPlayerTags.Remove(other.gameObject.tag);
-    //    }
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (currentPlayerTags.Any(val => other.gameObject.CompareTag(val)))
+        {
+            currentPlayerTags.Remove(other.gameObject.tag);
+        }
 
-    //    if (currentPlayerTags.Count <= 0)
-    //    {
-    //        _simpleTextPopAnimation1.HideAnimation();
-    //    }
-    //}
+        if (currentPlayerTags.Count <= 0)
+        {
+            _simpleTextPopAnimationMiddle.HideAnimation();
+        }
+    }
 }
