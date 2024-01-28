@@ -21,6 +21,11 @@ public class GameStateController : Singleton<GameStateController>
     public Action<float> OnGameTimerTick;
     public Action OnGameInit;
     private int roundTime = 300;
+
+    public int GetRoundTime()
+    {
+        return roundTime;
+    }
     private int startTime = 3; // set to 17 if tutorial is enabled
     public bool IsGameInitialized { get; private set; }
     [SerializeField] private List<LevelConfig> LevelConfigs;
