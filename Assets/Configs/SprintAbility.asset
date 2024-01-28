@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: SprintAbility
   m_EditorClassIdentifier: 
   abilityName: Sprint
-  cooldownSeconds: 4
+  cooldownSeconds: 20
   particles: {fileID: 9157105887711914197, guid: ca1285f0628ec4405a96a8a652f77dbd,
     type: 3}
-  durationSeconds: 2
-  speedModifier: 2
+  sfx: {fileID: 0}
+  durationSeconds: 1.5
+  speedModifier: 1.5

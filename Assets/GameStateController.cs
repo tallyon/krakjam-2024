@@ -21,12 +21,12 @@ public class GameStateController : Singleton<GameStateController>
     public Action<float> OnGameTimerTick;
     public Action OnGameInit;
     private int roundTime = 300;
-
     public int GetRoundTime()
     {
         return roundTime;
     }
-    private int startTime = 3; // set to 17 if tutorial is enabled
+    //private int startTime = 3; // set to 17 if tutorial is enabled
+    private int startTime = 17; // set to 17 if tutorial is enabled, 3 if disabled
     public bool IsGameInitialized { get; private set; }
     [SerializeField] private List<LevelConfig> LevelConfigs;
     [SerializeField] private ItemsData ItemsConfig;
@@ -158,13 +158,13 @@ public class GameStateController : Singleton<GameStateController>
     {
         if (playerInput.playerIndex == 0)
         {
-            StartCoroutine(BeginStartCountdown());
+            //StartCoroutine(BeginStartCountdown());
             onPlayerJoined.Invoke(playerInput, _player1); // remove this
             //TODO: USE ON PLAYER 2 LAATER
         }
         else if (playerInput.playerIndex == 1)
         {
-            StartCoroutine(BeginStartCountdown());
+            //StartCoroutine(BeginStartCountdown());
             onPlayerJoined.Invoke(playerInput, _player2);
             StartCoroutine(BeginStartCountdown());
         }

@@ -10,8 +10,8 @@ public class TutorialUI : MonoBehaviour
 
     private void Awake()
     {
-        if (skipTutorial) gameObject.SetActive(false);
-        return;
+        // if (skipTutorial) gameObject.SetActive(false);
+        // return;
         
         _seq = DOTween.Sequence();
         foreach (var section in sectionsToAppear)
@@ -36,6 +36,7 @@ public class TutorialUI : MonoBehaviour
 
     public void StartFadeIn()
     {
+        Debug.Log("START FADE IN");
         _seq.Play();
     }
 }

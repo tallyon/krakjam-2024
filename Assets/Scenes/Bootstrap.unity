@@ -1111,7 +1111,7 @@ MonoBehaviour:
   - {fileID: 2117926690}
   - {fileID: 471291325}
   - {fileID: 1140686984}
-  skipTutorial: 1
+  skipTutorial: 0
 --- !u!225 &1193009226
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -1615,7 +1615,7 @@ PrefabInstance:
     - target: {fileID: 1235019737884496996, guid: d64cfce69f7d4492bae77c15fdd5eed0,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1531095830207905716, guid: d64cfce69f7d4492bae77c15fdd5eed0,
         type: 3}
