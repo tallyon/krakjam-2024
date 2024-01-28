@@ -79,6 +79,9 @@ namespace DefaultNamespace
                     DisableInput();
                     Debug.Log("Velocity: " + mover.MoveVelocity);
                     break;
+                case PlayerCharacterStatus.Interacting:
+                    ChoiceInput();
+                    break;
             }
         }
 

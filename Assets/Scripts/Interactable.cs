@@ -37,6 +37,7 @@ public class Interactable : MonoBehaviour
     {
         if(interaction.InteractionTimeMS > 0)
         {
+            playerCharacter.ApplyStatus(PlayerCharacterStatus.Interacting, Convert.ToInt32(interaction.InteractionTimeMS / 1000));
             particle.Play();
             await Task.Delay(interaction.InteractionTimeMS);
             particle.Stop();
