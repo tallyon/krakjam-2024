@@ -12,4 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4a5247d6458d4ea5a2b77a4e7ea220e, type: 3}
   m_Name: InfoBubbleConfig
   m_EditorClassIdentifier: 
-  infoPrefabs: []
+  infoPrefabs:
+  - infoEnums: 2
+    prefab: {fileID: 3228463811845940285, guid: 78dd619f4831849e2aa0299f5097cde0,
+      type: 3}
