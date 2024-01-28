@@ -172,39 +172,70 @@ public class PlayerMovementController : MonoBehaviour
         _animator.SetBool("IsMoving", MoveVelocity != Vector2.zero);
     }
 
+    public void CloseDoor()
+    {
+        if(_currentInteractableObject is InteractableStations station && station.StationEnum == StationsData.StationEnum.Door)
+        {
+            var positions = _currentInteractableObject.UseAbility(_playerCharacter);
+
+            if (positions?.Count == 1)
+            {
+                Debug.Log("Closing doors");
+            }
+        }
+    }
+
     public void EnterVent(float travelTime)
     {
-        var positions = _currentInteractableObject.UseAbility(_playerCharacter);
-
-        if (positions?.Count > 0)
+        if (_currentInteractableObject is InteractableStations station && station.StationEnum == StationsData.StationEnum.Vents)
         {
-            Debug.Log("Entering the vent");
-            _collider.enabled = false;
-            _playerCharacter.ApplyStatus(PlayerCharacterStatus.InVent);
+            var positions = _currentInteractableObject.UseAbility(_playerCharacter);
 
-            var seq = DOTween.Sequence();
-
-            float distance = Vector2.Distance(_playerCharacter.transform.position, positions[0]);
-            for (int i =0; i<positions.Count -1; i++)
+            if (positions?.Count > 0)
             {
-                distance += Vector2.Distance(positions[i], positions[i + 1]);
+                Debug.Log("Entering the vent");
+                _collider.enabled = false;
+                _playerCharacter.ApplyStatus(PlayerCharacterStatus.InVent);
+
+                var seq = DOTween.Sequence();
+
+                float distance = Vector2.Distance(_playerCharacter.transform.position, positions[0]);
+                for (int i = 0; i < positions.Count - 1; i++)
+                {
+                    distance += Vector2.Distance(positions[i], positions[i + 1]);
+                }
+
+                float time = Vector2.Distance(_playerCharacter.transform.position, positions[0]) / distance * travelTime;
+                seq.Append(_rb2d.DOMove(_playerCharacter.transform.position, time).SetEase(Ease.Linear));
+                for (int i = 0; i < positions.Count - 1; i++)
+                {
+                    time = (Vector2.Distance(positions[i], positions[i + 1]) / distance) * travelTime;
+                    seq.Append(_rb2d.DOMove(positions[i + 1], time).SetEase(Ease.Linear));
+                }
+
+                seq.Play();
+                seq.onComplete += () =>
+                {
+                    Debug.Log("Exiting the vent");
+                    _collider.enabled = true;
+                    _playerCharacter.ApplyStatus(PlayerCharacterStatus.Normal);
+                };
             }
+        }
+    }
 
-            float time = Vector2.Distance(_playerCharacter.transform.position, positions[0]) / distance * travelTime;
-            seq.Append(_rb2d.DOMove(_playerCharacter.transform.position, time).SetEase(Ease.Linear));
-            for (int i =0; i < positions.Count - 1; i++)
+    public void SmashItem()
+    {
+        if (_currentInteractableObject is InteractableStations station
+            && (station.StationEnum == StationsData.StationEnum.TrophyCabinet
+            || station.StationEnum == StationsData.StationEnum.Door))
+        {
+            var positions = _currentInteractableObject.UseAbility(_playerCharacter);
+
+            if (positions?.Count > 0)
             {
-                time = (Vector2.Distance(positions[i], positions[i+1]) / distance) * travelTime;
-                seq.Append(_rb2d.DOMove(positions[i+1], time).SetEase(Ease.Linear));
+                Debug.Log("Destroying the item");
             }
-
-            seq.Play();
-            seq.onComplete += () =>
-            {
-                Debug.Log("Exiting the vent");
-                _collider.enabled = true;
-                _playerCharacter.ApplyStatus(PlayerCharacterStatus.Normal);
-            };
         }
     }
 }

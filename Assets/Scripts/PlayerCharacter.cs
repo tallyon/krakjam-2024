@@ -160,6 +160,7 @@ public class PlayerCharacter : MonoBehaviour
             case CharacterTypeEnum.Sigma:
                 var smashAbility = new SmashAbility(Ability2);
                 UseSkillSmash(smashAbility);
+                _playerMovementController.SmashItem();
                 break;
             case CharacterTypeEnum.Beta:
                 var ventAbility = new VentAbility(Ability2);
@@ -243,6 +244,7 @@ public class PlayerCharacter : MonoBehaviour
 
     private void UseSkillObstacle()
     {
+        _playerMovementController.CloseDoor();
         SpawnFloatingText("Obstacle!");
     }
 

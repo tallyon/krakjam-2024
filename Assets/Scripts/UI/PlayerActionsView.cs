@@ -42,6 +42,7 @@ namespace UI
 
         private void ClearItem()
         {
+            interactableImage.sprite = null;
             Debug.Log($"Setup ui for item removed");
         }
 

@@ -8,6 +8,7 @@ public class InteractableStations : Interactable
     [SerializeField] SimpleTextPopAnimation _simpleTextPopAnimationRight;
 
     [SerializeField] StationEnum stationEnum;
+    public StationEnum StationEnum => stationEnum;
     [SerializeField] SpriteRenderer spriteRenderer;
 
     protected override void HandleOnInteractionWithObject(Interaction interaction, CharacterTypeEnum characterTypeEnum)
@@ -40,6 +41,9 @@ public class InteractableStations : Interactable
                 OnSpecialInteractionPerformed?.Invoke(stationOptionInteraction);
                 break;
             case DoorInteraction doorInteraction:
+                Debug.Log($"Interactable item: {characterTypeEnum} has interacted with  door");
+                break;
+            case TrophyCaseInteraction trophyCaseInteraction:
                 Debug.Log($"Interactable item: {characterTypeEnum} has interacted with  door");
                 break;
         }

@@ -58,7 +58,7 @@ public class ItemsData : ScriptableObject
 
     public enum ItemsEnum
     {
-        Cake = 0,
+        None = 0,
         Pork = 1,
         Cappuchino =2,
         Cola = 3,
@@ -83,12 +83,10 @@ public class ItemsData : ScriptableObject
         PoemAboutHorses = 22,
         PoemAboutDeaths = 23,
         PoemAboutButts = 24,
-        Flowe = 25,
         Weights = 26,
         Juice = 27,
         Trophy = 28,
         Origami = 29,
-        None = 30,
         ToiletPaper =31,
         Marker = 32
     }

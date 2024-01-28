@@ -12,7 +12,7 @@ public class Interactable : MonoBehaviour
     private List<string> currentPlayerTags = new();
 
 
-    private void Awake()
+    protected virtual void Start()
     {
         interaction = this.GetComponent<Interaction>();
         interaction.OnInteraction += HandleOnInteractionWithObject;

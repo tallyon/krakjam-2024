@@ -21,7 +21,7 @@ MonoBehaviour:
       type: 3}
     minPointsValue: -2
     maxPointsValue: -2
-    finalPointsValue: 0
+    finalPointsValue: -2
     canBeGivenToGirl: 1
   - Name: Roasted pork
     itemEnum: 21
@@ -31,7 +31,7 @@ MonoBehaviour:
       type: 3}
     minPointsValue: 4
     maxPointsValue: 4
-    finalPointsValue: 0
+    finalPointsValue: 4
     canBeGivenToGirl: 1
   - Name: BakedCake
     itemEnum: 0
@@ -41,7 +41,7 @@ MonoBehaviour:
       type: 3}
     minPointsValue: 4
     maxPointsValue: 6
-    finalPointsValue: 0
+    finalPointsValue: 4
     canBeGivenToGirl: 1
   - Name: Cappuchino
     itemEnum: 2
@@ -51,7 +51,7 @@ MonoBehaviour:
       type: 3}
     minPointsValue: 1
     maxPointsValue: 3
-    finalPointsValue: 0
+    finalPointsValue: 1
     canBeGivenToGirl: 1
   - Name: Cola
     itemEnum: 3
@@ -61,7 +61,7 @@ MonoBehaviour:
       type: 3}
     minPointsValue: 5
     maxPointsValue: 5
-    finalPointsValue: 0
+    finalPointsValue: 5
     canBeGivenToGirl: 1
   - Name: Poem about Butts
     itemEnum: 24
@@ -71,7 +71,7 @@ MonoBehaviour:
       type: 3}
     minPointsValue: 2
     maxPointsValue: 4
-    finalPointsValue: 0
+    finalPointsValue: 3
     canBeGivenToGirl: 1
   - Name: Poem about Horses
     itemEnum: 22
@@ -81,7 +81,7 @@ MonoBehaviour:
       type: 3}
     minPointsValue: 2
     maxPointsValue: 4
-    finalPointsValue: 0
+    finalPointsValue: 4
     canBeGivenToGirl: 1
   - Name: Poem about Death
     itemEnum: 23
@@ -91,7 +91,7 @@ MonoBehaviour:
       type: 3}
     minPointsValue: 2
     maxPointsValue: 4
-    finalPointsValue: 0
+    finalPointsValue: 3
     canBeGivenToGirl: 1
   - Name: Watering Can
     itemEnum: 5
@@ -131,7 +131,7 @@ MonoBehaviour:
       type: 3}
     minPointsValue: 5
     maxPointsValue: 5
-    finalPointsValue: 0
+    finalPointsValue: 5
     canBeGivenToGirl: 1
   - Name: Soap
     itemEnum: 9
@@ -161,7 +161,7 @@ MonoBehaviour:
       type: 3}
     minPointsValue: 3
     maxPointsValue: 3
-    finalPointsValue: 0
+    finalPointsValue: 3
     canBeGivenToGirl: 1
   - Name: Disk
     itemEnum: 12
@@ -171,7 +171,7 @@ MonoBehaviour:
       type: 3}
     minPointsValue: 5
     maxPointsValue: 5
-    finalPointsValue: 0
+    finalPointsValue: 5
     canBeGivenToGirl: 1
   - Name: Confetti
     itemEnum: 13
@@ -181,7 +181,7 @@ MonoBehaviour:
       type: 3}
     minPointsValue: 3
     maxPointsValue: 3
-    finalPointsValue: 0
+    finalPointsValue: 3
     canBeGivenToGirl: 1
   - Name: Copy of the Butt
     itemEnum: 14
@@ -191,7 +191,7 @@ MonoBehaviour:
       type: 3}
     minPointsValue: 3
     maxPointsValue: 3
-    finalPointsValue: 0
+    finalPointsValue: 3
     canBeGivenToGirl: 1
   - Name: Sandwich
     itemEnum: 15
@@ -201,7 +201,7 @@ MonoBehaviour:
       type: 3}
     minPointsValue: 1
     maxPointsValue: 1
-    finalPointsValue: 0
+    finalPointsValue: 1
     canBeGivenToGirl: 1
   - Name: Not Made Cake
     itemEnum: 16
@@ -211,7 +211,7 @@ MonoBehaviour:
       type: 3}
     minPointsValue: -1
     maxPointsValue: -1
-    finalPointsValue: 0
+    finalPointsValue: -1
     canBeGivenToGirl: 1
   - Name: Latte
     itemEnum: 18
@@ -221,7 +221,7 @@ MonoBehaviour:
       type: 3}
     minPointsValue: 1
     maxPointsValue: 3
-    finalPointsValue: 0
+    finalPointsValue: 3
     canBeGivenToGirl: 1
   - Name: Black Coffee
     itemEnum: 19
@@ -231,7 +231,7 @@ MonoBehaviour:
       type: 3}
     minPointsValue: 1
     maxPointsValue: 3
-    finalPointsValue: 0
+    finalPointsValue: 3
     canBeGivenToGirl: 1
   - Name: Weights
     itemEnum: 26
@@ -241,7 +241,7 @@ MonoBehaviour:
       type: 3}
     minPointsValue: 3
     maxPointsValue: 3
-    finalPointsValue: 0
+    finalPointsValue: 3
     canBeGivenToGirl: 1
   - Name: Juice
     itemEnum: 27
@@ -251,7 +251,7 @@ MonoBehaviour:
       type: 3}
     minPointsValue: 5
     maxPointsValue: 5
-    finalPointsValue: 0
+    finalPointsValue: 5
     canBeGivenToGirl: 1
   - Name: Trophy
     itemEnum: 28
@@ -261,7 +261,7 @@ MonoBehaviour:
       type: 3}
     minPointsValue: 3
     maxPointsValue: 3
-    finalPointsValue: 0
+    finalPointsValue: 3
     canBeGivenToGirl: 1
   - Name: Origami
     itemEnum: 29
@@ -271,7 +271,7 @@ MonoBehaviour:
       type: 3}
     minPointsValue: 3
     maxPointsValue: 3
-    finalPointsValue: 0
+    finalPointsValue: 3
     canBeGivenToGirl: 1
   - Name: Toilet Paper
     itemEnum: 31
@@ -295,4 +295,10 @@ MonoBehaviour:
     canBeGivenToGirl: 0
   itemsGroup:
   - groupEnum: 2
-    items: 0000000001000000
+    items: 150000000f00000000000000
+  - groupEnum: 0
+    items: 030000001b00000007000000
+  - groupEnum: 1
+    items: 120000001300000002000000
+  - groupEnum: 3
+    items: 160000001700000018000000

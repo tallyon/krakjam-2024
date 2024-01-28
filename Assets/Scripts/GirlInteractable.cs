@@ -28,8 +28,9 @@ public class GirlInteractable : Interactable
         _wasPoemDelivered = false;
     }
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         GetPointsForThisItemsRound();
     }
 
