@@ -134,6 +134,9 @@ MonoBehaviour:
     type: 3}
   slippingParticlesPrefab: {fileID: 100002, guid: bffabf6f7869e42de9c136dfbbda5e2c,
     type: 3}
+  interactingParticlesPrefab: {fileID: 9027514048236820045, guid: 07ea976c5de6b4dd7b0d23a5c0b96e7f,
+    type: 3}
+  interactingFillingSpritePrefab: {fileID: 0}
   _characterData: {fileID: 11400000, guid: 4480815f2eb9146a7a2b5d024b5bf61b, type: 2}
 --- !u!1001 &3395795616801474028
 PrefabInstance:

@@ -10,7 +10,8 @@ public enum PlayerCharacterStatus
     Stunned,
     InVent,
     ChoosingItem,
-    Slipping
+    Slipping,
+    Interacting
 }
 
 [RequireComponent(typeof(PlayerMovementController))]
@@ -34,11 +35,17 @@ public class PlayerCharacter : MonoBehaviour
         }
     }
 
+    private float _timeUntilStatusGoesBackToNormal;
+
     [SerializeField] private TextMeshPro floatingTextPrefab;
     [SerializeField] private GameObject stunParticlesPrefab;
     [SerializeField] private GameObject slippingParticlesPrefab;
+    [SerializeField] private GameObject interactingParticlesPrefab;
+    [SerializeField] private SpriteRenderer interactingFillingSpritePrefab;
     private GameObject _stunParticlesInstance;
     private GameObject _slippingParticlesInstance;
+    private GameObject _interactingParticlesInstance;
+    private SpriteRenderer _interactingFillingSpriteInstance;
     
     public Action<PlayerCharacterStatus> OnPlayerCharacterStatusChanged;
 
@@ -65,6 +72,8 @@ public class PlayerCharacter : MonoBehaviour
     {
         if (_stunParticlesInstance != null) Destroy(_stunParticlesInstance);
         if (_slippingParticlesInstance != null) Destroy(_slippingParticlesInstance);
+        if (_interactingFillingSpriteInstance != null) Destroy(_interactingFillingSpriteInstance);
+        if (_interactingParticlesInstance != null) Destroy(_interactingParticlesInstance);
 
         switch (status)
         {
@@ -87,6 +96,11 @@ public class PlayerCharacter : MonoBehaviour
                 _playerMovementController.Rigidbody.DOMove(_playerMovementController.transform.position + new Vector3(targetVector.x, targetVector.y, 0),
                         PlayerMovementController.STUNNING_SURFACE_STUN_DURATION_SECONDS)
                     .SetEase(Ease.OutSine).Play();
+                break;
+            case PlayerCharacterStatus.Interacting:
+                Debug.Log($"INTERACTING on {gameObject.name}!");
+                _interactingParticlesInstance = Instantiate(interactingParticlesPrefab, transform.position + new Vector3(0, 3, -10), transform.rotation);
+                _interactingParticlesInstance.transform.SetParent(transform, true);
                 break;
         }
     }

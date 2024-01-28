@@ -5,6 +5,11 @@ public class InteractableItem : Interactable
 {
     [SerializeField] ItemsEnum itemsEnum;
 
+    private void Awake()
+    {
+        _simpleTextPopAnimationMiddle = GetComponentInChildren<SimpleTextPopAnimation>();
+    }
+
     protected override void HandleOnInteractionWithObject(Interaction interaction, CharacterTypeEnum characterTypeEnum)
     {
         base.HandleOnInteractionWithObject(interaction, characterTypeEnum);
