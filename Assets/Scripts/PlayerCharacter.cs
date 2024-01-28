@@ -268,8 +268,11 @@ public class PlayerCharacter : MonoBehaviour
 
     private void SpawnStunningSurface(GameObject prefabToSpawn)
     {
-        var moveDirection = _playerMovementController.MoveVelocity.normalized;
-        Instantiate(prefabToSpawn, transform.position + new Vector3(moveDirection.x, moveDirection.y, 0) * 5, Quaternion.identity);
+        var moveDirection = _playerMovementController.DirectionFacing;
+        var angle = Vector2.SignedAngle(Vector2.left, moveDirection);
+        var rotation = Quaternion.Euler(aimingLine.rotation.eulerAngles.x, aimingLine.rotation.eulerAngles.y, angle);
+        
+        var surface = Instantiate(prefabToSpawn, transform.position + (new Vector3(moveDirection.x, moveDirection.y, 0) * 35), rotation);
     }
 
     private IEnumerator ReturnStatusToNormal(float timeSeconds)

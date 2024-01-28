@@ -1,4 +1,5 @@
 using System;
+using System.Runtime.CompilerServices;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -24,6 +25,7 @@ public class PlayerMovementController : MonoBehaviour
     private StationOptionInteraction _optionInteractionInProgress;
 
     [SerializeField] public Vector2 MoveVelocity => currentFramePosition - lastFramePosition;
+    public Vector2 DirectionFacing { get; private set; }
     private Vector2 lastFramePosition;
     private Vector2 currentFramePosition;
     [SerializeField] private Vector2 moveVelocity;
@@ -169,6 +171,10 @@ public class PlayerMovementController : MonoBehaviour
         currentFramePosition = _rb2d.position;
 
         moveVelocity = MoveVelocity;
+        if (moveVelocity != Vector2.zero)
+        {
+            DirectionFacing = moveVelocity;
+        }
         
         _animator.SetBool("IsMoving", MoveVelocity != Vector2.zero);
     }
