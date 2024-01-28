@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 1140143311478881074}
   - component: {fileID: 7161758623677604214}
   - component: {fileID: 6725508236382638439}
-  - component: {fileID: 5206049594361414021}
   m_Layer: 6
   m_Name: Player1
   m_TagString: Player1
@@ -52,6 +51,8 @@ MonoBehaviour:
   playerId: 0
   controls: {fileID: -944628639613478452, guid: 97210cd740af04df697b1fa71c9c9623,
     type: 3}
+  _animator: {fileID: 3446073025106266550}
+  moveVelocity: {x: 0, y: 0}
 --- !u!50 &1140143311478881074
 Rigidbody2D:
   serializedVersion: 4
@@ -134,27 +135,6 @@ MonoBehaviour:
   slippingParticlesPrefab: {fileID: 100002, guid: bffabf6f7869e42de9c136dfbbda5e2c,
     type: 3}
   _characterData: {fileID: 11400000, guid: 4480815f2eb9146a7a2b5d024b5bf61b, type: 2}
---- !u!95 &5206049594361414021
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 956808371504728417}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 7e34a33a2d4a14f42b7d55b74b7e837a, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &3395795616801474028
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -167,6 +147,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: character_chad
+      objectReference: {fileID: 0}
+    - target: {fileID: 1374380113988239867, guid: aa5ccc31b692742709df9f19499a6b89,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1621957228344052820, guid: aa5ccc31b692742709df9f19499a6b89,
         type: 3}
