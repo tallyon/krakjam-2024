@@ -168,8 +168,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e5dee2686cbe4a86b5d8561505fbc9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOneTimeUse: 0
-  InteractionTimeMS: 0
+  isOneTimeUse: 1
+  InteractionTimeMS: 3500
   possiblePlayerInteraction: 2
   takeItemEnum: 11
 --- !u!1001 &2172645901268015847

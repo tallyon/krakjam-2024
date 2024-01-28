@@ -12,6 +12,8 @@ public class SimpleTextPopAnimation : MonoBehaviour, ISimpleAnimation
     [SerializeField] float animationTime = 0.5f;
     [SerializeField] private Image itemImage;
     [SerializeField] private Image parentImage;
+
+    [SerializeField] private CanvasGroup _canvasGroup;
     //private SpriteRenderer spriteRenderer;
     private Sequence showSequence;
     private Sequence hideSequence;
@@ -49,6 +51,7 @@ public class SimpleTextPopAnimation : MonoBehaviour, ISimpleAnimation
 
         showSequence.Append(parentImage.DOFade(1, animationTime));
         showSequence.Join(itemImage.DOFade(1, animationTime));
+        showSequence.Join(_canvasGroup.DOFade(1, animationTime));
         showSequence.Join(transform.DOMove(new Vector3(startingPos.x + newPostition.x, startingPos.y + newPostition.y, 0), animationTime));
 
         showSequence.Play();
@@ -64,6 +67,7 @@ public class SimpleTextPopAnimation : MonoBehaviour, ISimpleAnimation
         showSequence.Append(transform.DOMove(startingPos, animationTime));
         showSequence.Join(itemImage.DOFade(0, animationTime));
         showSequence.Join(parentImage.DOFade(0, animationTime));
+        showSequence.Join(_canvasGroup.DOFade(0, animationTime));
         showSequence.Play();
     }
 

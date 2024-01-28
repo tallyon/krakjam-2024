@@ -155,6 +155,7 @@ public class PlayerMovementController : MonoBehaviour
     public void OnUseItemPerformed(InputAction.CallbackContext obj)
     {
         Debug.Log("Item used");
+        _playerCharacter.UseItem();
     }
 
     public void Move(Vector2 moveVal)
