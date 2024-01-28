@@ -37,11 +37,13 @@ namespace UI
 
         private void SetItemIcon(CollectedItem item)
         {
+            interactableImage.gameObject.SetActive(true);
             interactableImage.sprite = item.itemSprite;
         }
 
         private void ClearItem()
         {
+            interactableImage.gameObject.SetActive(false);
             interactableImage.sprite = null;
             Debug.Log($"Setup ui for item removed");
         }

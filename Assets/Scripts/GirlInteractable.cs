@@ -142,7 +142,7 @@ public class GirlInteractable : Interactable
                 }
                 else
                 {
-                    Debug.Log($"Girl: Girl does not want {itemData.itemEnum}");
+                    Debug.Log($"Girl: Girl does not want this item.");
                     ShowSad();
                 }
                 break;
@@ -178,7 +178,7 @@ public class GirlInteractable : Interactable
         spriteRenderer.sprite = spriteHappy;
         var particles = Instantiate(happyHeartsParticles, transform);
         particles.transform.localScale = new Vector3(1.2f, 1.2f, particles.transform.localScale.z);
-        particles.transform.localPosition = new Vector3(0, 5, 0);
+        particles.transform.localPosition = new Vector3(0, 0.5f, 0);
         //animator.SetBool("IsHappy", true);
         animator.Play("happy_jump");
         await Task.Delay(showEmotiontime);
