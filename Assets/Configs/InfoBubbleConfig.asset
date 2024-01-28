@@ -27,3 +27,5 @@ MonoBehaviour:
     sprite: {fileID: 21300000, guid: a28d364bc863f4c50af1062fd592c5f9, type: 3}
   - infoEnums: 6
     sprite: {fileID: 21300000, guid: 866ea3db69f3d4501ac6e4ae784e7f90, type: 3}
+  - infoEnums: 7
+    sprite: {fileID: 21300000, guid: 1eb77dcab44cf411ba5272b83c12bbe4, type: 3}
