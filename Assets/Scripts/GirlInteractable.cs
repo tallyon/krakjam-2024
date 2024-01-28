@@ -23,6 +23,9 @@ public class GirlInteractable : Interactable
 
     private List<ItemData> itemsWithPoints = new();
 
+    [SerializeField] private AudioClip girlLikeAudio, girlDislikesAudio;
+    [SerializeField] private AudioSource audio;
+
     private void Awake()
     {
         _wasColdBevarageDelivered = false;
@@ -165,10 +168,12 @@ public class GirlInteractable : Interactable
             }
             
             ShowHappy();
+            audio.PlayOneShot(girlLikeAudio);
         }
         else
         {
             ShowSad();
+            audio.PlayOneShot(girlDislikesAudio);
         }
     }
 

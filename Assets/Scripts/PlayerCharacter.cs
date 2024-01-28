@@ -66,6 +66,8 @@ public class PlayerCharacter : MonoBehaviour
     [SerializeField] private Transform aimingLine;
     private float aimingLineOffsetPositionX;
     private float aimingLineOffsetPositionY;
+
+    [SerializeField] private AudioClip wrongInteractionSound;
     
     /// <summary>
     /// Parameters are current status, previous status

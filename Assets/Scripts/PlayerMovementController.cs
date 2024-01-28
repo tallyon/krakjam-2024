@@ -1,5 +1,4 @@
 using System;
-using System.Runtime.CompilerServices;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -30,7 +29,9 @@ public class PlayerMovementController : MonoBehaviour
     private Vector2 currentFramePosition;
     [SerializeField] private Vector2 moveVelocity;
 
-    private AudioSource _audio; 
+    private AudioSource _audio;
+    [SerializeField] private AudioSource audioFootsteps;
+    [SerializeField] private AudioClip wrongInteraction;
 
     private void Awake()
     {
@@ -133,6 +134,7 @@ public class PlayerMovementController : MonoBehaviour
             _currentInteractableObject.OnSpecialInteractionPerformed += HandleOnSpecialInteractionPerformed;
             _currentInteractableObject.Interact(_playerCharacter);
             Debug.Log("Interaction!");
+            _audio.PlayOneShot(wrongInteraction);
         }
         else
         {
@@ -166,6 +168,11 @@ public class PlayerMovementController : MonoBehaviour
     public void Move(Vector2 moveVal)
     {
         _rb2d.MovePosition(_rb2d.position + CharacterMoveSpeedModifier * moveVal);
+    }
+
+    private void Update()
+    {
+        audioFootsteps.mute = moveVelocity == Vector2.zero;
     }
 
     private void FixedUpdate()

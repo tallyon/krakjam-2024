@@ -48,7 +48,7 @@ public class GameStateController : Singleton<GameStateController>
         IsGameInitialized = true;
         OnGameInit?.Invoke();
     }
-    
+
     public void ResetLevel()
     {
         SceneManager.LoadScene(1);

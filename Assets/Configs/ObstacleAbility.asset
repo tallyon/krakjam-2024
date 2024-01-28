@@ -15,3 +15,4 @@ MonoBehaviour:
   abilityName: Door
   cooldownSeconds: 5
   particles: {fileID: 0}
+  sfx: {fileID: 8300000, guid: 7008ff024b39f439eb6286b00d0db6f3, type: 3}
