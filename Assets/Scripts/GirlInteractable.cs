@@ -19,6 +19,7 @@ public class GirlInteractable : Interactable
     private bool _wasHotBeverageDelivered;
     private bool _wasFoodDelivered;
     private bool _wasPoemDelivered;
+    private bool _wasPhotoDelivered;
 
     private List<ItemData> itemsWithPoints = new();
 
@@ -114,6 +115,21 @@ public class GirlInteractable : Interactable
                         else
                         {
                             Debug.Log($"Girl: Girl does not any mnore {ItemsGroup.Poems} by item {itemData.itemEnum}");
+                            ShowSad();
+                            player.DeleteItem();
+                            return;
+                        }
+                    }
+
+                    if (itemData.itemEnum == ItemsEnum.Photo)
+                    {
+                        if (!_wasPhotoDelivered)
+                        {
+                            _wasPhotoDelivered = true;
+                        }
+                        else
+                        {
+                            Debug.Log($"Girl: Girl does not any mnore {itemData.itemEnum}");
                             ShowSad();
                             player.DeleteItem();
                             return;
