@@ -166,7 +166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0463e3ff72b3a420eb2ff0752420e9cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isOneTimeUse: 0
+  isOneTimeUse: 1
   InteractionTimeMS: 3000
   possiblePlayerInteraction: 2
   sprites:
