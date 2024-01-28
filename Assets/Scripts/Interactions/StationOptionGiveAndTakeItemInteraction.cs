@@ -20,7 +20,7 @@ public class StationOptionGiveAdnTakeItemInteraction : Interaction
 
         if (possiblePlayerInteraction == CharacterTypeEnum.Both || playerCharacter.characterTypeEnum == possiblePlayerInteraction)
         {
-            if (playerCharacter.collectedItem != null)
+            if (playerCharacter.collectedItem == null)
             {
                 if (playerCharacter.collectedItem.itemsEnum == giveItemEnum1)
                 {

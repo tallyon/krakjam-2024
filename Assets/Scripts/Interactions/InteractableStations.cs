@@ -59,9 +59,9 @@ public class InteractableStations : Interactable
         {
             player.ApplyStatus(PlayerCharacterStatus.Interacting);
             player.StartInteracting(interaction.InteractionTimeMS);
-            particle.Play();
+            particle?.Play();
             await Task.Delay(interaction.InteractionTimeMS);
-            particle.Stop();
+            particle?.Stop();
             player.ApplyStatus(PlayerCharacterStatus.Normal);
         }
     }
