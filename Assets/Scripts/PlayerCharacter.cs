@@ -285,10 +285,10 @@ public class PlayerCharacter : MonoBehaviour
         var otherPlayer = GameStateController.Instance.GetOtherPlayer(this);
         var distanceToOtherPlayer = Vector2.Distance(otherPlayer.transform.position, transform.position);
 
-        if (distanceToOtherPlayer > abilityConfig.Radius) return false;
+        if (distanceToOtherPlayer > abilityConfig.Radius) return true;
         
         // check if other player is in normal status
-        if (otherPlayer.PlayerStatus != PlayerCharacterStatus.Normal) return false;
+        if (otherPlayer.PlayerStatus != PlayerCharacterStatus.Normal) return true;
         
         // if other player is in radius apply Stunned status and push him back
         otherPlayer.ApplyStatus(PlayerCharacterStatus.Stunned, abilityConfig.Duration);
