@@ -24,7 +24,7 @@ public class DoorInteraction : Interaction
         {
             if(playerCharacter.characterTypeEnum == CharacterTypeEnum.Beta)
             {
-                OnInteraction?.Invoke(new DisplayMessageInteraction(InfoEnums.NerdAbility), playerCharacter.characterTypeEnum);
+                OnInteraction?.Invoke(new DisplayMessageInteraction(InfoEnums.NerdAbilityDoors), playerCharacter.characterTypeEnum);
                 Debug.Log("Interactions: Player cannot take this item as this character");
             }
             else

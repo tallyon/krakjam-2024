@@ -13,7 +13,7 @@ public class StationOptionInteraction : Interaction
     {
         if(possiblePlayerInteraction == CharacterTypeEnum.Both || playerCharacter.characterTypeEnum == possiblePlayerInteraction)
         {
-            if(playerCharacter.collectedItem != null)
+            if(playerCharacter.collectedItem == null)
             {
                 OnInteraction?.Invoke(this, playerCharacter.characterTypeEnum);
             }
