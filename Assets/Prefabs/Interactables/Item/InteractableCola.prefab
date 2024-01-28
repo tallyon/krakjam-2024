@@ -145,6 +145,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0a2ee51e68024595b9e3a34eb033275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isOneTimeUse: 0
   InteractionTime: 0
   possiblePlayerInteraction: 2
 --- !u!114 &9196494427775756211
@@ -160,7 +161,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _simpleTextPopAnimationMiddle: {fileID: 0}
-  itemsEnum: 0
+  itemsEnum: 3
 --- !u!1001 &5545187825083078048
 PrefabInstance:
   m_ObjectHideFlags: 0
