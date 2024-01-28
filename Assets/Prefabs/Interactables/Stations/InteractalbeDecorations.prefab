@@ -169,7 +169,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isOneTimeUse: 0
-  InteractionTimeMS: 0
+  InteractionTimeMS: 3500
   possiblePlayerInteraction: 2
   takeItemEnum: 13
 --- !u!1001 &1939849401854948461
