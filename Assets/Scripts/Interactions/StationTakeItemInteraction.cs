@@ -8,7 +8,11 @@ public class StationTakeItemInteraction : Interaction
 
     public override void PlayInteraction(PlayerCharacter playerCharacter)
     {
-
+        if (isOneTimeUse && _wasUsed)
+        {
+            OnInteraction?.Invoke(new DisplayMessageInteraction(InfoEnums.Used), playerCharacter.characterTypeEnum);
+            return;
+        }
 
         if (possiblePlayerInteraction == CharacterTypeEnum.Both || playerCharacter.characterTypeEnum == possiblePlayerInteraction)
         {
@@ -18,6 +22,7 @@ public class StationTakeItemInteraction : Interaction
                 Debug.Log($"Interactions: Player cannot take second item");
 
                 OnInteraction?.Invoke(new DisplayMessageInteraction(InfoEnums.TwoItems), playerCharacter.characterTypeEnum);
+                _wasUsed = true;
             }
             else
             {

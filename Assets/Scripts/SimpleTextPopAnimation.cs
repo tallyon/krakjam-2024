@@ -32,11 +32,18 @@ public class SimpleTextPopAnimation : MonoBehaviour, ISimpleAnimation
     {
         parentImage.sprite = infoConfig.GetCollectedItemPrefab(infoEnums);
 
-        if (infoEnums == InfoEnums.SimpleItem)
+        if (infoEnums == InfoEnums.SimpleItem || infoEnums == InfoEnums.NoItem)
         {
+            if(infoEnums == InfoEnums.NoItem)
+            {
+                itemImage.color = Color.black;
+            }
+            else
+            {
+                itemImage.color = Color.white;
+            }
             var item = GameStateController.Instance.GetCollectedItemPrefab(itemEnums);
             itemImage.sprite = item.itemSprite;
-            //spriteRendererChild.sprite = item.itemSprite;
         }
         else
         {
@@ -87,7 +94,8 @@ public class SimpleTextPopAnimation : MonoBehaviour, ISimpleAnimation
         Used,
         ChadAbility,
         NerdAbility,
-        TwoItems
+        TwoItems,
+        NerdAbilityDoors
     }
     
 }

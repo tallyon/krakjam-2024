@@ -161,7 +161,7 @@ public class GameStateController : Singleton<GameStateController>
         {
             StartCoroutine(BeginStartCountdown());
             onPlayerJoined.Invoke(playerInput, _player2);
-            //StartCoroutine(BeginStartCountdown());
+            StartCoroutine(BeginStartCountdown());
         }
     }
 

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   infoPrefabs:
   - infoEnums: 2
-    sprite: {fileID: 21300000, guid: da4c45ed2ddf44f3e8b6118db2899049, type: 3}
+    sprite: {fileID: 21300000, guid: adc74db1415ab45b0a7a7388f4b88858, type: 3}
   - infoEnums: 0
     sprite: {fileID: 21300000, guid: 70b8ee62f9228432b96868413f44883d, type: 3}
   - infoEnums: 1
@@ -27,3 +27,5 @@ MonoBehaviour:
     sprite: {fileID: 21300000, guid: a28d364bc863f4c50af1062fd592c5f9, type: 3}
   - infoEnums: 6
     sprite: {fileID: 21300000, guid: 866ea3db69f3d4501ac6e4ae784e7f90, type: 3}
+  - infoEnums: 7
+    sprite: {fileID: 21300000, guid: 1eb77dcab44cf411ba5272b83c12bbe4, type: 3}
