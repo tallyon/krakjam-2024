@@ -26,42 +26,35 @@ public class InteractableStations : Interactable
 
                 Debug.Log($"Interactable item: {characterTypeEnum} has changed sprite of {stationEnum}");
                 spriteRenderer.sprite = changeSpriteInteraction.newSprite;
-                _simpleTextPopAnimationMiddle.HideInputIcon();
 
                 break;
             case StationGiveItemInteraction giveItemInteraction:
 
                 Debug.Log($"Interactable item: {characterTypeEnum} has taken {giveItemInteraction.giveItemEnum} to {stationEnum}");
                 player = GameStateController.Instance.GetPlayerObject(characterTypeEnum);
-                _simpleTextPopAnimationMiddle.HideInputIcon();
 
                 player.DeleteItem();
                 break;
             case StationTakeItemInteraction stationTakeItemInteraction:
                 Debug.Log($"Interactable item: {characterTypeEnum} has taken {stationTakeItemInteraction.takeItemEnum} from {stationEnum}");
                 player.AddItem(stationTakeItemInteraction.takeItemEnum);
-                _simpleTextPopAnimationMiddle.HideInputIcon();
 
                 break;
             case VentPathInteraction ventPathInteraction:
                 Debug.Log($"Interactable item: {characterTypeEnum} has taken vent from");
-                _simpleTextPopAnimationMiddle.HideInputIcon();
 
                 break;
             case StationOptionInteraction stationOptionInteraction:
                 Debug.Log($"Player has 3 items to get: {stationOptionInteraction.takeItemEnum1} {stationOptionInteraction.takeItemEnum2} {stationOptionInteraction.takeItemEnum3}");
                 OnSpecialInteractionPerformed?.Invoke(stationOptionInteraction);
-                _simpleTextPopAnimationMiddle.HideInputIcon();
 
                 break;
             case DoorInteraction doorInteraction:
                 Debug.Log($"Interactable item: {characterTypeEnum} has interacted with  door");
-                _simpleTextPopAnimationMiddle.HideInputIcon();
 
                 break;
             case TrophyCaseInteraction trophyCaseInteraction:
                 Debug.Log($"Interactable item: {characterTypeEnum} has interacted with  door");
-                _simpleTextPopAnimationMiddle.HideInputIcon();
 
                 break;
         }
