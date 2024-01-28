@@ -29,5 +29,7 @@ public class SpriteRadialFill : MonoBehaviour
             _renderer.material.SetFloat("_Arc1", currentArc1);
             yield return null;
         }
+
+        this.gameObject.SetActive(false);
     }
 }

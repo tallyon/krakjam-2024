@@ -10,7 +10,7 @@ public class Interactable : MonoBehaviour
     public Action<Interaction> OnSpecialInteractionPerformed;
 
     [SerializeField] protected SimpleTextPopAnimation _simpleTextPopAnimationMiddle;
-    [SerializeField] private ParticleSystem particle;
+    [SerializeField] protected ParticleSystem particle;
     private Interaction interaction;
     private List<string> currentPlayerTags = new();
 
@@ -33,15 +33,8 @@ public class Interactable : MonoBehaviour
 
     }
 
-    public async void Interact(PlayerCharacter playerCharacter)
+    public void Interact(PlayerCharacter playerCharacter)
     {
-        if(interaction.InteractionTimeMS > 0)
-        {
-            playerCharacter.ApplyStatus(PlayerCharacterStatus.Interacting, Convert.ToInt32(interaction.InteractionTimeMS / 1000));
-            particle.Play();
-            await Task.Delay(interaction.InteractionTimeMS);
-            particle.Stop();
-        }
         interaction.PlayInteraction(playerCharacter);
     }
 

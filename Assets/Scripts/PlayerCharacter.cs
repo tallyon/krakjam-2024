@@ -40,11 +40,11 @@ public class PlayerCharacter : MonoBehaviour
     [SerializeField] private TextMeshPro floatingTextPrefab;
     [SerializeField] private GameObject stunParticlesPrefab;
     [SerializeField] private GameObject slippingParticlesPrefab;
-    [SerializeField] private GameObject interactingParticlesPrefab;
+    [SerializeField] private SpriteRadialFill spriteRadialFill;
     [SerializeField] private SpriteRenderer interactingFillingSpritePrefab;
     private GameObject _stunParticlesInstance;
     private GameObject _slippingParticlesInstance;
-    private GameObject _interactingParticlesInstance;
+    private SpriteRadialFill _interactableRadialFill;
     private SpriteRenderer _interactingFillingSpriteInstance;
     
     public Action<PlayerCharacterStatus> OnPlayerCharacterStatusChanged;
@@ -73,7 +73,7 @@ public class PlayerCharacter : MonoBehaviour
         if (_stunParticlesInstance != null) Destroy(_stunParticlesInstance);
         if (_slippingParticlesInstance != null) Destroy(_slippingParticlesInstance);
         if (_interactingFillingSpriteInstance != null) Destroy(_interactingFillingSpriteInstance);
-        if (_interactingParticlesInstance != null) Destroy(_interactingParticlesInstance);
+        if (_interactableRadialFill != null) Destroy(_interactableRadialFill);
 
         switch (status)
         {
@@ -99,10 +99,16 @@ public class PlayerCharacter : MonoBehaviour
                 break;
             case PlayerCharacterStatus.Interacting:
                 Debug.Log($"INTERACTING on {gameObject.name}!");
-                _interactingParticlesInstance = Instantiate(interactingParticlesPrefab, transform.position + new Vector3(0, 3, -10), transform.rotation);
-                _interactingParticlesInstance.transform.SetParent(transform, true);
+                
                 break;
         }
+    }
+
+    public void StartInteracting(int radialTimeMS)
+    {
+        _interactableRadialFill = Instantiate(spriteRadialFill, transform.position + new Vector3(0, 3, -10), transform.rotation);
+        _interactableRadialFill.transform.SetParent(transform, true);
+        _interactableRadialFill.StartFill((float)radialTimeMS / 1000f);
     }
 
     public void AddItem(ItemsData.ItemsEnum item)
