@@ -19,6 +19,7 @@ public class PlayerMovementController : MonoBehaviour
     public Rigidbody2D Rigidbody => _rb2d;
     private Interactable _currentInteractableObject;
     private PlayerCharacter _playerCharacter;
+    private Animator _animator;
     private StationOptionInteraction _optionInteractionInProgress;
 
     private void Awake()
@@ -28,6 +29,7 @@ public class PlayerMovementController : MonoBehaviour
         _playerCharacter = GetComponent<PlayerCharacter>();
         _actionMap = controls.FindActionMap("gameplay");
         _movementAction = _actionMap.FindAction("movement");
+        _animator = GetComponent<Animator>();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -141,6 +143,15 @@ public class PlayerMovementController : MonoBehaviour
 
     public void Move(Vector2 moveVal)
     {
+        if (moveVal != Vector2.zero)
+        {
+            _animator.SetBool("IsMoving", true);
+        }
+        else
+        {
+               _animator.SetBool("IsMoving", false);
+        }
+        
         _rb2d.MovePosition(_rb2d.position + CharacterMoveSpeedModifier * moveVal);
     }
 
