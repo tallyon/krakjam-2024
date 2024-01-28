@@ -161,7 +161,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _simpleTextPopAnimationMiddle: {fileID: 0}
-  itemsEnum: 0
+  itemsEnum: 2
 --- !u!1001 &8088438484482236741
 PrefabInstance:
   m_ObjectHideFlags: 0

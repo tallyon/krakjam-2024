@@ -12,7 +12,8 @@ public class GirlInteractable : Interactable
     [SerializeField] Sprite spriteNormal;
     [SerializeField] Sprite spriteHappy;
     [SerializeField] int showEmotiontime = 1500;
-
+    [SerializeField] private ParticleSystem heartsParticles;
+    [SerializeField] private ParticleSystem happyHeartsParticles;
     private bool _wasColdBevarageDelivered;
     private bool _wasHotBeverageDelivered;
     private bool _wasFoodDelivered;
@@ -154,18 +155,22 @@ public class GirlInteractable : Interactable
         }
     }
 
+    [ContextMenu("Happy")]
     private async void ShowHappy()
     {
-        Debug.Log($"Girl: Girl is happy");
         spriteRenderer.sprite = spriteHappy;
+        var particles = Instantiate(happyHeartsParticles, transform);
+        particles.transform.localScale = new Vector3(1.2f, 1.2f, particles.transform.localScale.z);
+        particles.transform.localPosition = new Vector3(0, 5, 0);
         await Task.Delay(showEmotiontime);
         spriteRenderer.sprite = spriteNormal;
     }
 
+    [ContextMenu("PlaySad")]
     private async void ShowSad()
     {
-        Debug.Log($"Girl: Girl is sad");
         spriteRenderer.sprite = spriteSad;
+        Instantiate(heartsParticles, transform);
         await Task.Delay(showEmotiontime);
         spriteRenderer.sprite = spriteNormal;
     }

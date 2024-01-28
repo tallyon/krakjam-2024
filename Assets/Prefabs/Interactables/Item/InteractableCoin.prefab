@@ -146,7 +146,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isOneTimeUse: 0
-  InteractionTimeMS: 0
+  InteractionTime: 0
   possiblePlayerInteraction: 2
 --- !u!114 &9196494427775756211
 MonoBehaviour:
@@ -160,8 +160,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 908e882994c9f4539be6c6af177fc570, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _simpleTextPopAnimationMiddle: {fileID: 2742015824641115718}
-  particle: {fileID: 0}
+  _simpleTextPopAnimationMiddle: {fileID: 0}
   itemsEnum: 10
 --- !u!1001 &8183152442330515720
 PrefabInstance:
@@ -256,18 +255,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 92c247399782d42c1824bc912ea2c75b, type: 3}
---- !u!114 &2742015824641115718 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6313480528402108238, guid: 92c247399782d42c1824bc912ea2c75b,
-    type: 3}
-  m_PrefabInstance: {fileID: 8183152442330515720}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7871cb3af5a4b6996fae3a7032d48a0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &7547176642231336407 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1813984046547072223, guid: 92c247399782d42c1824bc912ea2c75b,
