@@ -1,3 +1,4 @@
+using System;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -6,7 +7,7 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(PlayerCharacter))]
 public class PlayerMovementController : MonoBehaviour
 {
-    private const float STUNNING_SURFACE_STUN_DURATION_SECONDS = 5;
+    public const float STUNNING_SURFACE_STUN_DURATION_SECONDS = 3;
     
     public int playerId;
     [SerializeField] private InputActionAsset controls;
@@ -20,6 +21,11 @@ public class PlayerMovementController : MonoBehaviour
     private Interactable _currentInteractableObject;
     private PlayerCharacter _playerCharacter;
     private StationOptionInteraction _optionInteractionInProgress;
+
+    [SerializeField] public Vector2 MoveVelocity => currentFramePosition - lastFramePosition;
+    private Vector2 lastFramePosition;
+    private Vector2 currentFramePosition;
+    [SerializeField] private Vector2 moveVelocity;
 
     private void Awake()
     {
@@ -51,7 +57,15 @@ public class PlayerMovementController : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        _currentInteractableObject.OnSpecialInteractionPerformed -= HandleOnSpecialInteractionPerformed;
+        try
+        {
+            _currentInteractableObject.OnSpecialInteractionPerformed -= HandleOnSpecialInteractionPerformed;
+        }
+        catch (Exception ex)
+        {
+            
+        }
+
         _currentInteractableObject = null;
     }
 
@@ -142,6 +156,14 @@ public class PlayerMovementController : MonoBehaviour
     public void Move(Vector2 moveVal)
     {
         _rb2d.MovePosition(_rb2d.position + CharacterMoveSpeedModifier * moveVal);
+    }
+
+    private void FixedUpdate()
+    {
+        lastFramePosition = currentFramePosition;
+        currentFramePosition = _rb2d.position;
+
+        moveVelocity = MoveVelocity;
     }
 
     public void EnterVent(float travelTime)

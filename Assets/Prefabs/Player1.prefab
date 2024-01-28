@@ -182,4 +182,6 @@ MonoBehaviour:
     type: 3}
   stunParticlesPrefab: {fileID: 8487402871801164198, guid: 2db04772dab7f418199b6df7cf3507d8,
     type: 3}
+  slippingParticlesPrefab: {fileID: 100002, guid: bffabf6f7869e42de9c136dfbbda5e2c,
+    type: 3}
   _characterData: {fileID: 11400000, guid: 4480815f2eb9146a7a2b5d024b5bf61b, type: 2}

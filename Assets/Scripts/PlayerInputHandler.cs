@@ -1,4 +1,3 @@
-using System;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -75,6 +74,10 @@ namespace DefaultNamespace
                     break;
                 case PlayerCharacterStatus.ChoosingItem:
                     DisableInput();
+                    break;
+                case PlayerCharacterStatus.Slipping:
+                    DisableInput();
+                    Debug.Log("Velocity: " + mover.MoveVelocity);
                     break;
             }
         }
