@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: VentAbility
   m_EditorClassIdentifier: 
   abilityName: Vent
-  cooldownSeconds: 8
+  cooldownSeconds: 45
   particles: {fileID: 100000, guid: ded5054783bdf4145bfbb9a138bb113a, type: 3}
   sfx: {fileID: 8300000, guid: 45af9f9e801324e53b1d97f8e7dcd746, type: 3}
   travelDuration: 3
