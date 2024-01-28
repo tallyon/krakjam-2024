@@ -157,7 +157,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.735237, y: 0.05020094}
+  m_Offset: {x: -1.0868903, y: 0.019411325}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -168,7 +168,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.7657118, y: 1.5495574}
+  m_Size: {x: 1.4690187, y: 2.5553627}
   m_EdgeRadius: 0
 --- !u!114 &8902202865895147233
 MonoBehaviour:
@@ -183,6 +183,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _simpleTextPopAnimationMiddle: {fileID: 5134028988686176445}
+  particle: {fileID: 0}
   _simpleTextPopAnimationLeft: {fileID: 7217313131436827158}
   _simpleTextPopAnimationRight: {fileID: 5918300770286777080}
   stationEnum: 10
@@ -200,7 +201,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isOneTimeUse: 0
-  InteractionTime: 0
+  InteractionTimeMS: 0
   possiblePlayerInteraction: 1
   rectTransforms:
   - {fileID: 8869259094483016429}
