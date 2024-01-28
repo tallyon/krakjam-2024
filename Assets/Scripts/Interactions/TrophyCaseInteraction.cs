@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
-using System.Linq;
 using static ItemsData;
+using static SimpleTextPopAnimation;
 
 public class TrophyCaseInteraction : Interaction
 {
@@ -10,14 +10,20 @@ public class TrophyCaseInteraction : Interaction
 
     public override void PlayInteraction(PlayerCharacter playerCharacter)
     {
-        if(playerCharacter.characterTypeEnum == CharacterTypeEnum.Sigma)
+        if (isOneTimeUse && _wasUsed)
         {
-            OnInteraction?.Invoke(new DisplayMessageInteraction() { Message = "you have to use ability" }, playerCharacter.characterTypeEnum);
+            OnInteraction?.Invoke(new DisplayMessageInteraction(InfoEnums.Used), playerCharacter.characterTypeEnum);
+            return;
+        }
+
+        if (playerCharacter.characterTypeEnum == CharacterTypeEnum.Sigma)
+        {
+            OnInteraction?.Invoke(new DisplayMessageInteraction(InfoEnums.ChadAbility), playerCharacter.characterTypeEnum);
             Debug.Log("Interactions: Player cannot take this item as this character");
         }
         else
         {
-            OnInteraction?.Invoke(new DisplayMessageInteraction() { Message = "Item cannot be taken by this character" }, playerCharacter.characterTypeEnum);
+            OnInteraction?.Invoke(new DisplayMessageInteraction(InfoEnums.NoInteraction), playerCharacter.characterTypeEnum);
             Debug.Log("Interactions: Player cannot take this item as this character");
         }
     }
@@ -34,7 +40,7 @@ public class TrophyCaseInteraction : Interaction
         }
         else
         {
-            OnInteraction?.Invoke(new DisplayMessageInteraction() { Message = "Ability is on cooldown" }, playerCharacter.characterTypeEnum);
+            OnInteraction?.Invoke(new DisplayMessageInteraction(InfoEnums.NoInteraction), playerCharacter.characterTypeEnum);
             Debug.Log("Interactions: Player cannot take this item as this character");
             return null;
         }

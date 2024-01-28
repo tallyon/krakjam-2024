@@ -1,5 +1,6 @@
 using UnityEngine;
 using static ItemsData;
+using static SimpleTextPopAnimation;
 
 public class StationGiveItemOptionInteraction : Interaction
 {
@@ -14,7 +15,7 @@ public class StationGiveItemOptionInteraction : Interaction
     {
         if (isOneTimeUse && _wasUsed)
         {
-            OnInteraction?.Invoke(new DisplayMessageInteraction() { Message = "Station cannot be taken by this character" }, playerCharacter.characterTypeEnum);
+            OnInteraction?.Invoke(new DisplayMessageInteraction(InfoEnums.Used), playerCharacter.characterTypeEnum);
             return;
         }
 
@@ -29,13 +30,13 @@ public class StationGiveItemOptionInteraction : Interaction
             }
             else
             {
-                OnInteraction?.Invoke(new DisplayMessageInteraction() { Message = "Station cannot be interacted by this character" }, playerCharacter.characterTypeEnum);
+                OnInteraction?.Invoke(new DisplayMessageInteraction(InfoEnums.NoItem, giveItem), playerCharacter.characterTypeEnum);
                 Debug.Log($"Interactions: Player cannot interact with this item with this character");
             }
         }
         else
         {
-            OnInteraction?.Invoke(new DisplayMessageInteraction() { Message = "Station cannot be interacted by this character" }, playerCharacter.characterTypeEnum);
+            OnInteraction?.Invoke(new DisplayMessageInteraction(InfoEnums.NoInteraction), playerCharacter.characterTypeEnum);
             Debug.Log($"Interactions: Player cannot interact with this item with this character");
         }
     }

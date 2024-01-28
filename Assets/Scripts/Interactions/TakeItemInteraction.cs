@@ -1,4 +1,5 @@
 using UnityEngine;
+using static SimpleTextPopAnimation;
 
 public class TakeItemInteraction : Interaction
 {
@@ -8,7 +9,7 @@ public class TakeItemInteraction : Interaction
         {
             if (playerCharacter.collectedItem != null)
             {
-                OnInteraction?.Invoke(new DisplayMessageInteraction() { Message = "You cannot have 2 collected items" }, playerCharacter.characterTypeEnum);
+                OnInteraction?.Invoke(new DisplayMessageInteraction(InfoEnums.TwoItems), playerCharacter.characterTypeEnum);
                 Debug.Log("Interactions: Player already have one item");
             }
             else
@@ -19,7 +20,7 @@ public class TakeItemInteraction : Interaction
         }
         else
         {
-            OnInteraction?.Invoke(new DisplayMessageInteraction() { Message = "Item cannot be taken by this character" }, playerCharacter.characterTypeEnum);
+            OnInteraction?.Invoke(new DisplayMessageInteraction(InfoEnums.NoInteraction), playerCharacter.characterTypeEnum);
             Debug.Log("Interactions: Player cannot take this item as this character");
         }
     }

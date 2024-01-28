@@ -1,5 +1,6 @@
 using UnityEngine;
 using static ItemsData;
+using static SimpleTextPopAnimation;
 
 public class GirlGiveItemInteraction : Interaction
 {
@@ -15,8 +16,6 @@ public class GirlGiveItemInteraction : Interaction
             {
 
                 Debug.Log($"Interactions: Player does not have any item to give");
-
-                OnInteraction?.Invoke(new DisplayMessageInteraction() { Message = "You do not have any item" }, playerCharacter.characterTypeEnum);
             }
     }
 }

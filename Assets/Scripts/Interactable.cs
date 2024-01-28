@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using System;
+using System.Threading.Tasks;
 
 public class Interactable : MonoBehaviour
 {
@@ -46,8 +47,9 @@ public class Interactable : MonoBehaviour
         switch (interaction)
         {
             case DisplayMessageInteraction displayMessageInteraction:
+                _simpleTextPopAnimationMiddle.Setup(displayMessageInteraction.InfoEnum, displayMessageInteraction.ItemEnum);
                 _simpleTextPopAnimationMiddle.PlayAnimation(transform.position);
-                Debug.Log(displayMessageInteraction.Message);
+                Debug.Log(displayMessageInteraction.InfoEnum);
                 break;
         }
     }

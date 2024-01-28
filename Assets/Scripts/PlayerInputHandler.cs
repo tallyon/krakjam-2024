@@ -142,7 +142,7 @@ namespace DefaultNamespace
         private void SwitchActionMapToEndGame()
         {
             Debug.Log($"Remember to enable endgame action map before release");
-            //_playerInput.SwitchCurrentActionMap("endgame");
+            _playerInput.SwitchCurrentActionMap("endgame");
         }
 
         private void EnableInput()

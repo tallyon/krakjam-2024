@@ -15,7 +15,7 @@ MonoBehaviour:
   iconSet:
   - type: 1
     icons:
-      skill1Icon: {fileID: 21300000, guid: 6df9e89e57d684ee280870138c9a9233, type: 3}
+      skill1Icon: {fileID: -741608249, guid: 1af7c20d6c90c4e639abcbf698348400, type: 3}
       skill2Icon: {fileID: 1462116476, guid: 1af7c20d6c90c4e639abcbf698348400, type: 3}
       interactableIcon: {fileID: -1295127590, guid: 1af7c20d6c90c4e639abcbf698348400,
         type: 3}

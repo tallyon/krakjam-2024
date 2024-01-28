@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using static SimpleTextPopAnimation;
 
 public class VentPathInteraction : Interaction
 {
@@ -10,12 +11,12 @@ public class VentPathInteraction : Interaction
     {
         if(playerCharacter.characterTypeEnum == CharacterTypeEnum.Beta)
         {
-            OnInteraction?.Invoke(new DisplayMessageInteraction() { Message = "you have to use ability" }, playerCharacter.characterTypeEnum);
+            OnInteraction?.Invoke(new DisplayMessageInteraction(InfoEnums.NerdAbility), playerCharacter.characterTypeEnum);
             Debug.Log("Interactions: Player cannot take this item as this character");
         }
         else
         {
-            OnInteraction?.Invoke(new DisplayMessageInteraction() { Message = "Item cannot be taken by this character" }, playerCharacter.characterTypeEnum);
+            OnInteraction?.Invoke(new DisplayMessageInteraction(InfoEnums.NoInteraction), playerCharacter.characterTypeEnum);
             Debug.Log("Interactions: Player cannot take this item as this character");
         }
     }
@@ -31,7 +32,7 @@ public class VentPathInteraction : Interaction
         }
         else
         {
-            OnInteraction?.Invoke(new DisplayMessageInteraction() { Message = "Ability is on cooldown" }, playerCharacter.characterTypeEnum);
+            OnInteraction?.Invoke(new DisplayMessageInteraction(InfoEnums.NoInteraction), playerCharacter.characterTypeEnum);
             Debug.Log("Interactions: Player cannot take this item as this character");
             return null;
         }

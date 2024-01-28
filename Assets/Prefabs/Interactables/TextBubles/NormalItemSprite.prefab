@@ -58,6 +58,7 @@ GameObject:
   - component: {fileID: 1230839777204229466}
   - component: {fileID: 3729892382099095921}
   - component: {fileID: 6150071008078904169}
+  - component: {fileID: 6655527601472150678}
   m_Layer: 0
   m_Name: NormalItemSprite
   m_TagString: Interactable
@@ -163,6 +164,19 @@ MonoBehaviour:
   animationTime: 0.5
   itemImage: {fileID: 654130333137517245}
   parentImage: {fileID: 3729892382099095921}
+  _canvasGroup: {fileID: 6655527601472150678}
+--- !u!225 &6655527601472150678
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3228463811845940285}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &6355011851040523768
 GameObject:
   m_ObjectHideFlags: 0

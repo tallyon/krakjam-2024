@@ -4,6 +4,7 @@ using UnityEngine;
 using DG.Tweening;
 using static ItemsData;
 using UnityEngine.UI;
+using System.Threading.Tasks;
 
 public class SimpleTextPopAnimation : MonoBehaviour, ISimpleAnimation
 {
@@ -12,11 +13,14 @@ public class SimpleTextPopAnimation : MonoBehaviour, ISimpleAnimation
     [SerializeField] float animationTime = 0.5f;
     [SerializeField] private Image itemImage;
     [SerializeField] private Image parentImage;
+
+    [SerializeField] private CanvasGroup _canvasGroup;
     //private SpriteRenderer spriteRenderer;
     private Sequence showSequence;
     private Sequence hideSequence;
     private Vector3 startingPos;
     private GameObject _spawnedObject;
+    private bool isAnimInProgress = false;
    // private SpriteRenderer spriteRendererChild;
 
     private void Awake()
@@ -26,15 +30,17 @@ public class SimpleTextPopAnimation : MonoBehaviour, ISimpleAnimation
 
     public void Setup(InfoEnums infoEnums, ItemsEnum itemEnums)
     {
-        var infoObj  = infoConfig.GetCollectedItemPrefab(infoEnums);
-        //_spawnedObject = Instantiate(infoObj, transform.parent);
-        //spriteRendererChild = _spawnedObject.GetComponentInChildren<SpriteRenderer>();
+        parentImage.sprite = infoConfig.GetCollectedItemPrefab(infoEnums);
 
         if (infoEnums == InfoEnums.SimpleItem)
         {
             var item = GameStateController.Instance.GetCollectedItemPrefab(itemEnums);
             itemImage.sprite = item.itemSprite;
             //spriteRendererChild.sprite = item.itemSprite;
+        }
+        else
+        {
+            itemImage.enabled = false;
         }
     }
 
@@ -49,8 +55,13 @@ public class SimpleTextPopAnimation : MonoBehaviour, ISimpleAnimation
 
         showSequence.Append(parentImage.DOFade(1, animationTime));
         showSequence.Join(itemImage.DOFade(1, animationTime));
+        showSequence.Join(_canvasGroup.DOFade(1, animationTime));
         showSequence.Join(transform.DOMove(new Vector3(startingPos.x + newPostition.x, startingPos.y + newPostition.y, 0), animationTime));
-
+        showSequence.OnComplete(async () =>
+        {
+            await Task.Delay(2);
+            HideAnimation();
+        });
         showSequence.Play();
     }
 
@@ -64,15 +75,19 @@ public class SimpleTextPopAnimation : MonoBehaviour, ISimpleAnimation
         showSequence.Append(transform.DOMove(startingPos, animationTime));
         showSequence.Join(itemImage.DOFade(0, animationTime));
         showSequence.Join(parentImage.DOFade(0, animationTime));
+        showSequence.Join(_canvasGroup.DOFade(0, animationTime));
         showSequence.Play();
     }
 
     public enum InfoEnums
     {
-        NoChad,
-        NoNerd,
+        NoInteraction,
         SimpleItem,
-        NoItem
+        NoItem,
+        Used,
+        ChadAbility,
+        NerdAbility,
+        TwoItems
     }
     
 }

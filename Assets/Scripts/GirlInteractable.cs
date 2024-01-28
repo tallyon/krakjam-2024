@@ -19,6 +19,7 @@ public class GirlInteractable : Interactable
     private bool _wasHotBeverageDelivered;
     private bool _wasFoodDelivered;
     private bool _wasPoemDelivered;
+    private bool _wasPhotoDelivered;
 
     private List<ItemData> itemsWithPoints = new();
 
@@ -120,13 +121,28 @@ public class GirlInteractable : Interactable
                         }
                     }
 
+                    if (itemData.itemEnum == ItemsEnum.Photo)
+                    {
+                        if (!_wasPhotoDelivered)
+                        {
+                            _wasPhotoDelivered = true;
+                        }
+                        else
+                        {
+                            Debug.Log($"Girl: Girl does not any mnore {itemData.itemEnum}");
+                            ShowSad();
+                            player.DeleteItem();
+                            return;
+                        }
+                    }
+
                     player = GameStateController.Instance.GetPlayerObject(characterTypeEnum);
                     GivePoints(itemData.finalPointsValue, player);
                     player.DeleteItem();
                 }
                 else
                 {
-                    Debug.Log($"Girl: Girl does not want {itemData.itemEnum}");
+                    Debug.Log($"Girl: Girl does not want this item.");
                     ShowSad();
                 }
                 break;
@@ -162,7 +178,7 @@ public class GirlInteractable : Interactable
         spriteRenderer.sprite = spriteHappy;
         var particles = Instantiate(happyHeartsParticles, transform);
         particles.transform.localScale = new Vector3(1.2f, 1.2f, particles.transform.localScale.z);
-        particles.transform.localPosition = new Vector3(0, 5, 0);
+        particles.transform.localPosition = new Vector3(0, 2f, 0);
         //animator.SetBool("IsHappy", true);
         animator.Play("happy_jump");
         await Task.Delay(showEmotiontime);
