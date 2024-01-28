@@ -44,5 +44,8 @@ namespace UI
         public Sprite goDown;
         public Sprite goLeft;
         public Sprite goRight;
+        public Sprite interact1;
+        public Sprite interact2;
+        public Sprite interact3;
     }
 }
