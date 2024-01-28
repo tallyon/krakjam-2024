@@ -38,6 +38,11 @@ public class SimpleTextPopAnimation : MonoBehaviour, ISimpleAnimation
         //spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
+    public void HideInputIcon()
+    {
+        inputIcon.gameObject.SetActive(false);
+        inputIcon2.gameObject.SetActive(false);
+    }
     public void Setup(InfoEnums infoEnums, ItemsEnum itemEnums)
     {
         keyboardIcons = inputIcons.GetIcons("FastKeyboard"); 
