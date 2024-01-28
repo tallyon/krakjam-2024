@@ -20,6 +20,7 @@ public class PlayerMovementController : MonoBehaviour
     public Rigidbody2D Rigidbody => _rb2d;
     private Interactable _currentInteractableObject;
     private PlayerCharacter _playerCharacter;
+    private Animator _animator;
     private StationOptionInteraction _optionInteractionInProgress;
 
     [SerializeField] public Vector2 MoveVelocity => currentFramePosition - lastFramePosition;
@@ -34,6 +35,7 @@ public class PlayerMovementController : MonoBehaviour
         _playerCharacter = GetComponent<PlayerCharacter>();
         _actionMap = controls.FindActionMap("gameplay");
         _movementAction = _actionMap.FindAction("movement");
+        _animator = GetComponent<Animator>();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -83,7 +85,8 @@ public class PlayerMovementController : MonoBehaviour
     
     public void OnChooseItem1Performed(InputAction.CallbackContext obj)
     {
-        if(_playerCharacter.PlayerStatus == PlayerCharacterStatus.ChoosingItem)
+        Debug.Log("Player Clicked 1st item");
+        if (_playerCharacter.PlayerStatus == PlayerCharacterStatus.ChoosingItem)
         {
             _playerCharacter.AddItem(_optionInteractionInProgress.takeItemEnum1);
             _playerCharacter.ApplyStatus(PlayerCharacterStatus.Normal);
@@ -95,9 +98,10 @@ public class PlayerMovementController : MonoBehaviour
 
     public void OnChooseItem2Performed(InputAction.CallbackContext obj)
     {
+        Debug.Log("Player Clicked 2nd item");
         if (_playerCharacter.PlayerStatus == PlayerCharacterStatus.ChoosingItem)
         {
-            _playerCharacter.AddItem(_optionInteractionInProgress.takeItemEnum1);
+            _playerCharacter.AddItem(_optionInteractionInProgress.takeItemEnum2);
             _playerCharacter.ApplyStatus(PlayerCharacterStatus.Normal);
             var stationChoiceObject = _currentInteractableObject as InteractableStations;
             stationChoiceObject.HideChoises();
@@ -107,9 +111,10 @@ public class PlayerMovementController : MonoBehaviour
 
     public void OnChooseItem3Performed(InputAction.CallbackContext obj)
     {
+        Debug.Log("Player Clicked 3rd item");
         if (_playerCharacter.PlayerStatus == PlayerCharacterStatus.ChoosingItem)
         {
-            _playerCharacter.AddItem(_optionInteractionInProgress.takeItemEnum1);
+            _playerCharacter.AddItem(_optionInteractionInProgress.takeItemEnum3);
             _playerCharacter.ApplyStatus(PlayerCharacterStatus.Normal);
             var stationChoiceObject = _currentInteractableObject as InteractableStations;
             stationChoiceObject.HideChoises();
@@ -139,7 +144,7 @@ public class PlayerMovementController : MonoBehaviour
             _playerCharacter.ApplyStatus(PlayerCharacterStatus.ChoosingItem);
             var stationChoiceObject = _currentInteractableObject as InteractableStations;
 
-            stationChoiceObject.ShowChoices(optionInteraction.takeItemEnum1, optionInteraction.takeItemEnum2, optionInteraction.takeItemEnum2);
+            stationChoiceObject.ShowChoices(optionInteraction.takeItemEnum1, optionInteraction.takeItemEnum2, optionInteraction.takeItemEnum3);
         }
     }
 
@@ -155,6 +160,15 @@ public class PlayerMovementController : MonoBehaviour
 
     public void Move(Vector2 moveVal)
     {
+        if (moveVal != Vector2.zero)
+        {
+            _animator.SetBool("IsMoving", true);
+        }
+        else
+        {
+               _animator.SetBool("IsMoving", false);
+        }
+        
         _rb2d.MovePosition(_rb2d.position + CharacterMoveSpeedModifier * moveVal);
     }
 

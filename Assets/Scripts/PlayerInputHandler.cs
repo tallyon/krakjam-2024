@@ -73,7 +73,7 @@ namespace DefaultNamespace
                     DisableInput();
                     break;
                 case PlayerCharacterStatus.ChoosingItem:
-                    DisableInput();
+                    ChoiceInput();
                     break;
                 case PlayerCharacterStatus.Slipping:
                     DisableInput();
@@ -151,7 +151,12 @@ namespace DefaultNamespace
         {
             _playerInput.SwitchCurrentActionMap("idle");            
         }
-        
+
+        private void ChoiceInput()
+        {
+            _playerInput.SwitchCurrentActionMap("choosing item");
+        }
+
 
         private void FixedUpdate()
         {
