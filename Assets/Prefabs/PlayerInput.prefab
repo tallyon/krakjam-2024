@@ -219,7 +219,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 3735910552527112263}
         m_TargetAssemblyTypeName: DefaultNamespace.PlayerInputHandler, Assembly-CSharp
-        m_MethodName: OnChooseItem1Performed
+        m_MethodName: OnChooseItem3Performed
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -251,7 +251,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 3735910552527112263}
         m_TargetAssemblyTypeName: DefaultNamespace.PlayerInputHandler, Assembly-CSharp
-        m_MethodName: OnChooseItem3Performed
+        m_MethodName: OnChooseItem1Performed
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
