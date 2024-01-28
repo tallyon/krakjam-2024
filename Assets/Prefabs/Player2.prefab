@@ -132,11 +132,14 @@ MonoBehaviour:
     type: 3}
   stunParticlesPrefab: {fileID: 8487402871801164198, guid: 2db04772dab7f418199b6df7cf3507d8,
     type: 3}
+  ventingParticlesPrefab: {fileID: 100000, guid: ded5054783bdf4145bfbb9a138bb113a,
+    type: 3}
   slippingParticlesPrefab: {fileID: 100002, guid: bffabf6f7869e42de9c136dfbbda5e2c,
     type: 3}
   interactingParticlesPrefab: {fileID: 9027514048236820045, guid: 07ea976c5de6b4dd7b0d23a5c0b96e7f,
     type: 3}
   interactingFillingSpritePrefab: {fileID: 0}
+  characterSpriteRenderer: {fileID: 1772315854736575666}
   _characterData: {fileID: 11400000, guid: ac67ffd88a7ad4208b530424d410f768, type: 2}
 --- !u!1001 &3179947305977623429
 PrefabInstance:
@@ -204,7 +207,7 @@ PrefabInstance:
     - target: {fileID: 3799339182164049719, guid: 8fd6eef3781014010918810dc779b163,
         type: 3}
       propertyPath: m_SortingOrder
-      value: 1
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8360361611398857959, guid: 8fd6eef3781014010918810dc779b163,
         type: 3}
@@ -247,6 +250,12 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!212 &1772315854736575666 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 3799339182164049719, guid: 8fd6eef3781014010918810dc779b163,
+    type: 3}
+  m_PrefabInstance: {fileID: 3179947305977623429}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3908254217460518708 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1881829247931759793, guid: 8fd6eef3781014010918810dc779b163,

@@ -13,6 +13,7 @@ public class InteractableItem : Interactable
     protected override void HandleOnInteractionWithObject(Interaction interaction, CharacterTypeEnum characterTypeEnum)
     {
         base.HandleOnInteractionWithObject(interaction, characterTypeEnum);
+        Debug.Log(itemsEnum + " on interaction");
 
         if (interaction is TakeItemInteraction)
         {
