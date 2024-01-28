@@ -30,8 +30,11 @@ public class PlayerMovementController : MonoBehaviour
     private Vector2 currentFramePosition;
     [SerializeField] private Vector2 moveVelocity;
 
+    private AudioSource _audio; 
+
     private void Awake()
     {
+        _audio = GetComponent<AudioSource>();
         _rb2d = GetComponent<Rigidbody2D>();
         _collider = GetComponent<Collider2D>();
         _playerCharacter = GetComponent<PlayerCharacter>();

@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine;
 using DG.Tweening;
 using TMPro;
+using Unity.VisualScripting;
 
 public enum FloatingTextColor
 {
@@ -27,6 +28,7 @@ public class PlayerCharacter : MonoBehaviour
 {
     public CharacterTypeEnum characterTypeEnum => CharacterData.CharacterType;
     public CollectedItem collectedItem = null;
+    private bool canItemBeUsed;
     public Action<CollectedItem> onItemAdd;
     public Action onItemDeleted;
     public Action<Ability> onAbility1Used;
@@ -153,11 +155,19 @@ public class PlayerCharacter : MonoBehaviour
         collectedItem = collected;
         if (item == ItemsData.ItemsEnum.FireExtinguisher) aimingLine.gameObject.SetActive(true);
         onItemAdd?.Invoke(collectedItem);
+        StartCoroutine(SetItemCanBeUsed(0.5f));
+    }
+
+    private IEnumerator SetItemCanBeUsed(float delaySeconds)
+    {
+        yield return new WaitForSeconds(delaySeconds);
+        if (collectedItem != null) canItemBeUsed = true;
     }
 
     public void DeleteItem()
     {
         collectedItem = null;
+        canItemBeUsed = false;
         aimingLine.gameObject.SetActive(false);
         onItemDeleted?.Invoke();
     }
@@ -255,7 +265,7 @@ public class PlayerCharacter : MonoBehaviour
 
     public void UseItem()
     {
-        SpawnFloatingText("USING ITEM!");
+        if (canItemBeUsed == false) return;
         Debug.Log("Using item " + collectedItem.itemsEnum);
         switch (collectedItem.itemsEnum)
         {
@@ -341,7 +351,13 @@ public class PlayerCharacter : MonoBehaviour
 
     private bool UseSkillVent(VentAbility ventAbility)
     {
-        return _playerMovementController.EnterVent(ventAbility.TravelDuration);
+        var vented = _playerMovementController.EnterVent(ventAbility.TravelDuration);
+        if (vented)
+        {
+            var audio = GetComponent<AudioSource>();
+            audio.PlayOneShot(ventAbility.Sound);
+        }
+        return vented;
     }
 
     private void SpawnFloatingText(string text, FloatingTextColor color = FloatingTextColor.Neutral)

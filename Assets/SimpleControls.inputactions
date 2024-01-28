@@ -262,7 +262,7 @@
                 {
                     "name": "",
                     "id": "df5dc403-f8d5-460f-9a85-fabc10aab1c3",
-                    "path": "<Keyboard>/r",
+                    "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
@@ -273,7 +273,7 @@
                 {
                     "name": "",
                     "id": "966e2225-cfdc-41a0-b65f-fd9723729672",
-                    "path": "<Gamepad>/buttonEast",
+                    "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad",

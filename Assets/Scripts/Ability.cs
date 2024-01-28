@@ -3,6 +3,7 @@ using UnityEngine;
 public class VentAbility : Ability
 {
     public float TravelDuration => (Config as VentAbilityConfig).TravelDuration;
+    public AudioClip Sound => (Config as VentAbilityConfig).Sound;
     public VentAbility(Ability ability) : base(ability.Config)
     {
         
