@@ -5,6 +5,7 @@ using DG.Tweening;
 using static ItemsData;
 using UnityEngine.UI;
 using System.Threading.Tasks;
+using UI;
 
 public class SimpleTextPopAnimation : MonoBehaviour, ISimpleAnimation
 {
@@ -13,6 +14,11 @@ public class SimpleTextPopAnimation : MonoBehaviour, ISimpleAnimation
     [SerializeField] float animationTime = 0.5f;
     [SerializeField] private Image itemImage;
     [SerializeField] private Image parentImage;
+    [SerializeField] private Image inputIcon;
+    [SerializeField] private Image inputIcon2;
+
+    [SerializeField]
+    private InputIconsConfig inputIcons;
 
     [SerializeField] private CanvasGroup _canvasGroup;
     //private SpriteRenderer spriteRenderer;
@@ -21,7 +27,11 @@ public class SimpleTextPopAnimation : MonoBehaviour, ISimpleAnimation
     private Vector3 startingPos;
     private GameObject _spawnedObject;
     private bool isAnimInProgress = false;
-   // private SpriteRenderer spriteRendererChild;
+
+    private InputIconSet keyboardIcons;
+    private InputIconSet gamepadIcons;
+    
+    // private SpriteRenderer spriteRendererChild;
 
     private void Awake()
     {
@@ -30,6 +40,8 @@ public class SimpleTextPopAnimation : MonoBehaviour, ISimpleAnimation
 
     public void Setup(InfoEnums infoEnums, ItemsEnum itemEnums)
     {
+        keyboardIcons = inputIcons.GetIcons("FastKeyboard"); 
+        gamepadIcons = inputIcons.GetIcons("");
         parentImage.sprite = infoConfig.GetCollectedItemPrefab(infoEnums);
 
         if (infoEnums == InfoEnums.SimpleItem || infoEnums == InfoEnums.NoItem)
@@ -64,11 +76,30 @@ public class SimpleTextPopAnimation : MonoBehaviour, ISimpleAnimation
         showSequence.Join(itemImage.DOFade(1, animationTime));
         showSequence.Join(_canvasGroup.DOFade(1, animationTime));
         showSequence.Join(transform.DOMove(new Vector3(startingPos.x + newPostition.x, startingPos.y + newPostition.y, 0), animationTime));
+        if (newPostition.x < 0)
+        {
+            inputIcon.sprite = keyboardIcons.icons.interact1;
+            inputIcon2.sprite = gamepadIcons.icons.interact1;
+        }
+        else if(newPostition.x == 0)
+        {
+
+            inputIcon.sprite = keyboardIcons.icons.interact2;
+            inputIcon2.sprite = gamepadIcons.icons.interact2;
+
+        }
+        else if(newPostition.x > 0)
+        {
+            inputIcon.sprite = keyboardIcons.icons.interact3;
+            inputIcon2.sprite = gamepadIcons.icons.interact3;
+
+        }
         showSequence.OnComplete(async () =>
         {
             await Task.Delay(2);
             HideAnimation();
         });
+        
         showSequence.Play();
     }
 
