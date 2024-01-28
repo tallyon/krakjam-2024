@@ -2,12 +2,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 using System;
+using System.Threading.Tasks;
+using static UnityEngine.ParticleSystem;
 
 public class Interactable : MonoBehaviour
 {
     public Action<Interaction> OnSpecialInteractionPerformed;
 
     [SerializeField] protected SimpleTextPopAnimation _simpleTextPopAnimationMiddle;
+    [SerializeField] private ParticleSystem particle;
     private Interaction interaction;
     private List<string> currentPlayerTags = new();
 
@@ -30,8 +33,14 @@ public class Interactable : MonoBehaviour
 
     }
 
-    public void Interact(PlayerCharacter playerCharacter)
+    public async void Interact(PlayerCharacter playerCharacter)
     {
+        if(interaction.InteractionTimeMS > 0)
+        {
+            particle.Play();
+            await Task.Delay(interaction.InteractionTimeMS);
+            particle.Stop();
+        }
         interaction.PlayInteraction(playerCharacter);
     }
 

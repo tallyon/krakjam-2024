@@ -5,7 +5,7 @@ using UnityEngine;
 public class Interaction : MonoBehaviour
 {
     public bool isOneTimeUse;
-    public float InteractionTime;
+    public int InteractionTimeMS;
     public Action<Interaction, CharacterTypeEnum> OnInteraction;
     public CharacterTypeEnum possiblePlayerInteraction;
 
