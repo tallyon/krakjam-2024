@@ -126,24 +126,29 @@ public class PlayerCharacter : MonoBehaviour
         var particles = Ability1.Particles;
         if (string.IsNullOrEmpty(abilityName) == false) SpawnFloatingText($"{abilityName}!");
         if (particles != null) Instantiate(particles, transform.position, transform.rotation);
+
+        var wasSkillUSed = false;
         
         switch (_characterData.CharacterType)
         {
             case CharacterTypeEnum.Sigma:
                 var sprintAbility = new SprintAbility(Ability1);
-                UseSkillSprint(sprintAbility);
+                wasSkillUSed = UseSkillSprint(sprintAbility);
                 break;
             case CharacterTypeEnum.Beta:
-                UseSkillObstacle();
+                wasSkillUSed = UseSkillObstacle();
                 break;
             case CharacterTypeEnum.Both:
                 break;
             default:
                 throw new ArgumentOutOfRangeException();
         }
-        
-        Ability1.GoOnCooldown();
-        onAbility1Used.Invoke(Ability1);
+
+        if (wasSkillUSed)
+        {
+            Ability1.GoOnCooldown();
+            onAbility1Used.Invoke(Ability1);
+        }
     }
 
     public void UseAbility2()
@@ -155,16 +160,17 @@ public class PlayerCharacter : MonoBehaviour
         if (string.IsNullOrEmpty(abilityName) == false) SpawnFloatingText($"{abilityName}!");
         if (particles != null) Instantiate(particles, transform.position, transform.rotation);
 
+        var wasSkillUsed = false;
         switch (_characterData.CharacterType)
         {
             case CharacterTypeEnum.Sigma:
                 var smashAbility = new SmashAbility(Ability2);
-                UseSkillSmash(smashAbility);
+                wasSkillUsed = UseSkillSmash(smashAbility);
                 _playerMovementController.SmashItem();
                 break;
             case CharacterTypeEnum.Beta:
                 var ventAbility = new VentAbility(Ability2);
-                UseSkillVent(ventAbility);
+                wasSkillUsed = UseSkillVent(ventAbility);
                 break;
             case CharacterTypeEnum.Both:
                 break;
@@ -172,8 +178,11 @@ public class PlayerCharacter : MonoBehaviour
                 throw new ArgumentOutOfRangeException();
         }
 
-        Ability2.GoOnCooldown();
-        onAbility2Used.Invoke(Ability2);
+        if (wasSkillUsed)
+        {
+            Ability2.GoOnCooldown();
+            onAbility2Used.Invoke(Ability2);   
+        }
     }
 
     public void ApplyStatus(PlayerCharacterStatus status, float timeSeconds)
@@ -210,13 +219,15 @@ public class PlayerCharacter : MonoBehaviour
         Ability2.UpdateCooldownState(timePassedSinceLastFrame);
     }
 
-    private void UseSkillSprint(SprintAbility sprintAbility)
+    private bool UseSkillSprint(SprintAbility sprintAbility)
     {
         var previousSpeedModifier = _playerMovementController.CharacterMoveSpeedModifier;
         StartCoroutine(RestorePreviousSpeedModifier(previousSpeedModifier, sprintAbility.Duration));
         
         var newSpeedModifier = _playerMovementController.CharacterMoveSpeedModifier * sprintAbility.SpeedModifier;
         _playerMovementController.CharacterMoveSpeedModifier = newSpeedModifier;
+        
+        return true;
     }
 
     private IEnumerator RestorePreviousSpeedModifier(float speedModifier, float delaySeconds)
@@ -225,32 +236,33 @@ public class PlayerCharacter : MonoBehaviour
         _playerMovementController.CharacterMoveSpeedModifier = speedModifier;
     }
 
-    private void UseSkillSmash(SmashAbility abilityConfig)
+    private bool UseSkillSmash(SmashAbility abilityConfig)
     {
         // check if other player is in the radius of the skill
         var otherPlayer = GameStateController.Instance.GetOtherPlayer(this);
         var distanceToOtherPlayer = Vector2.Distance(otherPlayer.transform.position, transform.position);
 
-        if (distanceToOtherPlayer > abilityConfig.Radius) return;
+        if (distanceToOtherPlayer > abilityConfig.Radius) return false;
         
         // check if other player is in normal status
-        if (otherPlayer.PlayerStatus != PlayerCharacterStatus.Normal) return;
+        if (otherPlayer.PlayerStatus != PlayerCharacterStatus.Normal) return false;
         
         // if other player is in radius apply Stunned status and push him back
         otherPlayer.ApplyStatus(PlayerCharacterStatus.Stunned, abilityConfig.Duration);
         otherPlayer._playerMovementController.Rigidbody.DOMove(otherPlayer.transform.position +
                                      (otherPlayer.transform.position - transform.position), .5f);
+
+        return true;
     }
 
-    private void UseSkillObstacle()
+    private bool UseSkillObstacle()
     {
-        _playerMovementController.CloseDoor();
-        SpawnFloatingText("Obstacle!");
+        return _playerMovementController.CloseDoor();
     }
 
-    private void UseSkillVent(VentAbility ventAbility)
+    private bool UseSkillVent(VentAbility ventAbility)
     {
-        _playerMovementController.EnterVent(ventAbility.TravelDuration);
+        return _playerMovementController.EnterVent(ventAbility.TravelDuration);
     }
 
     private void SpawnFloatingText(string text)
