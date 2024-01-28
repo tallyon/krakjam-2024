@@ -46,7 +46,7 @@ public class StationOptionGiveAdnTakeItemInteraction : Interaction
             }
             else
             {
-                OnInteraction?.Invoke(new DisplayMessageInteraction(InfoEnums.NoItem), playerCharacter.characterTypeEnum);
+                OnInteraction?.Invoke(new DisplayMessageInteraction(InfoEnums.NoItem, giveItemEnum1), playerCharacter.characterTypeEnum);
                 Debug.Log($"Interactions: Player tries to interact, does not have proper item");
             }
         }
