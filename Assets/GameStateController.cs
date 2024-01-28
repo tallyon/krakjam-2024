@@ -52,7 +52,7 @@ public class GameStateController : Singleton<GameStateController>
     
     public void ResetLevel()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene(1);
     }
 
     private IEnumerator BeginStartCountdown()
