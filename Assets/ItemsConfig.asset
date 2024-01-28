@@ -34,14 +34,14 @@ MonoBehaviour:
     finalPointsValue: 4
     canBeGivenToGirl: 1
   - Name: BakedCake
-    itemEnum: 0
+    itemEnum: 20
     collectedItem: {fileID: 8381654774350127443, guid: 33948b8d4e39c46d29d4138be65e5898,
       type: 3}
     interactableItem: {fileID: 9196494427775756211, guid: 756a410e32a754ca0aba685e3432243f,
       type: 3}
     minPointsValue: 4
     maxPointsValue: 6
-    finalPointsValue: 4
+    finalPointsValue: 6
     canBeGivenToGirl: 1
   - Name: Cappuchino
     itemEnum: 2
@@ -51,7 +51,7 @@ MonoBehaviour:
       type: 3}
     minPointsValue: 1
     maxPointsValue: 3
-    finalPointsValue: 1
+    finalPointsValue: 2
     canBeGivenToGirl: 1
   - Name: Cola
     itemEnum: 3
@@ -71,7 +71,7 @@ MonoBehaviour:
       type: 3}
     minPointsValue: 2
     maxPointsValue: 4
-    finalPointsValue: 3
+    finalPointsValue: 2
     canBeGivenToGirl: 1
   - Name: Poem about Horses
     itemEnum: 22
