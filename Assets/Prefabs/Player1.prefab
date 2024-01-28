@@ -140,7 +140,7 @@ MonoBehaviour:
     type: 3}
   interactingFillingSpritePrefab: {fileID: 0}
   characterSpriteRenderer: {fileID: 4337684910768030743}
-  _characterData: {fileID: 11400000, guid: ac67ffd88a7ad4208b530424d410f768, type: 2}
+  _characterData: {fileID: 11400000, guid: 4480815f2eb9146a7a2b5d024b5bf61b, type: 2}
 --- !u!1001 &3395795616801474028
 PrefabInstance:
   m_ObjectHideFlags: 0
