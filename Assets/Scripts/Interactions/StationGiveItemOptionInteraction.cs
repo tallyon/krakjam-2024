@@ -21,7 +21,7 @@ public class StationGiveItemOptionInteraction : Interaction
 
         if (possiblePlayerInteraction == CharacterTypeEnum.Both || playerCharacter.characterTypeEnum == possiblePlayerInteraction)
         {
-            if(playerCharacter.collectedItem == null && playerCharacter.collectedItem.itemsEnum == giveItem)
+            if(playerCharacter.collectedItem != null && playerCharacter.collectedItem.itemsEnum == giveItem)
             {
                 OnInteraction?.Invoke(new StationGiveItemInteraction() { giveItemEnum = giveItem }, playerCharacter.characterTypeEnum);
                 OnInteraction?.Invoke(new StationOptionInteraction() { takeItemEnum1= takeItemEnum1 , takeItemEnum2 = takeItemEnum2 , takeItemEnum3 = takeItemEnum3 }, playerCharacter.characterTypeEnum);

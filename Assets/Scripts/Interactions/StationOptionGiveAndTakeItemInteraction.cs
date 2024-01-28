@@ -20,7 +20,7 @@ public class StationOptionGiveAdnTakeItemInteraction : Interaction
 
         if (possiblePlayerInteraction == CharacterTypeEnum.Both || playerCharacter.characterTypeEnum == possiblePlayerInteraction)
         {
-            if (playerCharacter.collectedItem == null)
+            if (playerCharacter.collectedItem != null)
             {
                 if (playerCharacter.collectedItem.itemsEnum == giveItemEnum1)
                 {
@@ -46,7 +46,7 @@ public class StationOptionGiveAdnTakeItemInteraction : Interaction
             }
             else
             {
-                OnInteraction?.Invoke(new DisplayMessageInteraction(InfoEnums.TwoItems), playerCharacter.characterTypeEnum);
+                OnInteraction?.Invoke(new DisplayMessageInteraction(InfoEnums.NoItem), playerCharacter.characterTypeEnum);
                 Debug.Log($"Interactions: Player tries to interact, does not have proper item");
             }
         }
