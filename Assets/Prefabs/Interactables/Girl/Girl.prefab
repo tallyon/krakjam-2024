@@ -148,6 +148,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _simpleTextPopAnimationMiddle: {fileID: 2360668297996181832}
+  particle: {fileID: 0}
   itemConfig: {fileID: 11400000, guid: 9edef4e699d03477d80edcc0bdaacb3d, type: 2}
   spriteRenderer: {fileID: 6718032514077017206}
   spriteSad: {fileID: 21300000, guid: 6603f9323795c460cae37f39a13586de, type: 3}
@@ -158,6 +159,7 @@ MonoBehaviour:
     type: 3}
   happyHeartsParticles: {fileID: 19800004, guid: 3af6f68141914ca43ba39b2403757bd0,
     type: 3}
+  animator: {fileID: 5799292057313662360}
 --- !u!114 &5490505996615563559
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -171,7 +173,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isOneTimeUse: 0
-  InteractionTime: 0
+  InteractionTimeMS: 0
   possiblePlayerInteraction: 2
 --- !u!1 &4464465753225562986
 GameObject:
@@ -328,6 +330,12 @@ PrefabInstance:
 --- !u!4 &2081757372181430172 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4107163343335917142, guid: c1bf34b40fd1b4f9a84988f03283e1ce,
+    type: 3}
+  m_PrefabInstance: {fileID: 2602077830945159626}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &5799292057313662360 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 8387753534636649554, guid: c1bf34b40fd1b4f9a84988f03283e1ce,
     type: 3}
   m_PrefabInstance: {fileID: 2602077830945159626}
   m_PrefabAsset: {fileID: 0}

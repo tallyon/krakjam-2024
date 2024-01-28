@@ -14,6 +14,7 @@ public class GirlInteractable : Interactable
     [SerializeField] int showEmotiontime = 1500;
     [SerializeField] private ParticleSystem heartsParticles;
     [SerializeField] private ParticleSystem happyHeartsParticles;
+    [SerializeField] private Animator animator;
     private bool _wasColdBevarageDelivered;
     private bool _wasHotBeverageDelivered;
     private bool _wasFoodDelivered;
@@ -162,6 +163,8 @@ public class GirlInteractable : Interactable
         var particles = Instantiate(happyHeartsParticles, transform);
         particles.transform.localScale = new Vector3(1.2f, 1.2f, particles.transform.localScale.z);
         particles.transform.localPosition = new Vector3(0, 5, 0);
+        //animator.SetBool("IsHappy", true);
+        animator.Play("happy_jump");
         await Task.Delay(showEmotiontime);
         spriteRenderer.sprite = spriteNormal;
     }
@@ -169,7 +172,9 @@ public class GirlInteractable : Interactable
     [ContextMenu("PlaySad")]
     private async void ShowSad()
     {
+        animator.Play("sadge");
         spriteRenderer.sprite = spriteSad;
+        //animator.SetBool("IsSad", true);
         Instantiate(heartsParticles, transform);
         await Task.Delay(showEmotiontime);
         spriteRenderer.sprite = spriteNormal;
