@@ -137,6 +137,15 @@ public class GirlInteractable : Interactable
         Debug.Log($"Girl gives {player.characterTypeEnum}: {points}");
         if (points > 0)
         {
+            if (player.characterTypeEnum == CharacterTypeEnum.Sigma)
+            {
+                GameStateController.Instance.Player1Score.AddScore(points);
+            }
+            else
+            {
+                GameStateController.Instance.Player2Score.AddScore(points);
+            }
+            
             ShowHappy();
         }
         else
