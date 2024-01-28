@@ -8,9 +8,15 @@ namespace UI
     public class EndGameScreen : MonoBehaviour
     {
         [SerializeField] private GameObject content;
+        [SerializeField] private GameObject chad;
+        [SerializeField] private GameObject nerd;
+        [SerializeField] private GameObject noone;
 
         private void Start()
         {
+            chad.SetActive(false);
+            nerd.SetActive(false);
+            noone.SetActive(false);
             if (!GameStateController.Instance.IsGameInitialized)
                 GameStateController.Instance.OnGameInit += SignToEvents;
             else
@@ -26,17 +32,17 @@ namespace UI
 
         private void ShowEndGameScreenPlayer1()
         {
-            content.SetActive(true);
+            chad.SetActive(true);
         }
         
         private void ShowEndGameScreenPlayer2()
         {
-            content.SetActive(true);
+            nerd.SetActive(true);
         }
 
         private void ShowEndGame()
         {
-            content.SetActive(true);
+            noone.SetActive(true);
         }
 
         
