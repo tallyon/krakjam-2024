@@ -1,3 +1,4 @@
+using System;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -6,7 +7,7 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(PlayerCharacter))]
 public class PlayerMovementController : MonoBehaviour
 {
-    private const float STUNNING_SURFACE_STUN_DURATION_SECONDS = 5;
+    public const float STUNNING_SURFACE_STUN_DURATION_SECONDS = 3;
     
     public int playerId;
     [SerializeField] private InputActionAsset controls;
@@ -21,6 +22,11 @@ public class PlayerMovementController : MonoBehaviour
     private PlayerCharacter _playerCharacter;
     private Animator _animator;
     private StationOptionInteraction _optionInteractionInProgress;
+
+    [SerializeField] public Vector2 MoveVelocity => currentFramePosition - lastFramePosition;
+    private Vector2 lastFramePosition;
+    private Vector2 currentFramePosition;
+    [SerializeField] private Vector2 moveVelocity;
 
     private void Awake()
     {
@@ -53,7 +59,15 @@ public class PlayerMovementController : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        _currentInteractableObject.OnSpecialInteractionPerformed -= HandleOnSpecialInteractionPerformed;
+        try
+        {
+            _currentInteractableObject.OnSpecialInteractionPerformed -= HandleOnSpecialInteractionPerformed;
+        }
+        catch (Exception ex)
+        {
+            
+        }
+
         _currentInteractableObject = null;
     }
 
@@ -87,7 +101,7 @@ public class PlayerMovementController : MonoBehaviour
         Debug.Log("Player Clicked 2nd item");
         if (_playerCharacter.PlayerStatus == PlayerCharacterStatus.ChoosingItem)
         {
-            _playerCharacter.AddItem(_optionInteractionInProgress.takeItemEnum1);
+            _playerCharacter.AddItem(_optionInteractionInProgress.takeItemEnum2);
             _playerCharacter.ApplyStatus(PlayerCharacterStatus.Normal);
             var stationChoiceObject = _currentInteractableObject as InteractableStations;
             stationChoiceObject.HideChoises();
@@ -100,7 +114,7 @@ public class PlayerMovementController : MonoBehaviour
         Debug.Log("Player Clicked 3rd item");
         if (_playerCharacter.PlayerStatus == PlayerCharacterStatus.ChoosingItem)
         {
-            _playerCharacter.AddItem(_optionInteractionInProgress.takeItemEnum1);
+            _playerCharacter.AddItem(_optionInteractionInProgress.takeItemEnum3);
             _playerCharacter.ApplyStatus(PlayerCharacterStatus.Normal);
             var stationChoiceObject = _currentInteractableObject as InteractableStations;
             stationChoiceObject.HideChoises();
@@ -156,6 +170,14 @@ public class PlayerMovementController : MonoBehaviour
         }
         
         _rb2d.MovePosition(_rb2d.position + CharacterMoveSpeedModifier * moveVal);
+    }
+
+    private void FixedUpdate()
+    {
+        lastFramePosition = currentFramePosition;
+        currentFramePosition = _rb2d.position;
+
+        moveVelocity = MoveVelocity;
     }
 
     public void EnterVent(float travelTime)

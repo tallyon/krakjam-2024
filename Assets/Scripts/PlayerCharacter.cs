@@ -9,7 +9,8 @@ public enum PlayerCharacterStatus
     Normal,
     Stunned,
     InVent,
-    ChoosingItem
+    ChoosingItem,
+    Slipping
 }
 
 [RequireComponent(typeof(PlayerMovementController))]
@@ -35,7 +36,9 @@ public class PlayerCharacter : MonoBehaviour
 
     [SerializeField] private TextMeshPro floatingTextPrefab;
     [SerializeField] private GameObject stunParticlesPrefab;
+    [SerializeField] private GameObject slippingParticlesPrefab;
     private GameObject _stunParticlesInstance;
+    private GameObject _slippingParticlesInstance;
     
     public Action<PlayerCharacterStatus> OnPlayerCharacterStatusChanged;
 
@@ -61,6 +64,7 @@ public class PlayerCharacter : MonoBehaviour
     private void HandlePlayerStatusChanged(PlayerCharacterStatus status)
     {
         if (_stunParticlesInstance != null) Destroy(_stunParticlesInstance);
+        if (_slippingParticlesInstance != null) Destroy(_slippingParticlesInstance);
 
         switch (status)
         {
@@ -74,6 +78,15 @@ public class PlayerCharacter : MonoBehaviour
                 break;
             case PlayerCharacterStatus.InVent:
                 Debug.Log($"IN VENT on {gameObject.name}");
+                break;
+            case PlayerCharacterStatus.Slipping:
+                Debug.Log($"SLIPPING on {gameObject.name}!");
+                _slippingParticlesInstance = Instantiate(slippingParticlesPrefab, transform.position + new Vector3(0, 3, -10), transform.rotation);
+                _slippingParticlesInstance.transform.SetParent(transform, true);
+                var targetVector = _playerMovementController.MoveVelocity.normalized * 10;
+                _playerMovementController.Rigidbody.DOMove(_playerMovementController.transform.position + new Vector3(targetVector.x, targetVector.y, 0),
+                        PlayerMovementController.STUNNING_SURFACE_STUN_DURATION_SECONDS)
+                    .SetEase(Ease.OutSine).Play();
                 break;
         }
     }
