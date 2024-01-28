@@ -11,15 +11,19 @@ public class Singleton<T> : MonoBehaviour where T : class
 
     protected virtual void Awake()
     {
+        instance = this as T;
+
+        /*Debug.Log($"SIngletone awake");
         if (instance != null && instance != this as T)
         {
+            instance = null;
             Destroy(gameObject);
         }
         else
         {
             instance = this as T;
             StartCoroutine(SendOnInstantiateInNextFrame());
-        }
+        }*/
     }
 
     private IEnumerator SendOnInstantiateInNextFrame()
