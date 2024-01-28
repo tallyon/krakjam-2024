@@ -13,6 +13,12 @@ public class StationGiveItemChangeSpriteInteraction : Interaction
     
     public override void PlayInteraction(PlayerCharacter playerCharacter)
     {
+        if (isOneTimeUse && _wasUsed)
+        {
+            OnInteraction?.Invoke(new DisplayMessageInteraction() { Message = "Station cannot be taken by this character" }, playerCharacter.characterTypeEnum);
+            return;
+        }
+
         if (possiblePlayerInteraction == CharacterTypeEnum.Both || playerCharacter.characterTypeEnum == possiblePlayerInteraction)
         {
             if (playerCharacter.collectedItem != null && playerCharacter.collectedItem.itemsEnum == _giveItemEnum)
@@ -24,7 +30,7 @@ public class StationGiveItemChangeSpriteInteraction : Interaction
 
                 _newSprite = sprites.FirstOrDefault(x => x.characterEnum == playerCharacter.characterTypeEnum).sprite;
                 OnInteraction?.Invoke(new StationChangeSpriteInteraction() { newSprite = _newSprite }, playerCharacter.characterTypeEnum);
-
+                _wasUsed = true;
             }
             else
             {
