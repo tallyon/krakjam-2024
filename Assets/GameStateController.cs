@@ -45,7 +45,6 @@ public class GameStateController : Singleton<GameStateController>
         _player2Character = charactersPrefab[1].CharacterType;
         StartLevel(0);
 
-        StartCoroutine(SimulateScore());
         IsGameInitialized = true;
         OnGameInit?.Invoke();
     }
