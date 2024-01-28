@@ -47,7 +47,7 @@ public class Interactable : MonoBehaviour
         {
             case DisplayMessageInteraction displayMessageInteraction:
                 _simpleTextPopAnimationMiddle.PlayAnimation(transform.position);
-                Debug.Log(displayMessageInteraction.Message);
+                Debug.Log(displayMessageInteraction.InfoEnum);
                 break;
         }
     }

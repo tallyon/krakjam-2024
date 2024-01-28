@@ -1,5 +1,6 @@
 using UnityEngine;
 using static ItemsData;
+using static SimpleTextPopAnimation;
 
 public class StationOptionGiveAdnTakeItemInteraction : Interaction
 {
@@ -13,7 +14,7 @@ public class StationOptionGiveAdnTakeItemInteraction : Interaction
     {
         if (isOneTimeUse && _wasUsed)
         {
-            OnInteraction?.Invoke(new DisplayMessageInteraction() { Message = "Station cannot be taken by this character" }, playerCharacter.characterTypeEnum);
+            OnInteraction?.Invoke(new DisplayMessageInteraction(InfoEnums.Used), playerCharacter.characterTypeEnum);
             return;
         }
 
@@ -39,19 +40,19 @@ public class StationOptionGiveAdnTakeItemInteraction : Interaction
                 }
                 else
                 {
-                    OnInteraction?.Invoke(new DisplayMessageInteraction() { Message = "You do not have proper item" }, playerCharacter.characterTypeEnum);
+                    OnInteraction?.Invoke(new DisplayMessageInteraction(InfoEnums.NoItem, giveItemEnum1), playerCharacter.characterTypeEnum);
                     Debug.Log($"Interactions: Player tries to interact, does not have proper item");
                 }
             }
             else
             {
-                OnInteraction?.Invoke(new DisplayMessageInteraction() { Message = "You do not have proper item" }, playerCharacter.characterTypeEnum);
+                OnInteraction?.Invoke(new DisplayMessageInteraction(InfoEnums.TwoItems), playerCharacter.characterTypeEnum);
                 Debug.Log($"Interactions: Player tries to interact, does not have proper item");
             }
         }
         else
         {
-            OnInteraction?.Invoke(new DisplayMessageInteraction() { Message = "Station cannot be interacted by this character" }, playerCharacter.characterTypeEnum);
+            OnInteraction?.Invoke(new DisplayMessageInteraction(InfoEnums.NoInteraction), playerCharacter.characterTypeEnum);
             Debug.Log($"Interactions: Player cannot interact with this item with this character");
         }
     }

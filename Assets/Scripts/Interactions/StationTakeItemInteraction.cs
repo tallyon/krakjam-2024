@@ -1,5 +1,6 @@
 using UnityEngine;
 using static ItemsData;
+using static SimpleTextPopAnimation;
 
 public class StationTakeItemInteraction : Interaction
 {
@@ -7,6 +8,8 @@ public class StationTakeItemInteraction : Interaction
 
     public override void PlayInteraction(PlayerCharacter playerCharacter)
     {
+
+
         if (possiblePlayerInteraction == CharacterTypeEnum.Both || playerCharacter.characterTypeEnum == possiblePlayerInteraction)
         {
             if (playerCharacter.collectedItem != null)
@@ -14,7 +17,7 @@ public class StationTakeItemInteraction : Interaction
 
                 Debug.Log($"Interactions: Player cannot take second item");
 
-                OnInteraction?.Invoke(new DisplayMessageInteraction() { Message = "You cannot have 2 collected items" }, playerCharacter.characterTypeEnum);
+                OnInteraction?.Invoke(new DisplayMessageInteraction(InfoEnums.TwoItems), playerCharacter.characterTypeEnum);
             }
             else
             {
@@ -29,7 +32,7 @@ public class StationTakeItemInteraction : Interaction
 
             Debug.Log($"Interactions: Player cannot interact with this item with this character");
 
-            OnInteraction?.Invoke(new DisplayMessageInteraction() { Message = "Station cannot be interacted by this character" }, playerCharacter.characterTypeEnum);
+            OnInteraction?.Invoke(new DisplayMessageInteraction(InfoEnums.NoInteraction), playerCharacter.characterTypeEnum);
         }
     }
 }

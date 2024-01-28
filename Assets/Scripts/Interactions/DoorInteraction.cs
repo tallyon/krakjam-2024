@@ -1,6 +1,7 @@
 
 using System.Collections.Generic;
 using UnityEngine;
+using static SimpleTextPopAnimation;
 
 public class DoorInteraction : Interaction
 {
@@ -15,7 +16,7 @@ public class DoorInteraction : Interaction
     {
         if (isOneTimeUse && _wasUsed)
         {
-            OnInteraction?.Invoke(new DisplayMessageInteraction() { Message = "Station cannot be taken by this character" }, playerCharacter.characterTypeEnum);
+            OnInteraction?.Invoke(new DisplayMessageInteraction(InfoEnums.Used), playerCharacter.characterTypeEnum);
             return;
         }
 
@@ -23,12 +24,12 @@ public class DoorInteraction : Interaction
         {
             if(playerCharacter.characterTypeEnum == CharacterTypeEnum.Beta)
             {
-                OnInteraction?.Invoke(new DisplayMessageInteraction() { Message = "You have to use ability" }, playerCharacter.characterTypeEnum);
+                OnInteraction?.Invoke(new DisplayMessageInteraction(InfoEnums.NerdAbility), playerCharacter.characterTypeEnum);
                 Debug.Log("Interactions: Player cannot take this item as this character");
             }
             else
             {
-                OnInteraction?.Invoke(new DisplayMessageInteraction() { Message = "You cannot interact" }, playerCharacter.characterTypeEnum);
+                OnInteraction?.Invoke(new DisplayMessageInteraction(InfoEnums.NoInteraction), playerCharacter.characterTypeEnum);
                 Debug.Log("Interactions: Player cannot take this item as this character");
             }
         }
@@ -36,18 +37,18 @@ public class DoorInteraction : Interaction
         {
             if (playerCharacter.characterTypeEnum == CharacterTypeEnum.Sigma)
             {
-                OnInteraction?.Invoke(new DisplayMessageInteraction() { Message = "You have to use ability" }, playerCharacter.characterTypeEnum);
+                OnInteraction?.Invoke(new DisplayMessageInteraction(InfoEnums.ChadAbility), playerCharacter.characterTypeEnum);
                 Debug.Log("Interactions: Player cannot take this item as this character");
             }
             else
             {
-                OnInteraction?.Invoke(new DisplayMessageInteraction() { Message = "You cannot interact" }, playerCharacter.characterTypeEnum);
+                OnInteraction?.Invoke(new DisplayMessageInteraction(InfoEnums.NoInteraction), playerCharacter.characterTypeEnum);
                 Debug.Log("Interactions: Player cannot take this item as this character");
             }
         }
         else
         {
-            OnInteraction?.Invoke(new DisplayMessageInteraction() { Message = "Item cannot be taken by this character" }, playerCharacter.characterTypeEnum);
+            OnInteraction?.Invoke(new DisplayMessageInteraction(InfoEnums.NoInteraction), playerCharacter.characterTypeEnum);
             Debug.Log("Interactions: Player cannot take this item as this character");
         }
     }
@@ -56,7 +57,7 @@ public class DoorInteraction : Interaction
     {
         if (isOneTimeUse && _wasUsed)
         {
-            OnInteraction?.Invoke(new DisplayMessageInteraction() { Message = "Station cannot be taken by this character" }, playerCharacter.characterTypeEnum);
+            OnInteraction?.Invoke(new DisplayMessageInteraction(InfoEnums.Used), playerCharacter.characterTypeEnum);
             return null;
         }
 
@@ -83,7 +84,7 @@ public class DoorInteraction : Interaction
         }
         else
         {
-            OnInteraction?.Invoke(new DisplayMessageInteraction() { Message = "Station cannot be taken by this character" }, playerCharacter.characterTypeEnum);
+            OnInteraction?.Invoke(new DisplayMessageInteraction(InfoEnums.NoInteraction), playerCharacter.characterTypeEnum);
             return null;
         }
     }

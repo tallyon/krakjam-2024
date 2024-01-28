@@ -69,10 +69,13 @@ public class SimpleTextPopAnimation : MonoBehaviour, ISimpleAnimation
 
     public enum InfoEnums
     {
-        NoChad,
-        NoNerd,
+        NoInteraction,
         SimpleItem,
-        NoItem
+        NoItem,
+        Used,
+        ChadAbility,
+        NerdAbility,
+        TwoItems
     }
     
 }

@@ -1,5 +1,6 @@
 using UnityEngine;
 using static ItemsData;
+using static SimpleTextPopAnimation;
 
 public class StationOptionInteraction : Interaction
 {
@@ -12,11 +13,18 @@ public class StationOptionInteraction : Interaction
     {
         if(possiblePlayerInteraction == CharacterTypeEnum.Both || playerCharacter.characterTypeEnum == possiblePlayerInteraction)
         {
-            OnInteraction?.Invoke(this, playerCharacter.characterTypeEnum);
+            if(playerCharacter.collectedItem != null)
+            {
+                OnInteraction?.Invoke(this, playerCharacter.characterTypeEnum);
+            }
+            else
+            {
+                OnInteraction?.Invoke(new DisplayMessageInteraction(InfoEnums.TwoItems), playerCharacter.characterTypeEnum);
+            }
         }
         else
         {
-            OnInteraction?.Invoke(new DisplayMessageInteraction() { Message = "Station cannot be interacted by this character" }, playerCharacter.characterTypeEnum);
+            OnInteraction?.Invoke(new DisplayMessageInteraction(InfoEnums.NoInteraction), playerCharacter.characterTypeEnum);
             Debug.Log($"Interactions: Player cannot interact with this item with this character");
         }
     }

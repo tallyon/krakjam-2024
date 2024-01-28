@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using static SimpleTextPopAnimation;
 
 public class StationChangeSpriteInteraction : Interaction
 {
@@ -11,16 +12,23 @@ public class StationChangeSpriteInteraction : Interaction
 
     public override void PlayInteraction(PlayerCharacter playerCharacter)
     {
+        if (isOneTimeUse && _wasUsed)
+        {
+            OnInteraction?.Invoke(new DisplayMessageInteraction(InfoEnums.Used), playerCharacter.characterTypeEnum);
+            return;
+        }
+
         if (possiblePlayerInteraction == CharacterTypeEnum.Both || playerCharacter.characterTypeEnum == possiblePlayerInteraction)
         {
             newSprite = sprites.FirstOrDefault(x => x.characterEnum == playerCharacter.characterTypeEnum).sprite;
 
             OnInteraction?.Invoke(this, playerCharacter.characterTypeEnum);
             Debug.Log($"Interactions: Player chnged sprite of item");
+            _wasUsed = true;
         }
         else
         {
-            OnInteraction?.Invoke(new DisplayMessageInteraction() { Message = "Station cannot be taken by this character" }, playerCharacter.characterTypeEnum);
+            OnInteraction?.Invoke(new DisplayMessageInteraction(InfoEnums.NoInteraction), playerCharacter.characterTypeEnum);
             Debug.Log($"Interactions: Player cannot interact with this item with this character");
         }
     }
