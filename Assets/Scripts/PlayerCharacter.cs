@@ -50,12 +50,12 @@ public class PlayerCharacter : MonoBehaviour
     [SerializeField] private GameObject stunParticlesPrefab;
     [SerializeField] private GameObject ventingParticlesPrefab;
     [SerializeField] private GameObject slippingParticlesPrefab;
-    [SerializeField] private GameObject interactingParticlesPrefab;
+    [SerializeField] private SpriteRadialFill spriteRadialFill;
     [SerializeField] private SpriteRenderer interactingFillingSpritePrefab;
     private GameObject _stunParticlesInstance;
     private GameObject _ventingParticlesInstance;
     private GameObject _slippingParticlesInstance;
-    private GameObject _interactingParticlesInstance;
+    private SpriteRadialFill _interactableRadialFill;
     private SpriteRenderer _interactingFillingSpriteInstance;
     
     [SerializeField] private SpriteRenderer characterSpriteRenderer;
@@ -92,7 +92,7 @@ public class PlayerCharacter : MonoBehaviour
         if (_ventingParticlesInstance != null) Destroy(_ventingParticlesInstance);
         if (_slippingParticlesInstance != null) Destroy(_slippingParticlesInstance);
         if (_interactingFillingSpriteInstance != null) Destroy(_interactingFillingSpriteInstance);
-        if (_interactingParticlesInstance != null) Destroy(_interactingParticlesInstance);
+        if (_interactableRadialFill != null) Destroy(_interactableRadialFill);
 
         Debug.Log($"{previousStatus} -> {status}");
         // if previously was in vent set sort order to 1
@@ -128,10 +128,16 @@ public class PlayerCharacter : MonoBehaviour
                 break;
             case PlayerCharacterStatus.Interacting:
                 Debug.Log($"INTERACTING on {gameObject.name}!");
-                _interactingParticlesInstance = Instantiate(interactingParticlesPrefab, transform.position + new Vector3(0, 3, -10), transform.rotation);
-                _interactingParticlesInstance.transform.SetParent(transform, true);
+                
                 break;
         }
+    }
+
+    public void StartInteracting(int radialTimeMS)
+    {
+        _interactableRadialFill = Instantiate(spriteRadialFill, transform.position + new Vector3(0, 3, -10), transform.rotation);
+        _interactableRadialFill.transform.SetParent(transform, true);
+        _interactableRadialFill.StartFill((float)radialTimeMS / 1000f);
     }
 
     public void AddItem(ItemsData.ItemsEnum item)
@@ -279,10 +285,10 @@ public class PlayerCharacter : MonoBehaviour
         var otherPlayer = GameStateController.Instance.GetOtherPlayer(this);
         var distanceToOtherPlayer = Vector2.Distance(otherPlayer.transform.position, transform.position);
 
-        if (distanceToOtherPlayer > abilityConfig.Radius) return false;
+        if (distanceToOtherPlayer > abilityConfig.Radius) return true;
         
         // check if other player is in normal status
-        if (otherPlayer.PlayerStatus != PlayerCharacterStatus.Normal) return false;
+        if (otherPlayer.PlayerStatus != PlayerCharacterStatus.Normal) return true;
         
         // if other player is in radius apply Stunned status and push him back
         otherPlayer.ApplyStatus(PlayerCharacterStatus.Stunned, abilityConfig.Duration);

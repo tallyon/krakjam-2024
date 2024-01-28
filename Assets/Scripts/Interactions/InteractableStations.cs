@@ -1,6 +1,9 @@
+using System;
+using System.Threading.Tasks;
 using UnityEngine;
 using static ItemsData;
 using static StationsData;
+using static UnityEngine.ParticleSystem;
 
 public class InteractableStations : Interactable
 {
@@ -11,12 +14,12 @@ public class InteractableStations : Interactable
     public StationEnum StationEnum => stationEnum;
     [SerializeField] SpriteRenderer spriteRenderer;
 
-    protected override void HandleOnInteractionWithObject(Interaction interaction, CharacterTypeEnum characterTypeEnum)
+    protected async override void HandleOnInteractionWithObject(Interaction interaction, CharacterTypeEnum characterTypeEnum)
     {
         base.HandleOnInteractionWithObject(interaction, characterTypeEnum);
 
         var player = GameStateController.Instance.GetPlayerObject(characterTypeEnum);
-
+        await WaitForInteraction(interaction, player);
         switch (interaction)
         {
             case StationChangeSpriteInteraction changeSpriteInteraction:
@@ -25,6 +28,7 @@ public class InteractableStations : Interactable
                 spriteRenderer.sprite = changeSpriteInteraction.newSprite;
                 break;
             case StationGiveItemInteraction giveItemInteraction:
+
                 Debug.Log($"Interactable item: {characterTypeEnum} has taken {giveItemInteraction.giveItemEnum} to {stationEnum}");
                 player = GameStateController.Instance.GetPlayerObject(characterTypeEnum);
                 player.DeleteItem();
@@ -46,6 +50,19 @@ public class InteractableStations : Interactable
             case TrophyCaseInteraction trophyCaseInteraction:
                 Debug.Log($"Interactable item: {characterTypeEnum} has interacted with  door");
                 break;
+        }
+    }
+
+    private async Task WaitForInteraction(Interaction interaction, PlayerCharacter player)
+    {
+        if (interaction.InteractionTimeMS > 0)
+        {
+            player.ApplyStatus(PlayerCharacterStatus.Interacting);
+            player.StartInteracting(interaction.InteractionTimeMS);
+            particle.Play();
+            await Task.Delay(interaction.InteractionTimeMS);
+            particle.Stop();
+            player.ApplyStatus(PlayerCharacterStatus.Normal);
         }
     }
 
